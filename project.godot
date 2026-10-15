@@ -11,18 +11,24 @@ config_version=5
 [application]
 
 config/name="wurstdelve"
+run/main_scene="res://game/boot/boot.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Switchboard_auto="*res://daLoneDrau-GDEng-ECS/services/switchboard.gd"
-DiceTower_auto="*res://daLoneDrau-GDEng-ECS/services/dice_tower.gd"
+Switchboard_auto="*res://addons/gdeng/daLoneDrau-GDEng-ECS/services/switchboard.gd"
+DiceTower_auto="*res://addons/gdeng/daLoneDrau-GDEng-ECS/services/dice_tower.gd"
+GameEngine_auto="*res://game/boot/dd_game_engine.gd"
+EntityManager_auto="*res://game/boot/dd_entity_manager.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [physics]
 
@@ -30,6 +36,7 @@ window/stretch/aspect="expand"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

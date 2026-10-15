@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d87k64ucd42u"]
+
+[ext_resource type="Script" uid="uid://bdqhtk3gme7u" path="res://game/scenes/options/options_overlay.gd" id="1_3qc1x"]
+[ext_resource type="Script" uid="uid://cdotkpm5d0fb2" path="res://game/ui/action_button.gd" id="2_e33tg"]
+
+[node name="Options" type="Node" unique_id=1607081023]
+script = ExtResource("1_3qc1x")
+
+[node name="Control" type="Control" parent="." unique_id=1400602513]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1223078013]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=1829126525]
+layout_mode = 2
+text = "Options (placeholder)"
+
+[node name="ActionButton" type="Button" parent="Control/VBoxContainer" unique_id=1704225785]
+layout_mode = 2
+text = "Close [Esc]"
+script = ExtResource("2_e33tg")
+key_name = "Escape"
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"

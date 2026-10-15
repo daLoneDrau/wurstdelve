@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cet8uiy7ku6pv"]
+
+[ext_resource type="Script" uid="uid://cvhsha8wx02cl" path="res://game/scenes/title/title_scene.gd" id="1_55vo3"]
+[ext_resource type="Script" uid="uid://cdotkpm5d0fb2" path="res://game/ui/action_button.gd" id="2_m3nan"]
+
+[node name="Title" type="Node" unique_id=839766890]
+script = ExtResource("1_55vo3")
+
+[node name="Control" type="Control" parent="." unique_id=2044001527]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1045194508]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=65151264]
+layout_mode = 2
+text = "Dungeon Degenerates"
+
+[node name="ActionButton2" type="Button" parent="Control/VBoxContainer" unique_id=1004787353]
+layout_mode = 2
+text = "New Game [Enter]"
+script = ExtResource("2_m3nan")
+key_name = "Enter"
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="ActionButton" type="Button" parent="Control/VBoxContainer" unique_id=576366609]
+layout_mode = 2
+text = "Options [O]"
+script = ExtResource("2_m3nan")
+key_name = "O"
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="ActionButton3" type="Button" parent="Control/VBoxContainer" unique_id=1354231830]
+layout_mode = 2
+text = "Quit [Q]"
+script = ExtResource("2_m3nan")
+key_name = "Q"
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
