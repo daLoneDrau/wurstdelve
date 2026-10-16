@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cvhsha8wx02cl" path="res://game/scenes/title/title_scene.gd" id="1_55vo3"]
 [ext_resource type="Script" uid="uid://cdotkpm5d0fb2" path="res://game/ui/action_button.gd" id="2_m3nan"]
+[ext_resource type="PackedScene" uid="uid://bdm3pl5cg4awm" path="res://assets/models/test_obelisk.glb" id="3_f7plj"]
+
+[sub_resource type="Environment" id="Environment_m3nan"]
+ambient_light_source = 2
+ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
 
 [node name="Title" type="Node" unique_id=839766890]
 script = ExtResource("1_55vo3")
@@ -13,6 +18,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ModelStage" type="SubViewportContainer" parent="Control" unique_id=1927643537]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Control/ModelStage" unique_id=1758636065]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(320, 180)
+
+[node name="Camera3D" type="Camera3D" parent="Control/ModelStage/SubViewport" unique_id=679380456]
+transform = Transform3D(1, 0, 0, 0, 0.9912155, 0.13225639, 0, -0.13225639, 0.9912155, 0, 1.2, 3)
+environment = SubResource("Environment_m3nan")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/ModelStage/SubViewport" unique_id=656174373]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="test_obelisk" parent="Control/ModelStage/SubViewport" unique_id=1765905258 instance=ExtResource("3_f7plj")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1045194508]
 layout_mode = 0

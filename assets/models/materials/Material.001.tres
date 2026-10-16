@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bn8glhe3wq8fn"]
+
+[ext_resource type="Texture2D" uid="uid://d34wdhjt226p1" path="res://assets/models/test_obelisk_Untitled.png" id="1_6xg5h"]
+
+[resource]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_6xg5h")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0

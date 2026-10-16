@@ -12,6 +12,7 @@ func _setup_window() -> void:
 	# 960x540, viewport stretch and integer scaling come from project settings.
 	# The minimum size stops a desktop window from going below 1x.
 	window.min_size = Vector2i(960, 540)
+	add_child(PaletteLayer.new())
 
 func _start_game() -> void:
 	register_scene("title", "res://game/scenes/title/title.tscn")
