@@ -38,7 +38,7 @@ handle_input_locally = false
 size = Vector2i(320, 180)
 
 [node name="Camera3D" type="Camera3D" parent="Control/ModelStage/SubViewport" unique_id=679380456]
-transform = Transform3D(1, 0, 0, 0, 0.9912155, 0.13225639, 0, -0.13225639, 0.9912155, 0, 1.2, 3)
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 2, 7)
 environment = SubResource("Environment_m3nan")
 fov = 40.0
 size = 3.803

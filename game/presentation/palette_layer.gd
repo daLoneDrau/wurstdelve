@@ -2,7 +2,7 @@ class_name PaletteLayer
 extends CanvasLayer
 
 const SHADER: Shader = preload("res://addons/gdeng/daLoneDrau-GDEng-ECS/shaders/palette_limiter.gdshader")
-const PALETTE: Texture2D = preload("res://addons/gdeng/daLoneDrau-GDEng-ECS/shaders/palettes/commodore64-1x.png")
+const PALETTE: Texture2D = preload("res://addons/gdeng/daLoneDrau-GDEng-ECS/shaders/palettes/dawnbringer-32-1x.png")
 
 func _ready() -> void:
 	layer = 100

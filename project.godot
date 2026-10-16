@@ -27,7 +27,6 @@ EntityManager_auto="*res://game/boot/dd_entity_manager.gd"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 window/stretch/scale_mode="integer"
 
 [physics]
@@ -40,3 +39,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
