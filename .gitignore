@@ -4,3 +4,5 @@
 /android/
 *.uid
 *.import
+/build/
+export_presets.cfg
