@@ -19,60 +19,72 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ModelStage" type="SubViewportContainer" parent="Control" unique_id=1927643537]
-texture_filter = 1
+[node name="ScreenFrame" type="PanelContainer" parent="Control" unique_id=1768824587]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"WindowFrame"
+
+[node name="Layout" type="VBoxContainer" parent="Control/ScreenFrame" unique_id=970474786]
+layout_mode = 2
+
+[node name="PicturePanel" type="PanelContainer" parent="Control/ScreenFrame/Layout" unique_id=1730066986]
+layout_mode = 2
+
+[node name="ModelStage" type="SubViewportContainer" parent="Control/ScreenFrame/Layout/PicturePanel" unique_id=1927643537]
+texture_filter = 1
+layout_mode = 2
 mouse_filter = 2
 stretch = true
 stretch_shrink = 3
 
-[node name="SubViewport" type="SubViewport" parent="Control/ModelStage" unique_id=1758636065]
+[node name="SubViewport" type="SubViewport" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage" unique_id=1758636065]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(320, 180)
+size = Vector2i(308, 2)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Control/ModelStage/SubViewport" unique_id=679380456]
+[node name="Camera3D" type="Camera3D" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage/SubViewport" unique_id=679380456]
 transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 2, 7)
 environment = SubResource("Environment_m3nan")
 fov = 40.0
 size = 3.803
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/ModelStage/SubViewport" unique_id=656174373]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage/SubViewport" unique_id=656174373]
 transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
 
-[node name="test_obelisk" parent="Control/ModelStage/SubViewport" unique_id=1765905258 instance=ExtResource("3_f7plj")]
+[node name="test_obelisk" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage/SubViewport" unique_id=1765905258 instance=ExtResource("3_f7plj")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1045194508]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MenuPanel" type="PanelContainer" parent="Control/ScreenFrame" unique_id=465175901]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=65151264]
+[node name="MenuColumn" type="VBoxContainer" parent="Control/ScreenFrame/MenuPanel" unique_id=203519615]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Control/ScreenFrame/MenuPanel/MenuColumn" unique_id=65151264]
 layout_mode = 2
 text = "Dungeon Degenerates"
 
-[node name="NewGame" type="Button" parent="Control/VBoxContainer" unique_id=1004787353]
+[node name="NewGame" type="Button" parent="Control/ScreenFrame/MenuPanel/MenuColumn" unique_id=1004787353]
 layout_mode = 2
 text = "New Game [Enter]"
 script = ExtResource("2_m3nan")
 key_name = "Enter"
 metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
 
-[node name="Options" type="Button" parent="Control/VBoxContainer" unique_id=576366609]
+[node name="Options" type="Button" parent="Control/ScreenFrame/MenuPanel/MenuColumn" unique_id=576366609]
 layout_mode = 2
 text = "Options [O]"
 script = ExtResource("2_m3nan")
 key_name = "O"
 metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
 
-[node name="ActionButton3" type="Button" parent="Control/VBoxContainer" unique_id=1354231830]
+[node name="Quit" type="Button" parent="Control/ScreenFrame/MenuPanel/MenuColumn" unique_id=1354231830]
 visible = false
 layout_mode = 2
 text = "Quit [Q]"

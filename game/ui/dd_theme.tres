@@ -1,0 +1,40 @@
+[gd_resource type="Theme" format=3 uid="uid://sprckrlgw6ua"]
+
+[ext_resource type="Texture2D" uid="uid://d342vjmj1b45d" path="res://assets/ui/buttons/button_hover.png" id="1_g0oqd"]
+[ext_resource type="Texture2D" uid="uid://famibbf7b3j8" path="res://assets/ui/buttons/button_normal.png" id="2_gbuly"]
+[ext_resource type="Texture2D" uid="uid://ds782qj32bc6s" path="res://assets/ui/buttons/window_frame.png" id="3_pwlwi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0oqd"]
+texture = ExtResource("2_gbuly")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t86ht"]
+texture = ExtResource("1_g0oqd")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gbuly"]
+texture = ExtResource("3_pwlwi")
+texture_margin_left = 17.0
+texture_margin_top = 14.0
+texture_margin_right = 17.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_g0oqd")
+Button/styles/hover = SubResource("StyleBoxTexture_t86ht")
+Button/styles/normal = SubResource("StyleBoxTexture_g0oqd")
+Button/styles/pressed = SubResource("StyleBoxTexture_t86ht")
+WindowFrame/base_type = &"PanelContainer"
+WindowFrame/styles/panel = SubResource("StyleBoxTexture_gbuly")
