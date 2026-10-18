@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://d342vjmj1b45d" path="res://assets/ui/buttons/button_hover.png" id="1_g0oqd"]
 [ext_resource type="Texture2D" uid="uid://famibbf7b3j8" path="res://assets/ui/buttons/button_normal.png" id="2_gbuly"]
-[ext_resource type="Texture2D" uid="uid://ds782qj32bc6s" path="res://assets/ui/buttons/window_frame.png" id="3_pwlwi"]
-[ext_resource type="Texture2D" uid="uid://2rl683vlmuxc" path="res://assets/ui/buttons/panel_frame.png" id="3_x7n1l"]
+[ext_resource type="Texture2D" uid="uid://drtiftirvyvfj" path="res://assets/ui/frames/info_frame_content_trans.png" id="3_1b1o2"]
+[ext_resource type="Texture2D" uid="uid://cjy8imhvf2kh4" path="res://assets/ui/frames/window_frame_trans.png" id="3_bunvo"]
+[ext_resource type="Texture2D" uid="uid://d2hvqceqdy50m" path="res://assets/ui/frames/info_frame_header_trans.png" id="3_i5vrf"]
+[ext_resource type="Texture2D" uid="uid://mvi3rnwwr85f" path="res://assets/ui/frames/panel_frame_trans.png" id="3_lruxt"]
 [ext_resource type="Texture2D" uid="uid://dx583yp784pib" path="res://assets/ui/buttons/panel_frame_stone.png" id="4_bunvo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0oqd"]
@@ -24,16 +26,29 @@ texture_margin_bottom = 10.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b1o2"]
+texture = ExtResource("3_1b1o2")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5vrf"]
+texture = ExtResource("3_i5vrf")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3nan"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-texture = ExtResource("3_x7n1l")
-texture_margin_left = 11.0
-texture_margin_top = 11.0
-texture_margin_right = 11.0
-texture_margin_bottom = 11.0
+texture = ExtResource("3_lruxt")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
@@ -50,12 +65,12 @@ texture_margin_bottom = 10.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gbuly"]
-texture = ExtResource("3_pwlwi")
-texture_margin_left = 17.0
-texture_margin_top = 14.0
-texture_margin_right = 17.0
-texture_margin_bottom = 16.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lruxt"]
+texture = ExtResource("3_bunvo")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
@@ -64,9 +79,13 @@ Button/styles/disabled = SubResource("StyleBoxTexture_g0oqd")
 Button/styles/hover = SubResource("StyleBoxTexture_t86ht")
 Button/styles/normal = SubResource("StyleBoxTexture_g0oqd")
 Button/styles/pressed = SubResource("StyleBoxTexture_t86ht")
+InfoFrameContent/base_type = &"PanelContainer"
+InfoFrameContent/styles/panel = SubResource("StyleBoxTexture_1b1o2")
+InfoFrameHeader/base_type = &"PanelContainer"
+InfoFrameHeader/styles/panel = SubResource("StyleBoxTexture_i5vrf")
 PanelFrame/base_type = &"PanelContainer"
 PanelFrame/styles/panel = SubResource("StyleBoxTexture_m3nan")
 StoneFrame/base_type = &"PanelContainer"
 StoneFrame/styles/panel = SubResource("StyleBoxTexture_x7n1l")
 WindowFrame/base_type = &"PanelContainer"
-WindowFrame/styles/panel = SubResource("StyleBoxTexture_gbuly")
+WindowFrame/styles/panel = SubResource("StyleBoxTexture_lruxt")
