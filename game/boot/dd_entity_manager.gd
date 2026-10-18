@@ -2,30 +2,22 @@ class_name DDEntityManager
 extends EntityManager
 
 
-## Entity tags for Warlock-specific entities
-const TAG_PLAYER: int = 1 << 0
-const TAG_MONSTER: int = 1 << 1
-const TAG_ITEM: int = 1 << 2
-const TAG_JARL: int = 1 << 3
-const TAG_LAND: int = 1 << 4
-const TAG_SEA: int = 1 << 5
-const TAG_AI: int = 1 << 6
-const TAG_UNIQUE: int = 1 << 8
-const TAG_EQUIPPED: int = 1 << 9
+## Entity tags for DD-specific entities
+# const TAG_PLAYER: int = 1 << 0
 
 
 ## Determines if an Entity is tagged as a PC
 func is_pc(e: Entity) -> bool:
-	return e.tags.has(TAG_PLAYER)
+	return e.tags.has(EntityTags.Tag.PC)
 
 
 ## Determines if an Entity is tagged as an item
 func is_item(e: Entity) -> bool:
-	return e.tags.has(TAG_ITEM)
+	return e.tags.has(EntityTags.Tag.ITEM)
 
 
 func is_unique(e: Entity) -> bool:
-	return e.tags.has(TAG_UNIQUE)
+	return e.tags.has(EntityTags.Tag.UNIQUE)
 
 
 ## Kill all active combat effects/spells on an entity
