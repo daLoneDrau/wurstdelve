@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cb74tb1jfwh7r"]
+
+[ext_resource type="PackedScene" uid="uid://4j51xg07rsoi" path="res://game/scenes/party_character/snes/name_portrait.tscn" id="1_ktxh7"]
+[ext_resource type="PackedScene" uid="uid://byf2wrglktsvk" path="res://game/scenes/party_character/snes/nav_bar.tscn" id="2_7rt64"]
+[ext_resource type="PackedScene" uid="uid://bcrybkclptt2p" path="res://game/scenes/party_character/snes/attributes.tscn" id="3_jsv2j"]
+[ext_resource type="PackedScene" uid="uid://5hub2e26xrxq" path="res://game/scenes/party_character/snes/equipment.tscn" id="4_jsv2j"]
+[ext_resource type="PackedScene" uid="uid://bqtkvqfsmxu5d" path="res://game/scenes/party_character/snes/conditions.tscn" id="5_48gg1"]
+[ext_resource type="PackedScene" uid="uid://coqfmnptkr8rv" path="res://game/scenes/party_character/snes/party.tscn" id="6_6pk5p"]
+
+[node name="Main" type="PanelContainer" unique_id=1829286110]
+offset_right = 156.0
+offset_bottom = 189.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1374898667]
+layout_mode = 2
+
+[node name="NamePortrait" parent="HBoxContainer" unique_id=302327881 instance=ExtResource("1_ktxh7")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1947594676]
+layout_mode = 2
+
+[node name="NavBar" parent="HBoxContainer/VBoxContainer" unique_id=1469740445 instance=ExtResource("2_7rt64")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1566100950]
+layout_mode = 2
+
+[node name="Attributes" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1933591135 instance=ExtResource("3_jsv2j")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=427502098]
+layout_mode = 2
+
+[node name="Equipment" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1176344516 instance=ExtResource("4_jsv2j")]
+layout_mode = 2
+
+[node name="Conditions" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1246465090 instance=ExtResource("5_48gg1")]
+layout_mode = 2
+
+[node name="Party" parent="HBoxContainer/VBoxContainer" unique_id=1598205816 instance=ExtResource("6_6pk5p")]
+layout_mode = 2

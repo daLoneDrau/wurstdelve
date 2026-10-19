@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://4j51xg07rsoi"]
+
+[ext_resource type="Texture2D" uid="uid://dy32i5wkebpe1" path="res://assets/ui/frames/snes_title_header_frame.png" id="1_8g5os"]
+[ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="2_hi1la"]
+[ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="2_mbrxa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy0tn"]
+texture = ExtResource("1_8g5os")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8hqn"]
+texture = ExtResource("2_mbrxa")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="Environment" id="Environment_mbrxa"]
+ambient_light_source = 2
+ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wy0tn"]
+material = ExtResource("2_hi1la")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wy0tn"]
+color = Color(0.2784314, 0.4745098, 0.8156863, 1)
+
+[node name="NamePortrait" type="VBoxContainer" unique_id=302327881]
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=592149683]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=854518482]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.83137256, 0.41568628, 1)
+text = "Rolf"
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1779041927]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_t8hqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2" unique_id=1991592852]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer" unique_id=1455923146]
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/SubViewportContainer" unique_id=1802173621]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(48, 48)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/SubViewportContainer/SubViewport" unique_id=1718842978]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_mbrxa")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/SubViewportContainer/SubViewport" unique_id=2128380720]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/SubViewportContainer/SubViewport" unique_id=220328635]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer2/VBoxContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=20742474]
+mesh = SubResource("CapsuleMesh_wy0tn")
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer2/VBoxContainer" unique_id=233961480]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_wy0tn")
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer" unique_id=255411546]
+layout_mode = 2
+text = "HUMAN, MERCENARY, ZEALOT"
+autowrap_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer2/VBoxContainer" unique_id=1809408225]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_wy0tn")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer2/VBoxContainer" unique_id=446303327]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=1925193901]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "HP"
+
+[node name="Label2" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=1835085973]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "16"
+
+[node name="Label3" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=780856797]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "WOUNDS"
+
+[node name="Label4" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=1469365230]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "0"
+
+[node name="Label5" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=136008967]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "XP"
+
+[node name="Label6" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=49795397]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "8"
+
+[node name="Label7" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=1758923236]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "GP"
+
+[node name="Label8" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer" unique_id=1841667515]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "4"

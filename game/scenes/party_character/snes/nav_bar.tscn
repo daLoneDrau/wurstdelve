@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://byf2wrglktsvk"]
+
+[ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="1_e1cnn"]
+[ext_resource type="Texture2D" uid="uid://bt5v7c7cfln2u" path="res://assets/ui/frames/snes_selected_tab.png" id="2_eq43n"]
+[ext_resource type="Texture2D" uid="uid://dbgrvdbvkuaxx" path="res://assets/ui/frames/snes_arrow.png" id="2_nmimh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy0tn"]
+texture = ExtResource("1_e1cnn")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewsnx"]
+texture = ExtResource("2_eq43n")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="NavBar" type="PanelContainer" unique_id=1469740445]
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=711428103]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1637662152]
+layout_mode = 2
+texture = ExtResource("2_nmimh")
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1819156516]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ewsnx")
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer" unique_id=1103850497]
+layout_mode = 2
+text = "STATUS"
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=444085545]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_nmimh")
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1136726152]
+layout_mode = 2
+text = "SKILLS"
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=723656632]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_nmimh")
+
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=520148937]
+layout_mode = 2
+text = "EQUIP"
+
+[node name="TextureRect5" type="TextureRect" parent="HBoxContainer" unique_id=1851983913]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_nmimh")
+
+[node name="Label3" type="Label" parent="HBoxContainer" unique_id=712839466]
+layout_mode = 2
+text = "HISTORY"

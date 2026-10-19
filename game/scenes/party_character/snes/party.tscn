@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://coqfmnptkr8rv"]
+
+[ext_resource type="Texture2D" uid="uid://7mjkyky3qfpg" path="res://assets/ui/frames/snes_small_frame.png" id="1_5dho1"]
+[ext_resource type="Texture2D" uid="uid://dqsllq7pxluc1" path="res://assets/ui/frames/snes_small_frame_selected.png" id="1_gumtr"]
+[ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="1_i3tjx"]
+[ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="1_wyu0v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewsnx"]
+texture = ExtResource("1_i3tjx")
+texture_margin_left = 12.0
+texture_margin_top = 6.0
+texture_margin_right = 12.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy0tn"]
+texture = ExtResource("1_gumtr")
+texture_margin_left = 12.0
+texture_margin_top = 4.0
+texture_margin_right = 12.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i3tjx"]
+texture = ExtResource("1_5dho1")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="Environment" id="Environment_5dho1"]
+ambient_light_source = 2
+ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gumtr"]
+material = ExtResource("1_wyu0v")
+
+[node name="Party" type="PanelContainer" unique_id=1598205816]
+theme_override_styles/panel = SubResource("StyleBoxTexture_ewsnx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=378648487]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1785283867]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer" unique_id=1071521368]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=474329748]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i3tjx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/PanelContainer" unique_id=1455134714]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/PanelContainer/VBoxContainer/PanelContainer/SubViewportContainer" unique_id=1595475974]
+handle_input_locally = false
+size = Vector2i(12, 12)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/PanelContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1073533083]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_5dho1")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/PanelContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=548727318]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="HBoxContainer/PanelContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1933717971]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/PanelContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=202999859]
+transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
+mesh = SubResource("BoxMesh_gumtr")
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=217817418]
+layout_mode = 2
+text = "ROLF"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=513403047]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer" unique_id=1796503236]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i3tjx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer/PanelContainer" unique_id=94654038]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer/PanelContainer/SubViewportContainer" unique_id=886667042]
+handle_input_locally = false
+size = Vector2i(12, 12)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=802818871]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_5dho1")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=591879255]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="HBoxContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=564505120]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=47002945]
+transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
+mesh = SubResource("BoxMesh_gumtr")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=918429548]
+layout_mode = 2
+text = "VERA"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1927707224]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer2" unique_id=2022111371]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i3tjx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1265908977]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer2/PanelContainer/SubViewportContainer" unique_id=182341660]
+handle_input_locally = false
+size = Vector2i(14, 12)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/VBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=692791566]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_5dho1")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/VBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=1639684916]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="HBoxContainer/VBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=822816085]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/VBoxContainer2/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=220507123]
+transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
+mesh = SubResource("BoxMesh_gumtr")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1510726824]
+layout_mode = 2
+text = "MIREL"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=870205556]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer3" unique_id=1149257895]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i3tjx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer3/PanelContainer" unique_id=1945367152]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/VBoxContainer3/PanelContainer/SubViewportContainer" unique_id=273078543]
+handle_input_locally = false
+size = Vector2i(18, 12)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/VBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=971500675]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_5dho1")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/VBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=1717904950]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="HBoxContainer/VBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=1705253168]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HBoxContainer/VBoxContainer3/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=1769272906]
+transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
+mesh = SubResource("BoxMesh_gumtr")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=33301226]
+layout_mode = 2
+text = "HESTER"
+horizontal_alignment = 1

@@ -1,0 +1,419 @@
+[gd_scene format=3 uid="uid://d1jdx6jmcd6ol"]
+
+[ext_resource type="Script" uid="uid://dulgr6wutcpqc" path="res://game/scenes/party_character/party_character.gd" id="1_s2kw8"]
+[ext_resource type="PackedScene" uid="uid://dxl3a21pmp117" path="res://game/ui/menu_frame.tscn" id="2_2osr2"]
+[ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="3_150or"]
+[ext_resource type="Texture2D" uid="uid://byfobd82ncfmr" path="res://assets/ui/frames/info_frame_separator.png" id="3_tcb8f"]
+[ext_resource type="Script" uid="uid://cdotkpm5d0fb2" path="res://game/ui/action_button.gd" id="5_07tku"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy0tn"]
+texture = ExtResource("3_tcb8f")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+
+[sub_resource type="Environment" id="Environment_tcb8f"]
+ambient_light_source = 2
+ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wy0tn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wy0tn"]
+draw_center = false
+border_width_bottom = 1
+border_color = Color(0.5971761, 0.5971762, 0.59717584, 1)
+
+[node name="PartyCharacter" type="Node" unique_id=417120682]
+script = ExtResource("1_s2kw8")
+
+[node name="Layer" type="CanvasLayer" parent="." unique_id=1416303009]
+layer = 10
+
+[node name="Control" type="Control" parent="Layer" unique_id=1596530654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Layer/Control" unique_id=504949181]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Frame" parent="Layer/Control" unique_id=386976111 instance=ExtResource("2_2osr2")]
+
+[node name="Body" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content" parent_id_path=PackedInt32Array(386976111, 1962921417) index="0" unique_id=1339082528]
+layout_mode = 2
+
+[node name="AdventurerPanel" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body" unique_id=960642325]
+layout_mode = 2
+theme_type_variation = &"InfoFrameHeader"
+
+[node name="Main" type="HBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel" unique_id=1491223665]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Left" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main" unique_id=468343605]
+layout_mode = 2
+theme_type_variation = &"InfoFrameHeader"
+
+[node name="Column" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left" unique_id=1812031072]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NameLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=170642922]
+layout_mode = 2
+text = "Name"
+
+[node name="FullWidthSeparator" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=489730663]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="Stage" type="SubViewportContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=1309156430]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/Stage" unique_id=191667729]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(44, 42)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/Stage/SubViewport" unique_id=1277754409]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 2, 7)
+environment = SubResource("Environment_tcb8f")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/Stage/SubViewport" unique_id=680747670]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/Stage/SubViewport" unique_id=1730216086]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/Stage/SubViewport/ModelAnchor" unique_id=547928076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_wy0tn")
+surface_material_override/0 = ExtResource("3_150or")
+
+[node name="FullWidthSeparator2" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=1575926411]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="ClassesLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=1587913909]
+layout_mode = 2
+text = "Classes"
+
+[node name="StatusMarker" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=1231074052]
+layout_mode = 2
+text = "Statuses"
+
+[node name="BackgroundButton" type="Button" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=685667847]
+layout_mode = 2
+text = "Background"
+script = ExtResource("5_07tku")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="MarginContainer" type="MarginContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column" unique_id=454861156]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer" unique_id=1358544475]
+layout_mode = 2
+
+[node name="FullWidthSeparator" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer" unique_id=1570865467]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="AttributesContainer" type="GridContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer" unique_id=1440975503]
+layout_mode = 2
+columns = 4
+
+[node name="AgiLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1673159527]
+layout_mode = 2
+text = "AGI"
+
+[node name="AgiValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1729822817]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="ConLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1859200988]
+layout_mode = 2
+text = "CON"
+
+[node name="ConValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=274395630]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="MagLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1863565818]
+layout_mode = 2
+text = "MAG"
+
+[node name="MagValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=246587303]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="MrlLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=846651169]
+layout_mode = 2
+text = "MRL"
+
+[node name="MrlValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1881425962]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="PerLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1629724525]
+layout_mode = 2
+text = "PER"
+
+[node name="PerValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1230644054]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="StrLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=651338556]
+layout_mode = 2
+text = "STR"
+
+[node name="StrValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/AttributesContainer" unique_id=1671319327]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="FullWidthSeparator2" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer" unique_id=591462023]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="CountersContainer" type="GridContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer" unique_id=785954321]
+layout_mode = 2
+columns = 2
+
+[node name="HpLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/CountersContainer" unique_id=656394796]
+layout_mode = 2
+text = "HP"
+
+[node name="HpValue" type="RichTextLabel" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/CountersContainer" unique_id=1903360999]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "12/12"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="XpLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/CountersContainer" unique_id=1143385266]
+layout_mode = 2
+text = "XP"
+
+[node name="XpValue" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/CountersContainer" unique_id=1326012685]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "8"
+horizontal_alignment = 2
+
+[node name="GpLabel" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/CountersContainer" unique_id=841811221]
+layout_mode = 2
+text = "GP"
+
+[node name="GpValue" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Left/Column/MarginContainer/VBoxContainer/CountersContainer" unique_id=504383519]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "4"
+horizontal_alignment = 2
+
+[node name="MiddleLeft" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main" unique_id=1611223828]
+layout_mode = 2
+
+[node name="Column" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft" unique_id=2140204367]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SkillsPanel" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column" unique_id=1360086376]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SkillsHeaderPanel" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel" unique_id=203836173]
+layout_mode = 2
+theme_type_variation = &"InfoFrameRight"
+
+[node name="HeaderRow" type="HBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsHeaderPanel" unique_id=1410031374]
+layout_mode = 2
+alignment = 1
+
+[node name="SkillsPrev" type="Button" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsHeaderPanel/HeaderRow" unique_id=388126352]
+layout_mode = 2
+text = "<-"
+script = ExtResource("5_07tku")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsHeaderPanel/HeaderRow" unique_id=1799294044]
+layout_mode = 2
+text = "SKILLS (1/2)"
+
+[node name="SkillsNext" type="Button" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsHeaderPanel/HeaderRow" unique_id=1330850537]
+layout_mode = 2
+text = "->"
+script = ExtResource("5_07tku")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="SkillsContentPanel2" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel" unique_id=1173558489]
+layout_mode = 2
+theme_type_variation = &"InfoFrameContentRight"
+
+[node name="MarginContainer" type="MarginContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2" unique_id=691974454]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="SkillsList" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer" unique_id=1708096204]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList" unique_id=964201213]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList/PanelContainer" unique_id=213199571]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList" unique_id=1108628432]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList/PanelContainer2" unique_id=1888423582]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList" unique_id=48313725]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList/PanelContainer3" unique_id=1009792837]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="PanelContainer4" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList" unique_id=248853921]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/SkillsPanel/SkillsContentPanel2/MarginContainer/SkillsList/PanelContainer4" unique_id=695116973]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="WeaknessesPanel" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column" unique_id=151645759]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WeaknessesHeaderPanel" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel" unique_id=486132556]
+layout_mode = 2
+theme_type_variation = &"InfoFrameContentRight"
+
+[node name="HeaderRow" type="HBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesHeaderPanel" unique_id=1011313733]
+layout_mode = 2
+
+[node name="WeaknessesPrev" type="Button" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesHeaderPanel/HeaderRow" unique_id=1256789827]
+layout_mode = 2
+text = "<-"
+script = ExtResource("5_07tku")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesHeaderPanel/HeaderRow" unique_id=1439312791]
+layout_mode = 2
+text = "WEAKNESSES (1/2)"
+
+[node name="WeaknessesNext" type="Button" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesHeaderPanel/HeaderRow" unique_id=427566299]
+layout_mode = 2
+text = "->"
+script = ExtResource("5_07tku")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="WeaknessesContentPanel" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel" unique_id=728809261]
+layout_mode = 2
+theme_type_variation = &"InfoFrameContentRight"
+
+[node name="MarginContainer" type="MarginContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel" unique_id=1914926765]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="SkillsList" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer" unique_id=1028689934]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList" unique_id=824268085]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList/PanelContainer" unique_id=2147386607]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList" unique_id=895714143]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList/PanelContainer2" unique_id=2128523940]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList" unique_id=1644482291]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList/PanelContainer3" unique_id=507826775]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="PanelContainer4" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList" unique_id=272011045]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy0tn")
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/MiddleLeft/Column/WeaknessesPanel/WeaknessesContentPanel/MarginContainer/SkillsList/PanelContainer4" unique_id=1122678135]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="Right" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main" unique_id=1318754829]
+layout_mode = 2
+theme_type_variation = &"InfoFrameRight"
+
+[node name="Column" type="VBoxContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Right" unique_id=1904146111]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="EquipmentHeader" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Right/Column" unique_id=2118947098]
+layout_mode = 2
+theme_type_variation = &"InfoFrameContentRight"
+
+[node name="Label" type="Label" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Right/Column/EquipmentHeader" unique_id=1624883972]
+layout_mode = 2
+text = "EQUIPMENT"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Layer/Control/Frame/Root/Window/Layout/Content/Body/AdventurerPanel/Main/Right/Column" unique_id=369270695]
+layout_mode = 2
+
+[editable path="Layer/Control/Frame"]

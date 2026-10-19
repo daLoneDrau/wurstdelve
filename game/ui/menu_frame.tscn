@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dxl3a21pmp117"]
+
+[ext_resource type="Script" uid="uid://be4d8sg464uxk" path="res://game/ui/menu_frame.gd" id="1_261ix"]
+[ext_resource type="Script" uid="uid://cdotkpm5d0fb2" path="res://game/ui/action_button.gd" id="1_koll8"]
+
+[node name="MenuFrame" type="CanvasLayer" unique_id=386976111]
+layer = 10
+script = ExtResource("1_261ix")
+
+[node name="Root" type="Control" parent="." unique_id=610227448]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Root" unique_id=1894737445]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Layout" type="VBoxContainer" parent="Root" unique_id=1803563579]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 948.0
+offset_bottom = 528.0
+
+[node name="TabRow" type="HBoxContainer" parent="Root/Layout" unique_id=1292752668]
+layout_mode = 2
+
+[node name="Tabs" type="HBoxContainer" parent="Root/Layout/TabRow" unique_id=973684076]
+layout_mode = 2
+
+[node name="TabPartyCharacter" type="Button" parent="Root/Layout/TabRow/Tabs" unique_id=1083968892]
+layout_mode = 2
+text = "Party"
+script = ExtResource("1_koll8")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="TabJournal" type="Button" parent="Root/Layout/TabRow/Tabs" unique_id=1309299133]
+layout_mode = 2
+text = "Journal"
+script = ExtResource("1_koll8")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="TabOptions" type="Button" parent="Root/Layout/TabRow/Tabs" unique_id=2004300027]
+layout_mode = 2
+text = "Options"
+script = ExtResource("1_koll8")
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="Spacer" type="Control" parent="Root/Layout/TabRow" unique_id=422743221]
+layout_mode = 2
+
+[node name="Switcher" type="HBoxContainer" parent="Root/Layout/TabRow" unique_id=669822074]
+visible = false
+layout_mode = 2
+
+[node name="Close" type="Button" parent="Root/Layout/TabRow" unique_id=724936132]
+layout_mode = 2
+text = "Close"
+script = ExtResource("1_koll8")
+key_name = "Escape"
+metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="Content" type="MarginContainer" parent="Root/Layout" unique_id=1962921417]
+unique_name_in_owner = true
+layout_mode = 2

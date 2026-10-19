@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://bqtkvqfsmxu5d"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_56fny"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="2_ch41y"]
+[ext_resource type="Texture2D" uid="uid://7mjkyky3qfpg" path="res://assets/ui/frames/snes_small_frame.png" id="3_trwe0"]
+[ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="4_2hoie"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0b3gx"]
+texture = ExtResource("1_56fny")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hg6f4"]
+texture = ExtResource("2_ch41y")
+texture_margin_left = 12.0
+texture_margin_top = 6.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqkl5"]
+texture = ExtResource("3_trwe0")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="Environment" id="Environment_fkxof"]
+ambient_light_source = 2
+ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_44ejn"]
+material = ExtResource("4_2hoie")
+
+[node name="Conditions" type="VBoxContainer" unique_id=1246465090]
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1222915572]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0b3gx")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=386121652]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "CONDITIONS"
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=593000500]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hg6f4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2" unique_id=1459253082]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/VBoxContainer" unique_id=1744261748]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer" unique_id=1765136739]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pqkl5")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer" unique_id=2129229229]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer" unique_id=688000819]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=474761422]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_fkxof")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=188895816]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=514577256]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=1503070072]
+transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
+mesh = SubResource("BoxMesh_44ejn")
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/HBoxContainer" unique_id=1467907071]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "WOUNDED"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer2/VBoxContainer" unique_id=360574287]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer2" unique_id=723825371]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pqkl5")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer" unique_id=572800125]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer" unique_id=1044772100]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=1097354408]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_fkxof")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=1934373511]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=827053487]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=422696762]
+transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
+mesh = SubResource("BoxMesh_44ejn")
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/HBoxContainer2" unique_id=586979191]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "FATIGUED"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer2/VBoxContainer" unique_id=981128175]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer3" unique_id=1407242707]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pqkl5")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer" unique_id=541903716]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer" unique_id=886135471]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=900250785]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+environment = SubResource("Environment_fkxof")
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=45359310]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=1875945844]
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/HBoxContainer3" unique_id=335614366]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
