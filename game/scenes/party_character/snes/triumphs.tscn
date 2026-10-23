@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dpb015mlu1vuk"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_s34el"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="2_7oxnw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trwe0"]
+texture = ExtResource("1_s34el")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2hoie"]
+texture = ExtResource("2_7oxnw")
+texture_margin_left = 12.0
+texture_margin_top = 6.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[node name="Triumphs" type="VBoxContainer" unique_id=1246465090]
+offset_right = 209.0
+offset_bottom = 88.0
+theme_override_constants/separation = 0
+
+[node name="Header2" type="PanelContainer" parent="." unique_id=838608536]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_trwe0")
+
+[node name="TitleRow" type="HBoxContainer" parent="Header2" unique_id=494079734]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Header2/TitleRow" unique_id=1952825306]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "TRIUMPHS"
+
+[node name="Content2" type="PanelContainer" parent="." unique_id=1413614331]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2hoie")
+
+[node name="GridContainer" type="VBoxContainer" parent="Content2" unique_id=246572241]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content2/GridContainer" unique_id=1900072063]
+custom_minimum_size = Vector2(185, 0)
+layout_mode = 2
+text = "AGENTS OF THE SECRET BROTHERHOOD"
+
+[node name="Label2" type="Label" parent="Content2/GridContainer" unique_id=1787403003]
+custom_minimum_size = Vector2(123, 0)
+layout_mode = 2

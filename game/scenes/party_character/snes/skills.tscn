@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://mspq4sijhiyj"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_6j568"]
+[ext_resource type="Texture2D" uid="uid://bw1tox3jwomsb" path="res://assets/ui/icons/snes_arrow.png" id="2_1fp5q"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="3_6rs1d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pgu1c"]
+texture = ExtResource("1_6j568")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kq6nv"]
+texture = ExtResource("3_6rs1d")
+texture_margin_left = 12.0
+texture_margin_top = 6.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[node name="Skills" type="VBoxContainer" unique_id=973465457]
+offset_right = 212.0
+offset_bottom = 124.0
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="." unique_id=544093043]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pgu1c")
+
+[node name="TitleRow" type="HBoxContainer" parent="Header" unique_id=494700551]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Header/TitleRow" unique_id=564691568]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "SKILLS"
+
+[node name="Pagination" type="Label" parent="Header/TitleRow" unique_id=132416797]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1 / 2"
+horizontal_alignment = 1
+
+[node name="HCenter" type="CenterContainer" parent="Header/TitleRow" unique_id=683568488]
+layout_mode = 2
+
+[node name="PaginationControls" type="HBoxContainer" parent="Header/TitleRow/HCenter" unique_id=205018797]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Previous" type="TextureRect" parent="Header/TitleRow/HCenter/PaginationControls" unique_id=1686769232]
+layout_mode = 2
+texture = ExtResource("2_1fp5q")
+stretch_mode = 2
+flip_h = true
+
+[node name="Next" type="TextureRect" parent="Header/TitleRow/HCenter/PaginationControls" unique_id=759074306]
+layout_mode = 2
+texture = ExtResource("2_1fp5q")
+stretch_mode = 2
+
+[node name="Content" type="PanelContainer" parent="." unique_id=807833651]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kq6nv")
+
+[node name="Column" type="VBoxContainer" parent="Content" unique_id=1552637001]
+layout_mode = 2
+
+[node name="SkillRow" type="HBoxContainer" parent="Content/Column" unique_id=1580871126]
+layout_mode = 2
+theme_override_constants/separation = 44
+
+[node name="Column" type="VBoxContainer" parent="Content/Column/SkillRow" unique_id=774844570]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SkillName" type="Label" parent="Content/Column/SkillRow/Column" unique_id=1225247117]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+text = "POLEARM DISCIPLINE"
+
+[node name="SkillType" type="Label" parent="Content/Column/SkillRow/Column" unique_id=593297198]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+text = "COMBAT SKILL"
+
+[node name="SkillOrMastery" type="Label" parent="Content/Column/SkillRow" unique_id=1692886451]
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.9372549, 0.7647059, 0.30588236, 1)
+text = "MASTERY"
+
+[node name="SkillRow2" type="HBoxContainer" parent="Content/Column" unique_id=735799457]
+layout_mode = 2
+theme_override_constants/separation = 44
+
+[node name="Column" type="VBoxContainer" parent="Content/Column/SkillRow2" unique_id=36727559]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SkillName" type="Label" parent="Content/Column/SkillRow2/Column" unique_id=618889350]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+text = "ASTRAL PROJECTION"
+
+[node name="SkillType" type="Label" parent="Content/Column/SkillRow2/Column" unique_id=1448345850]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+text = "PASSIVE"
+
+[node name="SkillOrMastery" type="Label" parent="Content/Column/SkillRow2" unique_id=829447784]
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.5137255, 0.84705883, 0.27450982, 1)
+text = "SKILL"
+
+[node name="SkillRow3" type="HBoxContainer" parent="Content/Column" unique_id=1127733437]
+custom_minimum_size = Vector2(188, 36)
+layout_mode = 2
+theme_override_constants/separation = 44
+
+[node name="Column" type="VBoxContainer" parent="Content/Column/SkillRow3" unique_id=143153140]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SkillName" type="Label" parent="Content/Column/SkillRow3/Column" unique_id=1126626076]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+
+[node name="SkillType" type="Label" parent="Content/Column/SkillRow3/Column" unique_id=140492301]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+
+[node name="SkillOrMastery" type="Label" parent="Content/Column/SkillRow3" unique_id=779341744]
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.5137255, 0.84705883, 0.27450982, 1)

@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_u620l"]
 [ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="2_jajkp"]
-[ext_resource type="Texture2D" uid="uid://7mjkyky3qfpg" path="res://assets/ui/frames/snes_small_frame.png" id="3_ko18b"]
 [ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="4_a7muk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy0tn"]
@@ -15,157 +14,720 @@ texture_margin_bottom = 6.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6xk4j"]
 texture = ExtResource("2_jajkp")
 texture_margin_left = 12.0
-texture_margin_top = 6.0
+texture_margin_top = 4.0
 texture_margin_right = 12.0
-texture_margin_bottom = 12.0
+texture_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewsnx"]
-texture = ExtResource("3_ko18b")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="Environment" id="Environment_qlox0"]
-ambient_light_source = 2
-ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hi1la"]
+[sub_resource type="SphereMesh" id="SphereMesh_xx3i2"]
 material = ExtResource("4_a7muk")
 
 [node name="Equipment" type="VBoxContainer" unique_id=1176344516]
+offset_right = 188.0
+offset_bottom = 212.0
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=37677764]
+[node name="Header" type="PanelContainer" parent="." unique_id=37677764]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
 
-[node name="Label" type="Label" parent="PanelContainer" unique_id=1257615820]
+[node name="Label" type="Label" parent="Header" unique_id=1257615820]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+theme_type_variation = &"TitleLabel"
 text = "EQUIPMENT"
 
-[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1220983045]
+[node name="Content" type="PanelContainer" parent="." unique_id=1220983045]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6xk4j")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2" unique_id=1621302909]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/VBoxContainer" unique_id=201236971]
+[node name="VBoxContainer" type="VBoxContainer" parent="Content" unique_id=1270387668]
+visible = false
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer" unique_id=1561864288]
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/VBoxContainer" unique_id=1133708650]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ewsnx")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1436704247]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Content" unique_id=865363594]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Content/VBoxContainer2" unique_id=2084721042]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/VBoxContainer2/VBoxContainer" unique_id=879939824]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "HANDS"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer" unique_id=166930986]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer/IconFrame" unique_id=1448416705]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 stretch = true
 stretch_shrink = 3
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer" unique_id=1789491058]
-transparent_bg = true
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer/IconFrame/SubViewportContainer" unique_id=1479298898]
+own_world_3d = true
 handle_input_locally = false
 size = Vector2i(16, 16)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=1938746187]
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame/SubViewportContainer/SubViewport" unique_id=205902314]
 transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
-environment = SubResource("Environment_qlox0")
 fov = 40.0
 size = 3.803
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=18399137]
-transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame/SubViewportContainer/SubViewport" unique_id=531730074]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
 
-[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=148003773]
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame/SubViewportContainer/SubViewport" unique_id=1714196340]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer2/VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=1144173042]
-transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
-mesh = SubResource("BoxMesh_hi1la")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1175434983]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
 
-[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/HBoxContainer" unique_id=1494842683]
+[node name="IconFrame2" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer" unique_id=172849105]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
-text = "RUSTED CLEAVER"
+theme_type_variation = &"SnesSmallFrame"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer2/VBoxContainer" unique_id=1875810777]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer2" unique_id=744854564]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ewsnx")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer" unique_id=544344209]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer/IconFrame2" unique_id=1665029993]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 stretch = true
 stretch_shrink = 3
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer" unique_id=1300055536]
-transparent_bg = true
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer/IconFrame2/SubViewportContainer" unique_id=284006065]
+own_world_3d = true
 handle_input_locally = false
 size = Vector2i(16, 16)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=1341580459]
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame2/SubViewportContainer/SubViewport" unique_id=1825346008]
 transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
-environment = SubResource("Environment_qlox0")
 fov = 40.0
 size = 3.803
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=81699900]
-transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame2/SubViewportContainer/SubViewport" unique_id=796326412]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
 
-[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport" unique_id=2055058451]
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame2/SubViewportContainer/SubViewport" unique_id=1722734049]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer2/VBoxContainer/HBoxContainer2/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=1070979438]
-transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
-mesh = SubResource("BoxMesh_hi1la")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame2/SubViewportContainer/SubViewport/Node3D" unique_id=462258185]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
 
-[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/HBoxContainer2" unique_id=1272611820]
+[node name="IconFrame3" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer" unique_id=741231108]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
-text = "IRON JACK"
+theme_type_variation = &"SnesSmallFrame"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer2/VBoxContainer" unique_id=95236743]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer3" unique_id=1434744249]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ewsnx")
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer" unique_id=2014709265]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer/IconFrame3" unique_id=963432640]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 stretch = true
 stretch_shrink = 3
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer" unique_id=1510708564]
-transparent_bg = true
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer/IconFrame3/SubViewportContainer" unique_id=477612268]
+own_world_3d = true
 handle_input_locally = false
 size = Vector2i(16, 16)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=449525358]
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame3/SubViewportContainer/SubViewport" unique_id=1039805305]
 transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
-environment = SubResource("Environment_qlox0")
 fov = 40.0
 size = 3.803
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=1956179180]
-transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame3/SubViewportContainer/SubViewport" unique_id=1716861031]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
 
-[node name="ModelAnchor" type="Node3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=489271408]
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame3/SubViewportContainer/SubViewport" unique_id=1612831296]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer2/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport/ModelAnchor" unique_id=46098621]
-transform = Transform3D(0.9066907, -0.42179605, 0, 0.31570774, 0.67864376, -0.6631525, 0.27971512, 0.60127425, 0.7484843, 0, 0, 0)
-mesh = SubResource("BoxMesh_hi1la")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer/IconFrame3/SubViewportContainer/SubViewport/Node3D" unique_id=1601858564]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
 
-[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/HBoxContainer3" unique_id=1025255751]
+[node name="VBoxContainer2" type="HBoxContainer" parent="Content/VBoxContainer2" unique_id=774943926]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
-text = "WOLF TOOTH"
+
+[node name="Label" type="Label" parent="Content/VBoxContainer2/VBoxContainer2" unique_id=2105647759]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "BODY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer2" unique_id=715505886]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame" unique_id=1889343265]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame/SubViewportContainer" unique_id=1188104800]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame/SubViewportContainer/SubViewport" unique_id=1564507771]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame/SubViewportContainer/SubViewport" unique_id=927992113]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame/SubViewportContainer/SubViewport" unique_id=1773594649]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1535578818]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="IconFrame2" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer2" unique_id=1061922308]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame2" unique_id=1003047275]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame2/SubViewportContainer" unique_id=1803435635]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame2/SubViewportContainer/SubViewport" unique_id=130969506]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame2/SubViewportContainer/SubViewport" unique_id=118690782]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame2/SubViewportContainer/SubViewport" unique_id=1464355201]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame2/SubViewportContainer/SubViewport/Node3D" unique_id=947075881]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="IconFrame3" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer2" unique_id=134532736]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame3" unique_id=2093359402]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame3/SubViewportContainer" unique_id=462330277]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame3/SubViewportContainer/SubViewport" unique_id=1281430999]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame3/SubViewportContainer/SubViewport" unique_id=1917949156]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame3/SubViewportContainer/SubViewport" unique_id=101865877]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer2/IconFrame3/SubViewportContainer/SubViewport/Node3D" unique_id=1935061313]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="VBoxContainer3" type="HBoxContainer" parent="Content/VBoxContainer2" unique_id=1239631178]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/VBoxContainer2/VBoxContainer3" unique_id=2110064823]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "JEWELRY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer3" unique_id=817462771]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame" unique_id=1299259799]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame/SubViewportContainer" unique_id=457688723]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame/SubViewportContainer/SubViewport" unique_id=1626941994]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame/SubViewportContainer/SubViewport" unique_id=655601709]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame/SubViewportContainer/SubViewport" unique_id=248165934]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=930742548]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="IconFrame2" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer3" unique_id=982348440]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame2" unique_id=1014127896]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame2/SubViewportContainer" unique_id=1101316104]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame2/SubViewportContainer/SubViewport" unique_id=1915257355]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame2/SubViewportContainer/SubViewport" unique_id=362790080]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame2/SubViewportContainer/SubViewport" unique_id=1491176746]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame2/SubViewportContainer/SubViewport/Node3D" unique_id=1609992982]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="IconFrame3" type="PanelContainer" parent="Content/VBoxContainer2/VBoxContainer3" unique_id=2020779555]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame3" unique_id=639351907]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame3/SubViewportContainer" unique_id=852127912]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame3/SubViewportContainer/SubViewport" unique_id=1406507219]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame3/SubViewportContainer/SubViewport" unique_id=159763926]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame3/SubViewportContainer/SubViewport" unique_id=1122305598]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/VBoxContainer2/VBoxContainer3/IconFrame3/SubViewportContainer/SubViewport/Node3D" unique_id=1582743704]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="Label" type="Label" parent="Content/VBoxContainer2" unique_id=1105023964]
+layout_mode = 2
+text = "1H"
+
+[node name="Label2" type="Label" parent="Content/VBoxContainer2" unique_id=1297840788]
+layout_mode = 2
+text = "1H"
+
+[node name="GridContainer" type="GridContainer" parent="Content" unique_id=857018470]
+visible = false
+layout_mode = 2
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/GridContainer" unique_id=82068888]
+layout_mode = 2
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer" unique_id=1628962105]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer/IconFrame" unique_id=21418323]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer/IconFrame/SubViewportContainer" unique_id=1936262894]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer/IconFrame/SubViewportContainer/SubViewport" unique_id=1061320004]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer/IconFrame/SubViewportContainer/SubViewport" unique_id=1190897188]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer/IconFrame/SubViewportContainer/SubViewport" unique_id=821807985]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1174742491]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Content/GridContainer" unique_id=1115264809]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer3" unique_id=999344475]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "HEAD"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer3" unique_id=1514105911]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer3/IconFrame" unique_id=663686077]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer3/IconFrame/SubViewportContainer" unique_id=691363498]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer3/IconFrame/SubViewportContainer/SubViewport" unique_id=984225509]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer3/IconFrame/SubViewportContainer/SubViewport" unique_id=1148410597]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer3/IconFrame/SubViewportContainer/SubViewport" unique_id=612774080]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer3/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1208708194]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Content/GridContainer" unique_id=1313330111]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer4" unique_id=1180426059]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "HAND"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer4" unique_id=1684001747]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer4/IconFrame" unique_id=877849136]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer4/IconFrame/SubViewportContainer" unique_id=974376623]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer4/IconFrame/SubViewportContainer/SubViewport" unique_id=2059310805]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer4/IconFrame/SubViewportContainer/SubViewport" unique_id=48250243]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer4/IconFrame/SubViewportContainer/SubViewport" unique_id=722802680]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer4/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1236582459]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Content/GridContainer" unique_id=1490982358]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer5" unique_id=1940282088]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "BODY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer5" unique_id=325492229]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer5/IconFrame" unique_id=1055208155]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer5/IconFrame/SubViewportContainer" unique_id=1264426824]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer5/IconFrame/SubViewportContainer/SubViewport" unique_id=1127798161]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer5/IconFrame/SubViewportContainer/SubViewport" unique_id=19547602]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer5/IconFrame/SubViewportContainer/SubViewport" unique_id=399893781]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer5/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1191733431]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Content/GridContainer" unique_id=1684802935]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer6" unique_id=118721407]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "AMMO"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer6" unique_id=1222174086]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer6/IconFrame" unique_id=547004241]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer6/IconFrame/SubViewportContainer" unique_id=1192100309]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer6/IconFrame/SubViewportContainer/SubViewport" unique_id=1471248990]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer6/IconFrame/SubViewportContainer/SubViewport" unique_id=1426716993]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer6/IconFrame/SubViewportContainer/SubViewport" unique_id=1303614843]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer6/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1638683796]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Content/GridContainer" unique_id=1809071059]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer2" unique_id=1346222958]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "GAUNTLET"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer2" unique_id=1981472668]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer2/IconFrame" unique_id=583266403]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer2/IconFrame/SubViewportContainer" unique_id=1041074250]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer2/IconFrame/SubViewportContainer/SubViewport" unique_id=41310808]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer2/IconFrame/SubViewportContainer/SubViewport" unique_id=602046320]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer2/IconFrame/SubViewportContainer/SubViewport" unique_id=850635420]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer2/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=521679075]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Content/GridContainer" unique_id=303877136]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer7" unique_id=548828379]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "JEWELRY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer7" unique_id=883574648]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer7/IconFrame" unique_id=288340868]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer7/IconFrame/SubViewportContainer" unique_id=1263763078]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer7/IconFrame/SubViewportContainer/SubViewport" unique_id=169528324]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer7/IconFrame/SubViewportContainer/SubViewport" unique_id=795901527]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer7/IconFrame/SubViewportContainer/SubViewport" unique_id=2119024237]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer7/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1940917320]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Content/GridContainer" unique_id=294959262]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer8" unique_id=1239231611]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "JEWELRY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer8" unique_id=1680894022]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer8/IconFrame" unique_id=144976447]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer8/IconFrame/SubViewportContainer" unique_id=1976533653]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer8/IconFrame/SubViewportContainer/SubViewport" unique_id=33665106]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer8/IconFrame/SubViewportContainer/SubViewport" unique_id=917948261]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer8/IconFrame/SubViewportContainer/SubViewport" unique_id=1869316878]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer8/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1079348102]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="Content/GridContainer" unique_id=893861799]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer9" unique_id=2110936158]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "JEWELRY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer9" unique_id=1017149587]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer9/IconFrame" unique_id=2098505637]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer9/IconFrame/SubViewportContainer" unique_id=214564511]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer9/IconFrame/SubViewportContainer/SubViewport" unique_id=1810287174]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer9/IconFrame/SubViewportContainer/SubViewport" unique_id=1330952430]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer9/IconFrame/SubViewportContainer/SubViewport" unique_id=1786027045]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer9/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1612157968]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="Content/GridContainer" unique_id=357448512]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/GridContainer/HBoxContainer10" unique_id=557211589]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "JEWELRY"
+
+[node name="IconFrame" type="PanelContainer" parent="Content/GridContainer/HBoxContainer10" unique_id=946260890]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/GridContainer/HBoxContainer10/IconFrame" unique_id=2022359343]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/GridContainer/HBoxContainer10/IconFrame/SubViewportContainer" unique_id=471076961]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Content/GridContainer/HBoxContainer10/IconFrame/SubViewportContainer/SubViewport" unique_id=1704395459]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/GridContainer/HBoxContainer10/IconFrame/SubViewportContainer/SubViewport" unique_id=557260347]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/GridContainer/HBoxContainer10/IconFrame/SubViewportContainer/SubViewport" unique_id=642711346]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/GridContainer/HBoxContainer10/IconFrame/SubViewportContainer/SubViewport/Node3D" unique_id=1560970686]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_xx3i2")

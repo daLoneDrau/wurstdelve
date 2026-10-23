@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://cnp6btdf830h5"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_up0qa"]
+[ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="3_wdjnm"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="3_wee0a"]
+[ext_resource type="FontFile" uid="uid://u1w6syrg26ej" path="res://assets/ui/fonts/dd-icons.otf" id="6_5uvgt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0b3gx"]
+texture = ExtResource("1_up0qa")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hg6f4"]
+texture = ExtResource("3_wee0a")
+texture_margin_left = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_cy8fa"]
+material = ExtResource("3_wdjnm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy8fa"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.8627451, 0.8509804, 0.94509804, 1)
+
+[node name="Conditions" type="VBoxContainer" unique_id=1246465090]
+offset_right = 209.0
+offset_bottom = 264.0
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="." unique_id=1222915572]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0b3gx")
+
+[node name="TitleRow" type="HBoxContainer" parent="Header" unique_id=169147666]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Header/TitleRow" unique_id=386121652]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "CAN OPENER"
+
+[node name="Content" type="PanelContainer" parent="." unique_id=593000500]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hg6f4")
+
+[node name="Column" type="VBoxContainer" parent="Content" unique_id=1459253082]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Content/Column" unique_id=1633097360]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="Content/Column/SubViewportContainer" unique_id=1744384134]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(65, 21)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Content/Column/SubViewportContainer/SubViewport" unique_id=847480034]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Content/Column/SubViewportContainer/SubViewport" unique_id=436877024]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="Content/Column/SubViewportContainer/SubViewport" unique_id=1208623632]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Content/Column/SubViewportContainer/SubViewport/Node3D" unique_id=184302149]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_cy8fa")
+
+[node name="HSeparator2" type="HSeparator" parent="Content/Column" unique_id=1444710220]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/Column" unique_id=797493917]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Column/HBoxContainer" unique_id=1204212164]
+layout_mode = 2
+text = "2H"
+
+[node name="Label2" type="Label" parent="Content/Column/HBoxContainer" unique_id=651952401]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_5uvgt")
+text = "󰁀"
+
+[node name="HSeparator3" type="HSeparator" parent="Content/Column" unique_id=2057665643]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Column" unique_id=604666916]
+layout_mode = 2
+text = "ATTACK: STR (MELEE)"
+
+[node name="HSeparator4" type="HSeparator" parent="Content/Column" unique_id=393587517]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Content/Column" unique_id=1453991534]
+layout_mode = 2
+text = "If you would make a PER Test while Searching, you may make a STR Test instead."
+fit_content = true
+
+[node name="HSeparator5" type="HSeparator" parent="Content/Column" unique_id=1822203882]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Content/Column" unique_id=1231874402]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Column/HBoxContainer2" unique_id=2070020589]
+layout_mode = 2
+text = "4"
+
+[node name="Label2" type="Label" parent="Content/Column/HBoxContainer2" unique_id=1816958407]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_5uvgt")
+text = "󰀆"
+
+[node name="Control" type="Control" parent="Content/Column/HBoxContainer2" unique_id=1961047048]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Content/Column/HBoxContainer2" unique_id=1566179456]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.043137256, 0.10980392, 0.2627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_cy8fa")
+text = "REQ"
+
+[node name="Label4" type="Label" parent="Content/Column/HBoxContainer2" unique_id=1531409046]
+layout_mode = 2
+text = "STR 7"

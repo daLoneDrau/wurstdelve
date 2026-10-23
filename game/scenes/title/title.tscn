@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://cet8uiy7ku6pv"]
 
 [ext_resource type="Script" uid="uid://cvhsha8wx02cl" path="res://game/scenes/title/title_scene.gd" id="1_55vo3"]
-[ext_resource type="Script" uid="uid://cdotkpm5d0fb2" path="res://game/ui/action_button.gd" id="2_m3nan"]
+[ext_resource type="Script" uid="uid://h84m5msr5u8f" path="res://game/ui/arrow_button.gd" id="2_agt87"]
 [ext_resource type="PackedScene" uid="uid://bdm3pl5cg4awm" path="res://assets/models/test_obelisk.glb" id="3_f7plj"]
 
-[sub_resource type="Environment" id="Environment_m3nan"]
+[sub_resource type="Environment" id="Environment_agt87"]
+background_mode = 1
+background_color = Color(0.07, 0.07, 0.11, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.7014107, 0.7014107, 0.7014107, 1)
+ambient_light_color = Color(0.7, 0.7, 0.7, 1)
 
-[node name="Title" type="Node" unique_id=839766890]
+[node name="Title" type="Node" unique_id=1401054312]
 script = ExtResource("1_55vo3")
 
-[node name="Control" type="Control" parent="." unique_id=2044001527]
+[node name="Control" type="Control" parent="." unique_id=597411269]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,90 +21,144 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScreenFrame" type="PanelContainer" parent="Control" unique_id=1768824587]
+[node name="ModelStage" type="SubViewportContainer" parent="Control" unique_id=589919469]
+unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"WindowFrame"
-
-[node name="Layout" type="VBoxContainer" parent="Control/ScreenFrame" unique_id=970474786]
-layout_mode = 2
-
-[node name="PicturePanel" type="PanelContainer" parent="Control/ScreenFrame/Layout" unique_id=1730066986]
-layout_mode = 2
-
-[node name="ModelStage" type="SubViewportContainer" parent="Control/ScreenFrame/Layout/PicturePanel" unique_id=1927643537]
-texture_filter = 1
-custom_minimum_size = Vector2(420, 360)
-layout_mode = 2
 mouse_filter = 2
 stretch = true
-stretch_shrink = 3
 
-[node name="SubViewport" type="SubViewport" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage" unique_id=1758636065]
+[node name="SubViewport" type="SubViewport" parent="Control/ModelStage" unique_id=1332186374]
 own_world_3d = true
-transparent_bg = true
 handle_input_locally = false
-size = Vector2i(312, 120)
+size = Vector2i(960, 540)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage/SubViewport" unique_id=679380456]
+[node name="Camera3D" type="Camera3D" parent="Control/ModelStage/SubViewport" unique_id=1467849047]
 transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 2, 7)
-environment = SubResource("Environment_m3nan")
+environment = SubResource("Environment_agt87")
+current = true
 fov = 40.0
-size = 3.803
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage/SubViewport" unique_id=656174373]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Control/ModelStage/SubViewport" unique_id=1627380405]
 transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
 
-[node name="test_obelisk" parent="Control/ScreenFrame/Layout/PicturePanel/ModelStage/SubViewport" unique_id=1765905258 instance=ExtResource("3_f7plj")]
+[node name="ModelAnchor" type="Node3D" parent="Control/ModelStage/SubViewport" unique_id=1694584023]
+unique_name_in_owner = true
 
-[node name="MenuPanel" type="PanelContainer" parent="Control/ScreenFrame/Layout" unique_id=465175901]
-layout_mode = 2
+[node name="test_obelisk" parent="Control/ModelStage/SubViewport/ModelAnchor" unique_id=1765905258 instance=ExtResource("3_f7plj")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScreenFrame/Layout/MenuPanel" unique_id=718648299]
-layout_mode = 2
-alignment = 1
+[node name="LogoSlot" type="Control" parent="Control" unique_id=595015546]
+custom_minimum_size = Vector2(336, 96)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = 30.0
+offset_right = 168.0
+offset_bottom = 126.0
+grow_horizontal = 2
+mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer" unique_id=65151264]
-layout_mode = 2
-text = "Dungeon Degenerates"
+[node name="Logo" type="TextureRect" parent="Control/LogoSlot" unique_id=1174171308]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LogoFallback" type="Label" parent="Control/LogoSlot" unique_id=1683338411]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.94, 0.75, 0.13, 1)
+theme_override_font_sizes/font_size = 24
+text = "DUNGEON DEGENERATES"
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer" unique_id=1213341713]
-layout_mode = 2
-alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer/HBoxContainer" unique_id=1213065655]
-layout_mode = 2
-theme_type_variation = &"StoneFrame"
-
-[node name="MenuRow" type="VBoxContainer" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1814862395]
-layout_mode = 2
+[node name="MenuColumn" type="VBoxContainer" parent="Control" unique_id=361976182]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -106.0
+offset_right = 85.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/separation = 8
-alignment = 1
 
-[node name="NewGame" type="Button" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer/HBoxContainer/PanelContainer/MenuRow" unique_id=1004787353]
+[node name="CenterContainer" type="CenterContainer" parent="Control/MenuColumn" unique_id=1130648386]
 layout_mode = 2
-text = "New Game [Enter]"
-script = ExtResource("2_m3nan")
+
+[node name="MenuPanel" type="PanelContainer" parent="Control/MenuColumn/CenterContainer" unique_id=1313279885]
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="Margin" type="MarginContainer" parent="Control/MenuColumn/CenterContainer/MenuPanel" unique_id=143666487]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Column" type="VBoxContainer" parent="Control/MenuColumn/CenterContainer/MenuPanel/Margin" unique_id=2048032858]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="Control/MenuColumn/CenterContainer/MenuPanel/Margin/Column" unique_id=1992358916]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "NEW GAME"
+script = ExtResource("2_agt87")
 key_name = "Enter"
-metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
 
-[node name="Options" type="Button" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer/HBoxContainer/PanelContainer/MenuRow" unique_id=576366609]
+[node name="LoadGameButton" type="Button" parent="Control/MenuColumn/CenterContainer/MenuPanel/Margin/Column" unique_id=199645983]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Options [O]"
-script = ExtResource("2_m3nan")
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "LOAD GAME"
+script = ExtResource("2_agt87")
+key_name = "L"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="OptionsButton" type="Button" parent="Control/MenuColumn/CenterContainer/MenuPanel/Margin/Column" unique_id=600046542]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "OPTIONS"
+script = ExtResource("2_agt87")
 key_name = "O"
-metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
 
-[node name="Quit" type="Button" parent="Control/ScreenFrame/Layout/MenuPanel/VBoxContainer/HBoxContainer/PanelContainer/MenuRow" unique_id=1354231830]
-visible = false
+[node name="LoadStatusLabel" type="Label" parent="Control/MenuColumn" unique_id=30902504]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Quit [Q]"
-script = ExtResource("2_m3nan")
-key_name = "Q"
-metadata/_custom_type_script = "uid://cdotkpm5d0fb2"
+
+[node name="QuitNoteLabel" type="Label" parent="Control/MenuColumn" unique_id=464097037]
+unique_name_in_owner = true
+layout_mode = 2

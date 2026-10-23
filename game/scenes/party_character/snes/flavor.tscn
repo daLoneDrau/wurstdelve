@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://nowdc2yfwkqr"]
+
+[node name="Flavor" type="PanelContainer" unique_id=1944260876]
+theme_type_variation = &"SnesContentFrame"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1059709793]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=2003372744]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6666667, 0.6627451, 0.81960785, 1)
+text = "BAD PEOPLE DOING
+WORSE THINGS"
+horizontal_alignment = 1

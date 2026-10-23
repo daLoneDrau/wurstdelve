@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bg61lojja42yf"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_s0h5e"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="2_cvuuu"]
+[ext_resource type="FontFile" uid="uid://u1w6syrg26ej" path="res://assets/ui/fonts/dd-icons.otf" id="3_cvuuu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ik540"]
+texture = ExtResource("1_s0h5e")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gp1dt"]
+texture = ExtResource("2_cvuuu")
+texture_margin_left = 12.0
+texture_margin_top = 4.0
+texture_margin_right = 12.0
+texture_margin_bottom = 8.0
+
+[node name="Vitals" type="VBoxContainer" unique_id=1933591135]
+offset_right = 109.0
+offset_bottom = 125.0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1756830966]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ik540")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=584782565]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "VITALS"
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=485047110]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gp1dt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2" unique_id=152089549]
+layout_mode = 2
+
+[node name="GridContainer2" type="GridContainer" parent="PanelContainer2/VBoxContainer" unique_id=2109854240]
+layout_mode = 2
+theme_override_constants/h_separation = 32
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2" unique_id=1609603283]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cvuuu")
+text = "󰀄/󰀘"
+
+[node name="Label2" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2" unique_id=1491244043]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "16/16"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer2/VBoxContainer/GridContainer2" unique_id=1126192032]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label5" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer2" unique_id=1381412524]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("3_cvuuu")
+text = "󰀣"
+
+[node name="Label6" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer2" unique_id=2121666043]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "8"
+horizontal_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer2/VBoxContainer/GridContainer2" unique_id=1066660528]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label11" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer3" unique_id=1291870968]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cvuuu")
+text = "󰀰"
+
+[node name="Label12" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer3" unique_id=1429538397]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "8"
+horizontal_alignment = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer2/VBoxContainer/GridContainer2" unique_id=618297438]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label11" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer4" unique_id=1486992648]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cvuuu")
+text = "󰀆"
+
+[node name="Label12" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer4" unique_id=2114753637]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "4"
+horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/VBoxContainer/GridContainer2" unique_id=563896569]
+layout_mode = 2
+
+[node name="Label9" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer" unique_id=1952120702]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "ARM"
+
+[node name="Label10" type="Label" parent="PanelContainer2/VBoxContainer/GridContainer2/HBoxContainer" unique_id=688968940]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8627451, 0.84313726, 0.9490196, 1)
+text = "0"
+horizontal_alignment = 2

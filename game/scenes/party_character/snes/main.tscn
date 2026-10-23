@@ -1,42 +1,219 @@
 [gd_scene format=3 uid="uid://cb74tb1jfwh7r"]
 
-[ext_resource type="PackedScene" uid="uid://4j51xg07rsoi" path="res://game/scenes/party_character/snes/name_portrait.tscn" id="1_ktxh7"]
+[ext_resource type="PackedScene" uid="uid://4j51xg07rsoi" path="res://game/scenes/party_character/snes/identity.tscn" id="1_ktxh7"]
+[ext_resource type="PackedScene" uid="uid://cp6m0iym407jx" path="res://game/scenes/party_character/snes/party_v2.tscn" id="1_q01mt"]
 [ext_resource type="PackedScene" uid="uid://byf2wrglktsvk" path="res://game/scenes/party_character/snes/nav_bar.tscn" id="2_7rt64"]
+[ext_resource type="PackedScene" uid="uid://nowdc2yfwkqr" path="res://game/scenes/party_character/snes/flavor.tscn" id="2_aa2c2"]
 [ext_resource type="PackedScene" uid="uid://bcrybkclptt2p" path="res://game/scenes/party_character/snes/attributes.tscn" id="3_jsv2j"]
 [ext_resource type="PackedScene" uid="uid://5hub2e26xrxq" path="res://game/scenes/party_character/snes/equipment.tscn" id="4_jsv2j"]
+[ext_resource type="PackedScene" uid="uid://bg61lojja42yf" path="res://game/scenes/party_character/snes/vitals.tscn" id="4_pgpdt"]
 [ext_resource type="PackedScene" uid="uid://bqtkvqfsmxu5d" path="res://game/scenes/party_character/snes/conditions.tscn" id="5_48gg1"]
+[ext_resource type="PackedScene" uid="uid://dpb015mlu1vuk" path="res://game/scenes/party_character/snes/triumphs.tscn" id="5_tv003"]
 [ext_resource type="PackedScene" uid="uid://coqfmnptkr8rv" path="res://game/scenes/party_character/snes/party.tscn" id="6_6pk5p"]
+[ext_resource type="PackedScene" uid="uid://decyhffjjjlq3" path="res://game/scenes/party_character/snes/weaknesses.tscn" id="6_q01mt"]
+[ext_resource type="PackedScene" uid="uid://mspq4sijhiyj" path="res://game/scenes/party_character/snes/skills.tscn" id="6_t7tpu"]
+[ext_resource type="PackedScene" uid="uid://cpcovv2x055ja" path="res://game/scenes/party_character/snes/warnings.tscn" id="7_sfo0m"]
+[ext_resource type="PackedScene" uid="uid://cevu723a2m2y2" path="res://game/scenes/party_character/snes/inventory.tscn" id="7_t7tpu"]
+[ext_resource type="PackedScene" uid="uid://dpfi4mvcbdyg" path="res://game/scenes/party_character/snes/biography.tscn" id="8_sfo0m"]
+[ext_resource type="PackedScene" uid="uid://cnp6btdf830h5" path="res://game/scenes/party_character/snes/details.tscn" id="9_joqdc"]
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="10_uq84c"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="11_v7erx"]
+[ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="16_v7erx"]
 
-[node name="Main" type="PanelContainer" unique_id=1829286110]
-offset_right = 156.0
-offset_bottom = 189.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5ny6"]
+texture = ExtResource("10_uq84c")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1374898667]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohbbr"]
+texture = ExtResource("11_v7erx")
+texture_margin_left = 6.0
+texture_margin_top = 4.0
+texture_margin_right = 6.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wy0tn"]
+texture = ExtResource("16_v7erx")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[node name="Main" type="Control" unique_id=1793782784]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 488.0
+offset_bottom = 594.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=604496092]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer2" unique_id=1816461640]
 layout_mode = 2
 
-[node name="NamePortrait" parent="HBoxContainer" unique_id=302327881 instance=ExtResource("1_ktxh7")]
+[node name="Party2" parent="VBoxContainer2/HBoxContainer3" unique_id=1598205816 instance=ExtResource("1_q01mt")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1947594676]
+[node name="Flavor" parent="VBoxContainer2/HBoxContainer3" unique_id=1944260876 instance=ExtResource("2_aa2c2")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Party" parent="VBoxContainer2" unique_id=897214153 instance=ExtResource("6_6pk5p")]
+visible = false
 layout_mode = 2
 
-[node name="NavBar" parent="HBoxContainer/VBoxContainer" unique_id=1469740445 instance=ExtResource("2_7rt64")]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=933101110]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1566100950]
+[node name="Identity" parent="VBoxContainer2/HBoxContainer" unique_id=302327881 instance=ExtResource("1_ktxh7")]
 layout_mode = 2
 
-[node name="Attributes" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1933591135 instance=ExtResource("3_jsv2j")]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=954978034]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=427502098]
+[node name="Triumphs" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1246465090 instance=ExtResource("5_tv003")]
+visible = false
 layout_mode = 2
 
-[node name="Equipment" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1176344516 instance=ExtResource("4_jsv2j")]
+[node name="Warnings" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=612896944 instance=ExtResource("7_sfo0m")]
+visible = false
 layout_mode = 2
 
-[node name="Conditions" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1246465090 instance=ExtResource("5_48gg1")]
+[node name="Equipment" parent="VBoxContainer2/HBoxContainer/VBoxContainer" unique_id=1176344516 instance=ExtResource("4_jsv2j")]
 layout_mode = 2
 
-[node name="Party" parent="HBoxContainer/VBoxContainer" unique_id=1598205816 instance=ExtResource("6_6pk5p")]
+[node name="Biography" parent="VBoxContainer2/HBoxContainer" unique_id=1574265862 instance=ExtResource("8_sfo0m")]
+visible = false
 layout_mode = 2
+
+[node name="Inventory" parent="VBoxContainer2/HBoxContainer" unique_id=1775216660 instance=ExtResource("7_t7tpu")]
+layout_mode = 2
+
+[node name="Details" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer" unique_id=1057841133]
+custom_minimum_size = Vector2(226, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="VBoxContainer2/HBoxContainer/Details" unique_id=2096917196]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_c5ny6")
+
+[node name="TitleRow" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer/Details/Header" unique_id=311590997]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBoxContainer2/HBoxContainer/Details/Header/TitleRow" unique_id=1309599827]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "DETAILS"
+
+[node name="Content" type="PanelContainer" parent="VBoxContainer2/HBoxContainer/Details" unique_id=1410489031]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ohbbr")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer2" unique_id=88527999]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer4" unique_id=1423019416]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer4/VBoxContainer2" unique_id=383556684]
+layout_mode = 2
+
+[node name="Attributes" parent="VBoxContainer2/HBoxContainer4/VBoxContainer2/HBoxContainer" unique_id=1933591135 instance=ExtResource("3_jsv2j")]
+layout_mode = 2
+
+[node name="Vitals" parent="VBoxContainer2/HBoxContainer4/VBoxContainer2/HBoxContainer" unique_id=1617700140 instance=ExtResource("4_pgpdt")]
+layout_mode = 2
+
+[node name="Weaknesses" parent="VBoxContainer2/HBoxContainer4/VBoxContainer2" unique_id=1080290926 instance=ExtResource("6_q01mt")]
+layout_mode = 2
+
+[node name="Conditions" parent="VBoxContainer2/HBoxContainer4" unique_id=1065131994 instance=ExtResource("5_48gg1")]
+layout_mode = 2
+
+[node name="Skills" parent="VBoxContainer2/HBoxContainer4" unique_id=1816005108 instance=ExtResource("6_t7tpu")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer2/HBoxContainer4" unique_id=514077826]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_wy0tn")
+
+[node name="VBoxContainer" type="GridContainer" parent="VBoxContainer2/HBoxContainer4/PanelContainer" unique_id=67250233]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=703931124]
+layout_mode = 2
+text = "STATUS"
+
+[node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=712327406]
+layout_mode = 2
+text = "EQUIP"
+
+[node name="Label4" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=1754546168]
+layout_mode = 2
+text = "UNEQUIP"
+
+[node name="Label5" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=490643255]
+layout_mode = 2
+text = "DISCARD"
+
+[node name="Label6" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=815835645]
+layout_mode = 2
+text = "EXCHANGE GP"
+
+[node name="Label7" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=2001920845]
+layout_mode = 2
+text = "EXCHANGE ITEM"
+
+[node name="Label3" type="Label" parent="VBoxContainer2/HBoxContainer4/PanelContainer/VBoxContainer" unique_id=264700235]
+layout_mode = 2
+text = "BACK"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2" unique_id=1261582247]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=305047458]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=709877684]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1283008672]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2" unique_id=2062973865]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2" unique_id=2037218029]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=344316065]
+layout_mode = 2
+
+[node name="Equipment" parent="VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1985793636 instance=ExtResource("4_jsv2j")]
+layout_mode = 2
+
+[node name="Details" parent="VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1363358151 instance=ExtResource("9_joqdc")]
+layout_mode = 2
+
+[node name="SubViewportContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Details/Content/Column" parent_id_path=PackedInt32Array(1363358151, 1459253082) index="0" unique_id=1633097360]
+custom_minimum_size = Vector2(210, 210)
+
+[node name="SubViewport" parent="VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Details/Content/Column/SubViewportContainer" index="0" unique_id=1744384134]
+size = Vector2i(70, 70)
+render_target_update_mode = 0
+
+[node name="NavBar" parent="VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1469740445 instance=ExtResource("2_7rt64")]
+layout_mode = 2
+
+[editable path="VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/Details"]

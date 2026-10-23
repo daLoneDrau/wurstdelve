@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cpcovv2x055ja"]
+
+[ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="1_flgr5"]
+[ext_resource type="FontFile" uid="uid://c51kdj4o718ys" path="res://assets/ui/fonts/Jersey10-Regular.ttf" id="2_cd0vi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trwe0"]
+texture = ExtResource("1_flgr5")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[node name="Warnings" type="VBoxContainer" unique_id=1246465090]
+offset_right = 262.0
+offset_bottom = 72.0
+theme_override_constants/separation = 0
+
+[node name="Header2" type="PanelContainer" parent="." unique_id=838608536]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_trwe0")
+
+[node name="TitleRow" type="HBoxContainer" parent="Header2" unique_id=494079734]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Header2/TitleRow" unique_id=1952825306]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.26666668, 0.25882354, 1)
+theme_override_fonts/font = ExtResource("2_cd0vi")
+text = "Defeated: cannot act, must Rest. Dies if no Wound is removed by the end of the Map Action Phase.   "
+autowrap_mode = 2

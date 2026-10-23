@@ -9,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://clerptk1gm0ay" path="res://assets/ui/frames/info_frame_content_right_trans.png" id="4_6e5s3"]
 [ext_resource type="Texture2D" uid="uid://dx583yp784pib" path="res://assets/ui/buttons/panel_frame_stone.png" id="4_bunvo"]
 [ext_resource type="Texture2D" uid="uid://brh1jf22fln05" path="res://assets/ui/frames/info_frame_right_trans.png" id="5_1b1o2"]
+[ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="8_mkuti"]
+[ext_resource type="Texture2D" uid="uid://7mjkyky3qfpg" path="res://assets/ui/frames/snes_small_frame.png" id="8_yb5lh"]
+[ext_resource type="Texture2D" uid="uid://dqsllq7pxluc1" path="res://assets/ui/frames/snes_small_frame_selected.png" id="9_2wsht"]
+[ext_resource type="FontFile" uid="uid://dw1ahlqsqnwo1" path="res://assets/ui/fonts/Jersey15-Regular.ttf" id="10_s1ww4"]
+[ext_resource type="FontFile" uid="uid://c51kdj4o718ys" path="res://assets/ui/fonts/Jersey10-Regular.ttf" id="11_3yh41"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0oqd"]
 texture = ExtResource("1_6e5s3")
@@ -27,6 +32,10 @@ texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_i3tjx"]
+color = Color(0.2784314, 0.4745098, 0.8156863, 1)
+thickness = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1b1o2"]
 texture = ExtResource("3_1b1o2")
@@ -69,6 +78,39 @@ texture_margin_bottom = 10.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7plj"]
+content_margin_left = 26.0
+content_margin_right = 26.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6jo6e"]
+texture = ExtResource("8_mkuti")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wsht"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource("8_yb5lh")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mkuti"]
+texture = ExtResource("9_2wsht")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7n1l"]
 content_margin_left = 20.0
 content_margin_top = 20.0
@@ -82,6 +124,11 @@ texture_margin_bottom = 10.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wy0tn"]
+color = Color(0.2784314, 0.4745098, 0.8156863, 1)
+thickness = 2
+vertical = true
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lruxt"]
 texture = ExtResource("3_bunvo")
 texture_margin_left = 12.0
@@ -92,10 +139,13 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [resource]
+default_font = ExtResource("11_3yh41")
+default_font_size = 15
 Button/styles/disabled = SubResource("StyleBoxTexture_g0oqd")
 Button/styles/hover = SubResource("StyleBoxTexture_t86ht")
 Button/styles/normal = SubResource("StyleBoxTexture_g0oqd")
 Button/styles/pressed = SubResource("StyleBoxTexture_t86ht")
+HSeparator/styles/separator = SubResource("StyleBoxLine_i3tjx")
 InfoFrameContent/base_type = &"PanelContainer"
 InfoFrameContent/styles/panel = SubResource("StyleBoxTexture_1b1o2")
 InfoFrameContentRight/base_type = &"PanelContainer"
@@ -104,9 +154,27 @@ InfoFrameHeader/base_type = &"PanelContainer"
 InfoFrameHeader/styles/panel = SubResource("StyleBoxTexture_i5vrf")
 InfoFrameRight/base_type = &"PanelContainer"
 InfoFrameRight/styles/panel = SubResource("StyleBoxTexture_wy0tn")
+Label/colors/font_color = Color(0.8627451, 0.8509804, 0.94509804, 1)
 PanelFrame/base_type = &"PanelContainer"
 PanelFrame/styles/panel = SubResource("StyleBoxTexture_m3nan")
+SnesButton/base_type = &"Button"
+SnesButton/styles/disabled = SubResource("StyleBoxEmpty_f7plj")
+SnesButton/styles/focus = SubResource("StyleBoxEmpty_f7plj")
+SnesButton/styles/hover = SubResource("StyleBoxEmpty_f7plj")
+SnesButton/styles/normal = SubResource("StyleBoxEmpty_f7plj")
+SnesButton/styles/pressed = SubResource("StyleBoxEmpty_f7plj")
+SnesContentFrame/base_type = &"PanelContainer"
+SnesContentFrame/styles/panel = SubResource("StyleBoxTexture_6jo6e")
+SnesSmallFrame/base_type = &"PanelContainer"
+SnesSmallFrame/styles/panel = SubResource("StyleBoxTexture_2wsht")
+SnesSmallFrameSelected/base_type = &"PanelContainer"
+SnesSmallFrameSelected/styles/panel = SubResource("StyleBoxTexture_mkuti")
 StoneFrame/base_type = &"PanelContainer"
 StoneFrame/styles/panel = SubResource("StyleBoxTexture_x7n1l")
+TitleLabel/base_type = &"Label"
+TitleLabel/colors/font_color = Color(0.96862745, 0.83137256, 0.41568628, 1)
+TitleLabel/font_sizes/font_size = 17
+TitleLabel/fonts/font = ExtResource("10_s1ww4")
+VSeparator/styles/separator = SubResource("StyleBoxLine_wy0tn")
 WindowFrame/base_type = &"PanelContainer"
 WindowFrame/styles/panel = SubResource("StyleBoxTexture_lruxt")

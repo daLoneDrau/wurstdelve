@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://pq7cntu7teyc"]
+
+[ext_resource type="Material" uid="uid://bn8glhe3wq8fn" path="res://assets/models/materials/Material.001.tres" id="1_6d4qr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u4q08"]
+material = ExtResource("1_6d4qr")
+
+[node name="PartyListing" type="VBoxContainer" unique_id=1433089809]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=799180584]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer" unique_id=2008501171]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer/SubViewportContainer" unique_id=751962102]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(318, 21)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="PanelContainer/SubViewportContainer/SubViewport" unique_id=133987699]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0.2736597, 3.205822)
+current = true
+fov = 40.0
+size = 3.803
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer/SubViewportContainer/SubViewport" unique_id=405351208]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" parent="PanelContainer/SubViewportContainer/SubViewport" unique_id=773959726]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelContainer/SubViewportContainer/SubViewport/Node3D" unique_id=505990580]
+transform = Transform3D(0.81915206, 0.4055798, -0.40557978, 0, 0.70710677, 0.7071068, 0.57357645, -0.579228, 0.5792279, 0, 0, 0)
+mesh = SubResource("SphereMesh_u4q08")
+
+[node name="Label" type="Label" parent="." unique_id=1281937803]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+text = "MERCENARY ALCHEMIST"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HP" type="Label" parent="." unique_id=1160459962]
+layout_mode = 2
+text = "5 / 12"
+horizontal_alignment = 1

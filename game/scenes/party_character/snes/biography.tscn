@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://dpfi4mvcbdyg"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_6jhnr"]
+[ext_resource type="Texture2D" uid="uid://bw1tox3jwomsb" path="res://assets/ui/icons/snes_arrow.png" id="2_y7rkb"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="3_7hspg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oh37o"]
+texture = ExtResource("1_6jhnr")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5esse"]
+texture = ExtResource("3_7hspg")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[node name="Biography" type="VBoxContainer" unique_id=1574265862]
+offset_right = 292.0
+offset_bottom = 194.0
+theme_override_constants/separation = 0
+
+[node name="Header2" type="PanelContainer" parent="." unique_id=1412010433]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_oh37o")
+
+[node name="TitleRow" type="HBoxContainer" parent="Header2" unique_id=1662857503]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Header2/TitleRow" unique_id=1770713305]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "BIOGRAPHY"
+
+[node name="Pagination" type="Label" parent="Header2/TitleRow" unique_id=346681106]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1 / 2"
+horizontal_alignment = 1
+
+[node name="HCenter" type="CenterContainer" parent="Header2/TitleRow" unique_id=1408489056]
+layout_mode = 2
+
+[node name="PaginationControls" type="HBoxContainer" parent="Header2/TitleRow/HCenter" unique_id=175107823]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Previous" type="TextureRect" parent="Header2/TitleRow/HCenter/PaginationControls" unique_id=1605445123]
+layout_mode = 2
+texture = ExtResource("2_y7rkb")
+stretch_mode = 2
+flip_h = true
+
+[node name="Next" type="TextureRect" parent="Header2/TitleRow/HCenter/PaginationControls" unique_id=1199956574]
+layout_mode = 2
+texture = ExtResource("2_y7rkb")
+stretch_mode = 2
+
+[node name="Content" type="PanelContainer" parent="." unique_id=166982668]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5esse")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content" unique_id=1415739544]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/VBoxContainer" unique_id=1995266021]
+layout_mode = 2
+text = "CRIME: SORCERY & WITCHCRAFT"
+
+[node name="HSeparator" type="HSeparator" parent="Content/VBoxContainer" unique_id=1239794836]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Content/VBoxContainer" unique_id=1472642820]
+layout_mode = 2
+text = "HOMELAND: THE WITCHWOOD"
+
+[node name="HSeparator2" type="HSeparator" parent="Content/VBoxContainer" unique_id=1644356522]
+layout_mode = 2
+
+[node name="Bio" type="Label" parent="Content/VBoxContainer" unique_id=527742523]
+custom_minimum_size = Vector2(280, 92)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Born under a strange moon, the Void Witch was tormented throughout her childhood by visions of another place - a vast & enchanting alien maze somewhere beyond her sphere of reality & outside the reach of her conscious mind."
+autowrap_mode = 2

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://decyhffjjjlq3"]
+
+[ext_resource type="Texture2D" uid="uid://d4e17q1l28318" path="res://assets/ui/frames/snes_content_header_frame.png" id="1_ip1ko"]
+[ext_resource type="Texture2D" uid="uid://bw1tox3jwomsb" path="res://assets/ui/icons/snes_arrow.png" id="2_gvquf"]
+[ext_resource type="Texture2D" uid="uid://cf1cbtpgw3yc6" path="res://assets/ui/frames/snes_content_lower_frame.png" id="2_ywtk4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gvquf"]
+texture = ExtResource("1_ip1ko")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brrwf"]
+texture = ExtResource("2_ywtk4")
+texture_margin_left = 12.0
+texture_margin_top = 2.0
+texture_margin_right = 12.0
+texture_margin_bottom = 6.0
+
+[node name="Weaknesses" type="VBoxContainer" unique_id=1080290926]
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="." unique_id=288899721]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gvquf")
+
+[node name="TitleRow" type="HBoxContainer" parent="Header" unique_id=1350043999]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Header/TitleRow" unique_id=1505747145]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "WEAKNESSES"
+
+[node name="Pagination" type="Label" parent="Header/TitleRow" unique_id=1769256802]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1 / 2"
+horizontal_alignment = 1
+
+[node name="HCenter" type="CenterContainer" parent="Header/TitleRow" unique_id=250804957]
+layout_mode = 2
+
+[node name="PaginationControls" type="HBoxContainer" parent="Header/TitleRow/HCenter" unique_id=1851797023]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Previous" type="TextureRect" parent="Header/TitleRow/HCenter/PaginationControls" unique_id=199912950]
+layout_mode = 2
+texture = ExtResource("2_gvquf")
+stretch_mode = 2
+flip_h = true
+
+[node name="Next" type="TextureRect" parent="Header/TitleRow/HCenter/PaginationControls" unique_id=1920142302]
+layout_mode = 2
+texture = ExtResource("2_gvquf")
+stretch_mode = 2
+
+[node name="Content" type="PanelContainer" parent="." unique_id=1402033006]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_brrwf")
+
+[node name="GridContainer" type="VBoxContainer" parent="Content" unique_id=171869166]
+layout_mode = 2
+
+[node name="WeaknessRow" type="HBoxContainer" parent="Content/GridContainer" unique_id=1495410536]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Weakness" type="Label" parent="Content/GridContainer/WeaknessRow" unique_id=45235081]
+custom_minimum_size = Vector2(123, 0)
+layout_mode = 2
+text = "THE HELL PIT REMEMBERS"
+
+[node name="Unmet" type="Label" parent="Content/GridContainer/WeaknessRow" unique_id=1481840675]
+layout_mode = 2
+text = "UNMET"
+
+[node name="WeaknessRow2" type="HBoxContainer" parent="Content/GridContainer" unique_id=1920909709]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Weakness" type="Label" parent="Content/GridContainer/WeaknessRow2" unique_id=1427452317]
+custom_minimum_size = Vector2(123, 0)
+layout_mode = 2
+text = "MONEY HUNGRY"
+
+[node name="Unmet" type="Label" parent="Content/GridContainer/WeaknessRow2" unique_id=1390164504]
+layout_mode = 2
+text = "UNMET"
