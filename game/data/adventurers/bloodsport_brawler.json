@@ -1,0 +1,21 @@
+{
+  "id": "bloodsport_brawler",
+  "name": "Bloodsport Brawler",
+  "classes": ["HUMAN", "FIGHTER", "PERFORMER"],
+  "crime": "Causing a Public Disturbance & Unlicensed Pit-Fighting",
+  "homeland": "Brüttelburg",
+  "biography": [
+	"The Brawler is a brutal warrior trained in the bloody fighting pits of Brüttelburg & Pigskin Port, where cheering throngs bet on the lives & deaths of the unfortunates forced into battle for the entertainment of the masses. She is a rough & tough killing machine & she knows how to put on a bloody show.",
+    "Having escaped the pits, the Bloodsport Brawler did any job she could find, doing what she does best, but a raid on an illicit fight soon put her in chains once again. Nevertheless, with her unrivaled muscle & burning lust for freedom, it’s a safe bet that the Undercity Dungeon won’t hold her for long!"
+  ],
+  "attributes": { "agi": 8, "con": 9, "mag": 5, "mrl": 8, "per": 6, "str": 9 },
+  "luck": 1,
+  "gp": 2,
+  "xp": 4,
+  "skills": ["foe_killer"],
+  "weaknesses": [],
+  "starting_items": ["spiked_gauntlet", "warpaint"],
+  "script": "res://game/scripts/bloodsport_brawler_script.gd",
+  "suggested_skills": ["ferocious_charge", "rage"],
+  "suggested_weaknesses": ["old_battle_wound"]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "void_witch",
+  "name": "Void Witch",
+  "classes": ["HUMAN", "WARLOCK", "WIZARD"],
+  "crime": "Sorcery & Witchcraft",
+  "homeland": "The Witchwood",
+  "biography": [
+	"Born under a strange moon, the Void Witch was tormented throughout her childhood by visions of another place - a vast & enchanting alien maze somewhere beyond her sphere of reality & outside the reach of her conscious mind.",
+	"Vowing to learn the black arts that would lead her to this unknown & unholy place, she shadowed the gnarled crones of her homeland, feeding their familiars & charting the hidden patterns of the Witchwood.",
+	"The Witch Smellers of the Inquisition caught wind of her arcane ambitions & soon had her bound & shackled in the dungeons below Brüttelburg.",
+    "The Void Witch walks the line between reality & unreality, the seen & the unseen. She manipulates the forces of life & death & travels the Maze endlessly in her mind, always hunting for the secrets of the outer realms."
+  ],
+  "attributes": { "agi": 8, "con": 5, "mag": 9, "mrl": 6, "per": 8, "str": 5 },
+  "luck": 6,
+  "gp": 4,
+  "xp": 8,
+  "skills": ["voidwalker"],
+  "weaknesses": [],
+  "starting_items": ["sacrificial_dagger", "scroll_of_ancient_gibberish"],
+  "script": "res://game/scripts/void_witch_script.gd",
+  "suggested_skills": ["decay", "mystic_shield"],
+  "suggested_weaknesses": ["void_stalker"]
+}

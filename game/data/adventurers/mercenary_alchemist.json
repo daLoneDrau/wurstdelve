@@ -1,0 +1,21 @@
+{
+  "id": "mercenary_alchemist",
+  "name": "Mercenary Alchemist",
+  "classes": ["HUMAN", "MILITANT", "SCHOLAR"],
+  "crime": "Possession & Sale of Illicit Substances",
+  "homeland": "Pigskin Port",
+  "biography": [
+	"Born to a camp follower on the march through the Highlands, the Alchemist was brought up amongst the mercenary companies serving as an apprentice engineer & gunmaker through countless contracts & campaigns. Taking every opportunity to study the ancient texts treasured by the wise masters he served, the Alchemist gradually learned to manipulate the base elements of matter & turned this dangerous knowledge to use waging war for the highest bidder.",
+    "Caught trading dangerous crystalline powders with the Goblins of the Wasteland, the old soldier was brought in by an Imperial patrol, but even the vast barred chambers of the Undercity Dungeon can’t confine this cunning & crafty dog of war!"
+  ],
+  "attributes": { "agi": 7, "con": 7, "mag": 8, "mrl": 7, "per": 8, "str": 6 },
+  "luck": 4,
+  "gp": 8,
+  "xp": 6,
+  "skills": ["alchemy"],
+  "weaknesses": [],
+  "starting_items": ["flash_bomb", "light_pistol"],
+  "script": "res://game/scripts/mercenary_alchemist_script.gd",
+  "suggested_skills": ["find_weakness", "transmute"],
+  "suggested_weaknesses": ["half_blind"]
+}

@@ -5,10 +5,17 @@ class_name ClassTags
 
 
 enum Tag {
-	HUMAN  = 1 << 0,  # Hinterlander, Vermin Hunter
-	HUNTER = 1 << 1,  # Hinterlander, Vermin Hunter
-	WILD   = 1 << 2,  # Hinterlander
-	ROGUE  = 1 << 3,  # Vermin Hunter
+	HUMAN     = 1 << 0,  # all adventurers
+	HUNTER    = 1 << 1,  # Hinterlander, Vermin Hunter, Witch Smeller
+	WILD      = 1 << 2,  # Hinterlander, Bog Conjurer
+	ROGUE     = 1 << 3,  # Vermin Hunter, Corpse Burner
+	MILITANT  = 1 << 4,  # Mercenary Alchemist
+	SCHOLAR   = 1 << 5,  # Mercenary Alchemist
+	PURITAN   = 1 << 6,  # Corpse Burner, Witch Smeller
+	WARLOCK   = 1 << 7,  # Void Witch, Bog Conjurer
+	WIZARD    = 1 << 8,  # Void Witch
+	FIGHTER   = 1 << 9,  # Bloodsport Brawler
+	PERFORMER = 1 << 10,  # Bloodsport Brawler
 }
 
 

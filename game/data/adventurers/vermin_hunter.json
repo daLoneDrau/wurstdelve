@@ -1,0 +1,22 @@
+{
+  "id": "vermin_hunter",
+  "name": "Vermin Hunter",
+  "classes": ["HUMAN", "HUNTER", "ROGUE"],
+  "crime": "Arson & Manslaughter",
+  "homeland": "The Foothills",
+  "biography": [
+	"The Vermin Hunter is one of many unsavory characters hired to combat the endless swarms of nasty pests & hungry rodents that infest the labyrinthine passages of Brüttelburg, the crumbling towers of old ruins & the grain-stores of lonely villages across the Borderlands.",
+	"Devoted to her work & hungry for coin, eventually the Vermin Hunter crossed the line & was imprisoned for the burning of Château Bäredräck along with several important members of that influential household.",
+    "Countless hours spent hunting through cramped passages & crawlspaces for squirming, chittering things has made the Vermin Hunter an efficient exterminator but a difficult travel companion; death is her life!"
+  ],
+  "attributes": { "agi": 8, "con": 6, "mag": 7, "mrl": 6, "per": 8, "str": 6 },
+  "luck": 3,
+  "gp": 4,
+  "xp": 8,
+  "skills": ["combat_reflexes"],
+  "weaknesses": [],
+  "starting_items": ["gas_bomb", "ratspike"],
+  "script": "res://game/scripts/vermin_hunter_script.gd",
+  "suggested_skills": ["backstab", "exterminator"],
+  "suggested_weaknesses": ["money_hungry"]
+}

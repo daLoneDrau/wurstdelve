@@ -1,0 +1,21 @@
+{
+  "id": "witch_smeller",
+  "name": "Witch Smeller",
+  "classes": ["HUMAN", "HUNTER", "PURITAN"],
+  "crime": "Impersonating an Officer of the Inquisition & Unlicensed Witch Smelling",
+  "homeland": "Brüttelburg",
+  "biography": [
+	"Armed with a heavy pistol & extensive training to sniff out the distinctive sulphurous scents of witchcraft, the Witch Smeller once practiced her trade in the villages & hamlets of the Lowlands. There, she rounded up witches & mutants at rates competitive with those of the Smellers of the Inquisition.",
+    "A good business while it lasted - after all, only witches refuse to pay! Unfortunately, the Inquisition took issue with her unsanctioned methods & then there were the accusations of extortion & questions to be answered... questions about how she came to wear the uniform of a sanctioned Witch Smeller Pursuivant, recently gone missing."
+  ],
+  "attributes": { "agi": 8, "con": 7, "mag": 7, "mrl": 9, "per": 8, "str": 6 },
+  "luck": 1,
+  "gp": 6,
+  "xp": 2,
+  "skills": ["intimidate"],
+  "weaknesses": [],
+  "starting_items": ["weighted_pistol", "witch_smellers_nose"],
+  "script": "res://game/scripts/witch_smeller_script.gd",
+  "suggested_skills": ["inquisitor", "warding"],
+  "suggested_weaknesses": ["mistrust"]
+}

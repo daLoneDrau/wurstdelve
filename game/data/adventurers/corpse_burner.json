@@ -1,0 +1,22 @@
+{
+  "id": "corpse_burner",
+  "name": "Corpse Burner",
+  "classes": ["HUMAN", "PURITAN", "ROGUE"],
+  "crime": "Grave Robbery",
+  "homeland": "The Necropolis",
+  "biography": [
+	"The Corpse Burner began life as one of the many orphans raised on the ghoulish grounds of the Necropolis - the Würstreich’s City of the Dead - a land of ruined graves & old bones watched over by the macabre monks of the Holy Order.",
+	"As the shadowy hand of the Necromancer passed over the land & the dead became fuel for unholy experiments, the orphans of the Order were charged with digging up the dead & burning the flesh from their bones. These charred bones were then collected & sent to the Holy Order to be etched with holy symbols & enshrined into the Gothic arches of the Necropolis.",
+    "Dreaming of the wonders of the outside world, the Corpse Burner started his own collection from the jewelry & gold teeth sent with the dead, saving a secret stash to one day escape his miserable lot in life & leave the Necropolis far behind... if only the stash had been as secret as he’d thought!"
+  ],
+  "attributes": { "agi": 7, "con": 8, "mag": 5, "mrl": 8, "per": 7, "str": 8 },
+  "luck": 1,
+  "gp": 6,
+  "xp": 10,
+  "skills": ["burly"],
+  "weaknesses": [],
+  "starting_items": ["death_mask", "grave_shovel"],
+  "script": "res://game/scripts/corpse_burner_script.gd",
+  "suggested_skills": ["black_market", "shrug_off_pain"],
+  "suggested_weaknesses": ["haunted"]
+}
