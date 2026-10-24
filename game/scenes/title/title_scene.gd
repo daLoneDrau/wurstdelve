@@ -33,6 +33,7 @@ const QUIT_NOTE_TEXT: String = "QUIT: HIDDEN ON WEB BUILD (Q KEY ONLY)"
 @onready var _options_button: ArrowButton = %OptionsButton
 @onready var _load_status_label: Label = %LoadStatusLabel
 @onready var _quit_note_label: Label = %QuitNoteLabel
+@onready var _tag_line_label: Label = %TagLineLabel
 
 var _model: Node3D
 
@@ -51,6 +52,7 @@ func _ready() -> void:
 	_logo.texture = logo
 	_logo_fallback.visible = logo == null
 	_quit_note_label.text = QUIT_NOTE_TEXT
+	_tag_line_label.text = TaglineService_auto.next()
 	_menu.append(_new_game_button)
 	_menu.append(_load_game_button)
 	_menu.append(_options_button)

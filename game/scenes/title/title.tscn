@@ -102,7 +102,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -85.0
-offset_top = -106.0
+offset_top = -142.0
 offset_right = 85.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -160,5 +160,18 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="QuitNoteLabel" type="Label" parent="Control/MenuColumn" unique_id=464097037]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1218632656]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+offset_right = 5.0
+grow_vertical = 0
+
+[node name="TagLineLabel" type="Label" parent="Control/PanelContainer" unique_id=291103836]
 unique_name_in_owner = true
 layout_mode = 2
