@@ -47,12 +47,20 @@ func send_init_script_event(_entity: Entity) -> void:
 ## Records are loaded and validated at startup by DDAssetsLibrary, for example:
 ##   create_adventurer(GameEngine_auto.dd_assets().get_adventurer_record("hinterlander"))
 ##
-## Not built yet: Inventory, Equipment (record "starting_items"), Scripting, Model and
-## PartyMembership. The record's "suggested_*" fields are used only at Party Setup.
+## Each adventurer gets its own instance of the script class named by the record's "script".
+##
+## Not built yet: Inventory, Equipment (record "starting_items"), Model and PartyMembership.
+## The record's "suggested_*" fields are used only at Party Setup.
 func create_adventurer(record: Dictionary, immediate: bool = false) -> Entity:
 	var record_id: String = str(record.get("id", ""))
 	if record_id.is_empty():
 		push_error("DDEntityManager: adventurer record has no id.")
+		return null
+
+	# Load the script first, so a failure leaves nothing half-built.
+	var script_class: GDScript = load(str(record.get("script", ""))) as GDScript
+	if script_class == null:
+		push_error("DDEntityManager: adventurer %s has no loadable script." % record_id)
 		return null
 
 	var e: Entity = Entity.new()
@@ -128,9 +136,18 @@ func create_adventurer(record: Dictionary, immediate: bool = false) -> Entity:
 		weaknesses.add_weakness(StringName(str(weakness_id)))
 	e.set_component(weaknesses)
 
-	# AdventurerComponent extends PlayerComponent, which is a slot root, so it must be found
-	# under "PlayerComponent". If this fails, the slot-root lookup is not behaving as assumed.
-	assert(e.has_component("PlayerComponent"), "AdventurerComponent is not stored in the PlayerComponent slot")
+	# --- scripting: this adventurer's own script, plus the variables it reads and writes ---
+	var script_comp: DDScriptComponent = DDScriptComponent.new()
+	script_comp.main_script = script_class.new() as EntityScript
+	script_comp.role_hint = "adventurer"
+	e.set_component(script_comp)
+	e.set_component(ScriptVariableSet.new())
+
+	# AdventurerComponent extends PlayerComponent and DDScriptComponent extends ScriptComponent.
+	# Both parents are slot roots, so each must be found under its parent's name. If these fail,
+	# the slot-root lookup is not behaving as assumed.
+	assert(e.has_component("PlayerComponent"), "AdventurerComponent not in PlayerComponent slot")
+	assert(e.has_component("ScriptComponent"), "DDScriptComponent not in ScriptComponent slot")
 
 	add_entity(e)
 	if immediate:
