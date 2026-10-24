@@ -31,7 +31,7 @@ const DEFAULT_ATTRIBUTE: int = 7
 
 
 func _init() -> void:
-	super()
+	# EntityComponent._init() runs automatically before this.
 	for key in ATTRIBUTE_KEYS:
 		add(key, DEFAULT_ATTRIBUTE)
 	add(LUCK, 0)
