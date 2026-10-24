@@ -123,6 +123,17 @@ func _validate_adventurer_record(record: Dictionary) -> Array[String]:
 		if record.has(list_key) and not (record[list_key] is Array):
 			problems.append("'%s' must be a list" % list_key)
 
+	# the biography is a list of paragraphs (it may be empty while a record is being authored)
+	if record.has("biography"):
+		var biography: Variant = record["biography"]
+		if not (biography is Array):
+			problems.append("biography must be a list of paragraphs")
+		else:
+			for paragraph in biography:
+				if not (paragraph is String) or (paragraph as String).strip_edges().is_empty():
+					problems.append("biography paragraphs must be non-empty text")
+					break
+
 	# every adventurer has its own script class
 	var script_path: String = str(record.get("script", ""))
 	if script_path.is_empty():
