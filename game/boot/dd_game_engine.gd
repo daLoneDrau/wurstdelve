@@ -2,11 +2,20 @@ class_name DDGameEngine
 extends GameEngine
 
 func _initialize_systems() -> void:
-	assets = AssetsLibrary.new()
+	assets = DDAssetsLibrary.new()
 	add_child(assets)
 
+
+## The asset library as its Dungeon Degenerates subclass. `assets` is typed as the framework's
+## AssetsLibrary, so use this to reach the authored-data methods.
+func dd_assets() -> DDAssetsLibrary:
+	return assets as DDAssetsLibrary
+
+
 func load_resources() -> void:
-	pass   # fonts, sounds and textures get loaded here later
+	# fonts, sounds and textures get loaded here later
+	var adventurer_count: int = dd_assets().load_adventurer_records()
+	print("DDGameEngine: loaded %d adventurer record(s)" % adventurer_count)
 
 func _setup_window() -> void:
 	# 960x540, viewport stretch and integer scaling come from project settings.
