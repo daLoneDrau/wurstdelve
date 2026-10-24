@@ -74,7 +74,11 @@ func create_adventurer(record: Dictionary, immediate: bool = false) -> Entity:
 	e.set_component(name_comp)
 
 	var description: DescriptionComponent = DescriptionComponent.new()
-	description.lore = str(record.get("biography", ""))
+	# the biography is a list of paragraphs, stored as one text with a blank line between them
+	var paragraphs: PackedStringArray = PackedStringArray()
+	for paragraph in record.get("biography", []):
+		paragraphs.append(str(paragraph))
+	description.lore = "\n\n".join(paragraphs)
 	e.set_component(description)
 
 	var adventurer: AdventurerComponent = AdventurerComponent.new()
