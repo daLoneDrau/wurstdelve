@@ -123,7 +123,28 @@ func _validate_adventurer_record(record: Dictionary) -> Array[String]:
 		if record.has(list_key) and not (record[list_key] is Array):
 			problems.append("'%s' must be a list" % list_key)
 
+	# every adventurer has its own script class
+	var script_path: String = str(record.get("script", ""))
+	if script_path.is_empty():
+		problems.append("missing script")
+	elif not ResourceLoader.exists(script_path):
+		problems.append("script not found: %s" % script_path)
+	else:
+		var loaded: Script = load(script_path) as Script
+		if loaded == null or not _script_extends(loaded, "EntityScript"):
+			problems.append("script does not extend EntityScript: %s" % script_path)
+
 	return problems
+
+
+## Determines if a script has an ancestor with the given global class name.
+func _script_extends(script: Script, global_name: String) -> bool:
+	var current: Script = script.get_base_script()
+	while current != null:
+		if current.get_global_name() == global_name:
+			return true
+		current = current.get_base_script()
+	return false
 
 
 func _is_whole_number(value: Variant) -> bool:
