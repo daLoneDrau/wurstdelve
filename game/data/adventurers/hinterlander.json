@@ -1,0 +1,18 @@
+{
+  "id": "hinterlander",
+  "name": "Hinterlander",
+  "classes": ["HUMAN", "HUNTER", "WILD"],
+  "crime": "Poaching",
+  "homeland": "The Witchwood",
+  "biography": [],
+  "attributes": { "agi": 8, "con": 8, "mag": 7, "mrl": 6, "per": 9, "str": 7 },
+  "luck": 3,
+  "gp": 2,
+  "xp": 4,
+  "skills": ["fieldcraft"],
+  "weaknesses": [],
+  "starting_items": ["hunting_bow", "trail_ration"],
+  "script": "res://game/scripts/adventurers/hinterlander_script.gd",
+  "suggested_skills": ["gourmet", "immunity"],
+  "suggested_weaknesses": ["paranoia"]
+}
