@@ -14,6 +14,8 @@ func dd_assets() -> DDAssetsLibrary:
 
 func load_resources() -> void:
 	# fonts, sounds and textures get loaded here later
+	var item_count: int = dd_assets().load_item_records()
+	print("DDGameEngine: loaded %d item record(s)" % item_count)
 	var adventurer_count: int = dd_assets().load_adventurer_records()
 	print("DDGameEngine: loaded %d adventurer record(s)" % adventurer_count)
 
