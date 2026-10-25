@@ -1,4 +1,4 @@
-## The six adventurer attributes plus Luck and ARM, stored as base values.
+## The six adventurer attributes plus Luck, ARM and the Heavy Item limit, stored as base values.
 ##
 ## Base values are authored and do not change permanently. Effective values (conditions,
 ## equipment, skills, weaknesses) are computed by PlayerSystem, which writes them onto each
@@ -12,6 +12,11 @@
 ## ARM (Armor) is stored the same way, but its base is always 0 and it has no 2..11 range or
 ## clamp. Equipped Items add it as modifier sources through their ItemModifierBundle, and damage
 ## taken is reduced by its effective value.
+##
+## HEAVY_LIMIT is how many Heavy Items the adventurer may carry. It starts at
+## AdventurerComponent.BASE_HEAVY_LIMIT, has no 2..11 range or clamp, and is raised by named
+## modifier sources: an equipped magic Item's script adds one keyed by the item's entity id, and
+## removes it on unequip. PlayerSystem must clear only the sources it owns, never all of them.
 class_name AttributesComponent
 extends AbilitiesComponent
 
@@ -25,6 +30,7 @@ const PER: StringName = &"per"
 const STR: StringName = &"str"
 const LUCK: StringName = &"luck"
 const ARM: StringName = &"arm"
+const HEAVY_LIMIT: StringName = &"heavy_limit"
 
 ## The six attributes in sheet order. Excludes Luck.
 const ATTRIBUTE_KEYS: Array[StringName] = [AGI, CON, MAG, MRL, PER, STR]
@@ -41,6 +47,7 @@ func _init() -> void:
 		add(key, DEFAULT_ATTRIBUTE)
 	add(LUCK, 0)
 	add(ARM, 0)
+	add(HEAVY_LIMIT, AdventurerComponent.BASE_HEAVY_LIMIT)
 
 
 ## Determines if a key is one of the six attributes (so not Luck).
