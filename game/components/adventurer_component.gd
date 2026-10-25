@@ -26,6 +26,10 @@ enum CombatStance {
 	GUARD,
 }
 
+## An adventurer carries at most this many Heavy Items. Only a Skill or a magic Item can raise
+## it, so the effective limit is computed by a system and never stored.
+const BASE_HEAVY_LIMIT: int = 2
+
 @export_group("Identity")
 
 ## Flavor only. Authored.

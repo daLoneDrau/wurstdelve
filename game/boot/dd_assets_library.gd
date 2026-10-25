@@ -185,7 +185,9 @@ func _is_whole_number(value: Variant) -> bool:
 ##   attack_types (AttackTypeTags keys) and attack_attributes (attribute keys), given together
 ##   requirements ({ "str": 6 }, a minimum for each attribute)
 ##   modifiers ({ "stats": { "arm": 1 } })
-##   text (the printed rule), flavor, script (optional; must extend EntityScript)
+##   text (the printed rule), flavor
+##   script (optional; must extend DDItemScript) and script_vars (the script's variables:
+##   whole numbers, true or false, or text)
 func load_item_records(dir_path: String = ITEM_DIR) -> int:
 	_item_records.clear()
 
@@ -291,22 +293,7 @@ func _validate_item_record(record: Dictionary) -> Array[String]:
 					problems.append("attack_attributes: '%s' is not an attribute" % key)
 
 	# requirements: a minimum for each attribute, for example { "str": 6 }
-	if record.has("requirements"):
-		var requirements: Variant = record["requirements"]
-		if not (requirements is Dictionary):
-			problems.append("requirements must be an object")
-		else:
-			for key in requirements:
-				if not AttributesComponent.ATTRIBUTE_KEYS.has(StringName(str(key))):
-					problems.append("requirements: '%s' is not an attribute" % key)
-				else:
-					var value: Variant = requirements[key]
-					var lowest: int = AttributesComponent.MIN_ATTRIBUTE
-					var highest: int = AttributesComponent.MAX_ATTRIBUTE
-					if not _is_whole_number(value) or int(value) < lowest or int(value) > highest:
-						problems.append(
-								"requirements: '%s' must be between %d and %d" % [key, lowest, highest]
-						)
+	problems.append_array(_validate_attribute_minimums(record, "requirements"))
 
 	# modifiers: only flat attribute and ARM changes for now, for example { "stats": { "arm": 1 } }
 	if record.has("modifiers"):
@@ -330,15 +317,30 @@ func _validate_item_record(record: Dictionary) -> Array[String]:
 					if not _is_whole_number(amount) or int(amount) == 0:
 						problems.append("modifiers.stats: '%s' must be a whole number, not 0" % key)
 
-	# a script is optional for an item; when given it must extend EntityScript
+	# a script is optional for an item; when given it must extend DDItemScript
 	var script_path: String = str(record.get("script", ""))
 	if not script_path.is_empty():
 		if not ResourceLoader.exists(script_path):
 			problems.append("script not found: %s" % script_path)
 		else:
 			var loaded: Script = load(script_path) as Script
-			if loaded == null or not _script_extends(loaded, "EntityScript"):
-				problems.append("script does not extend EntityScript: %s" % script_path)
+			if loaded == null or not _script_extends(loaded, "DDItemScript"):
+				problems.append("script does not extend DDItemScript: %s" % script_path)
+
+	# script variables: plain values only, because ScriptVariable cannot hold JSON arrays
+	if record.has("script_vars"):
+		var script_vars: Variant = record["script_vars"]
+		if not (script_vars is Dictionary):
+			problems.append("script_vars must be an object")
+		else:
+			if script_path.is_empty() and not (script_vars as Dictionary).is_empty():
+				problems.append("script_vars needs a script")
+			for key in script_vars:
+				var value: Variant = script_vars[key]
+				if str(key).is_empty():
+					problems.append("script_vars: a name is empty")
+				elif not (value is bool or value is String or _is_whole_number(value)):
+					problems.append("script_vars: '%s' must be a whole number, true or false, or text" % key)
 
 	return problems
 
@@ -357,6 +359,27 @@ func _validate_flag_keys(
 	for key in keys:
 		if int(resolver.call(str(key))) == 0:
 			problems.append("unknown %s '%s'" % [label, key])
+	return problems
+
+
+## Returns problems for an object of attribute minimums, such as { "str": 6 }.
+func _validate_attribute_minimums(record: Dictionary, object_key: String) -> Array[String]:
+	var problems: Array[String] = []
+	if not record.has(object_key):
+		return problems
+	var minimums: Variant = record[object_key]
+	if not (minimums is Dictionary):
+		problems.append("%s must be an object" % object_key)
+		return problems
+	var lowest: int = AttributesComponent.MIN_ATTRIBUTE
+	var highest: int = AttributesComponent.MAX_ATTRIBUTE
+	for key in minimums:
+		if not AttributesComponent.ATTRIBUTE_KEYS.has(StringName(str(key))):
+			problems.append("%s: '%s' is not an attribute" % [object_key, key])
+			continue
+		var value: Variant = minimums[key]
+		if not _is_whole_number(value) or int(value) < lowest or int(value) > highest:
+			problems.append("%s: '%s' must be between %d and %d" % [object_key, key, lowest, highest])
 	return problems
 
 

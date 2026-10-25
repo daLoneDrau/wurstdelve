@@ -8,5 +8,7 @@
   "requirements": { "str": 6 },
   "modifiers": { "stats": { "arm": 1 } },
   "text": "This Item is not Heavy if your STR is 8 or more.",
-  "flavor": ""
+  "flavor": "",
+  "script": "res://game/scripts/items/studded_vest_script.gd",
+  "script_vars": { "not_heavy_min_str": 8 }
 }

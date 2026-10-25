@@ -25,9 +25,10 @@
 class_name DDItemComponent
 extends ItemComponent
 
-## The printed Heavy value. It counts toward the limit of two Heavy Items carried.
-## Whether an Item is Heavy for a particular owner is computed on demand: some Items change it
-## (the Studded Vest is not Heavy if its owner's STR is 8 or more).
+## The printed Heavy value. It counts toward the limit of Heavy Items carried
+## (AdventurerComponent.BASE_HEAVY_LIMIT).
+## Whether an Item is Heavy for a particular owner is computed on demand and never stored
+## (see DDEntityManager.is_item_heavy and DDItemScript.heavy_for), because some Items change it.
 @export var heavy: bool = false
 
 ## Attribute keys (AttributesComponent constants such as &"per") the Attack is tested against.

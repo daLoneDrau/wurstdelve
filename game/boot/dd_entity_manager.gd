@@ -20,6 +20,28 @@ func is_unique(e: Entity) -> bool:
 	return e.tags.has(EntityTags.Tag.UNIQUE)
 
 
+## Determines if an item counts as Heavy for an owner. It is computed on demand and never
+## stored. The item's script decides (DDItemScript.heavy_for), so an item that breaks the usual
+## rule, such as the Studded Vest, does so in its own script. An item without a script, or a
+## query with no owner (an item in a deck or an offer), gets the printed value.
+##
+## The script reads the owner's attributes as they stand, so the answer is as current as
+## PlayerSystem's last recompute of the owner's effective attributes.
+func is_item_heavy(item_id: String, owner_id: String = "") -> bool:
+	var item: DDItemComponent = get_component(item_id, ItemComponent) as DDItemComponent
+	if item == null:
+		return false
+	if owner_id.is_empty():
+		return item.heavy
+	var script_comp: ScriptComponent = get_component(item_id, ScriptComponent) as ScriptComponent
+	if script_comp == null:
+		return item.heavy
+	var item_script: DDItemScript = script_comp.main_script as DDItemScript
+	if item_script == null:
+		return item.heavy
+	return item_script.heavy_for(StringName(owner_id), item.heavy, self)
+
+
 ## Kill all active combat effects/spells on an entity
 func kill_spells_on(e_id: String) -> void:
 	var entity := get_entity_by_id(e_id)
@@ -173,7 +195,7 @@ func create_adventurer(record: Dictionary, immediate: bool = false) -> Entity:
 ## The entity id is "item_<record id>", so two copies of one card would collide. Decide how
 ## copies are numbered when the Loot deck is built.
 ##
-## Not built yet: Model, and the effective Heavy check (the Studded Vest is not Heavy at STR 8+).
+## Not built yet: Model. Whether the item is Heavy for its owner is is_item_heavy().
 func create_item(record: Dictionary, immediate: bool = false) -> Entity:
 	var record_id: String = str(record.get("id", ""))
 	if record_id.is_empty():
@@ -226,12 +248,9 @@ func create_item(record: Dictionary, immediate: bool = false) -> Entity:
 		item.two_handed = placement["two_handed"]
 
 	# a minimum for each attribute, kept under the inherited requirements' "attributes" key
-	var requirements: Dictionary = record.get("requirements", {})
+	var requirements: Dictionary = _attribute_minimums(record.get("requirements", {}))
 	if not requirements.is_empty():
-		var minimums: Dictionary = {}
-		for key in requirements:
-			minimums[StringName(str(key))] = int(requirements[key])
-		item.requirements["attributes"] = minimums
+		item.requirements["attributes"] = requirements
 
 	# the printed numbers, such as +1 ARM
 	var modifiers: Dictionary = record.get("modifiers", {})
@@ -239,13 +258,28 @@ func create_item(record: Dictionary, immediate: bool = false) -> Entity:
 		item.modifiers = ItemModifierBundle.from_simple(modifiers)
 	e.set_component(item)
 
-	# --- scripting: only for items with actions or reactions ---
+	# --- scripting: only for items with actions, reactions or queries ---
 	if script_class != null:
+		var script_vars: ScriptVariableSet = ScriptVariableSet.new()
+		var var_data: Dictionary = record.get("script_vars", {})
+		for var_name in var_data:
+			var value: Variant = var_data[var_name]
+			# JSON numbers are floats, so keep whole numbers as ints
+			if value is float:
+				value = int(value)
+			script_vars.set_variable(str(var_name), value)
+
+		var item_script: EntityScript = script_class.new() as EntityScript
+		# ScriptSystem sets these when it attaches the script. Set them now too, so the script's
+		# queries (such as heavy_for) work before any ScriptSystem exists.
+		item_script.entity_id = StringName(e.id)
+		item_script.vars = script_vars
+
 		var script_comp: DDScriptComponent = DDScriptComponent.new()
-		script_comp.main_script = script_class.new() as EntityScript
+		script_comp.main_script = item_script
 		script_comp.role_hint = "item"
 		e.set_component(script_comp)
-		e.set_component(ScriptVariableSet.new())
+		e.set_component(script_vars)
 
 	# DDItemComponent extends ItemComponent, a slot root, so it is found under that name.
 	assert(e.has_component("ItemComponent"), "DDItemComponent not in ItemComponent slot")
@@ -254,5 +288,14 @@ func create_item(record: Dictionary, immediate: bool = false) -> Entity:
 	if immediate:
 		add_entity_immediately(e.id)
 	return e
+
+
+
+## Converts a record's attribute minimums ({ "str": 6 }) to { &"str": 6 }.
+func _attribute_minimums(data: Dictionary) -> Dictionary:
+	var minimums: Dictionary = {}
+	for key in data:
+		minimums[StringName(str(key))] = int(data[key])
+	return minimums
 
 #endregion
