@@ -1,0 +1,12 @@
+{
+  "id": "studded_vest",
+  "name": "Studded Vest",
+  "price": 13,
+  "heavy": true,
+  "tags": [],
+  "slot": "body",
+  "requirements": { "str": 6 },
+  "modifiers": { "stats": { "arm": 1 } },
+  "text": "This Item is not Heavy if your STR is 8 or more.",
+  "flavor": ""
+}
