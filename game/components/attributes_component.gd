@@ -1,4 +1,4 @@
-## The six adventurer attributes plus Luck, stored as base values.
+## The six adventurer attributes plus Luck and ARM, stored as base values.
 ##
 ## Base values are authored and do not change permanently. Effective values (conditions,
 ## equipment, skills, weaknesses) are computed by PlayerSystem, which writes them onto each
@@ -8,6 +8,10 @@
 ## counter, not an attribute: it has no Test, no 2..11 range, and no modifiers. Its cap is the
 ## effective MAG, enforced by a system. Loop over ATTRIBUTE_KEYS, never ability_set.keys(),
 ## when you mean "the attributes".
+##
+## ARM (Armor) is stored the same way, but its base is always 0 and it has no 2..11 range or
+## clamp. Equipped Items add it as modifier sources through their ItemModifierBundle, and damage
+## taken is reduced by its effective value.
 class_name AttributesComponent
 extends AbilitiesComponent
 
@@ -20,6 +24,7 @@ const MRL: StringName = &"mrl"
 const PER: StringName = &"per"
 const STR: StringName = &"str"
 const LUCK: StringName = &"luck"
+const ARM: StringName = &"arm"
 
 ## The six attributes in sheet order. Excludes Luck.
 const ATTRIBUTE_KEYS: Array[StringName] = [AGI, CON, MAG, MRL, PER, STR]
@@ -35,6 +40,7 @@ func _init() -> void:
 	for key in ATTRIBUTE_KEYS:
 		add(key, DEFAULT_ATTRIBUTE)
 	add(LUCK, 0)
+	add(ARM, 0)
 
 
 ## Determines if a key is one of the six attributes (so not Luck).
