@@ -159,3 +159,100 @@ func create_adventurer(record: Dictionary, immediate: bool = false) -> Entity:
 	return e
 
 #endregion
+
+
+## —————————————————————————————————————————————
+#region Item creation
+## —————————————————————————————————————————————
+
+## Creates an item entity from an authored record and queues it for registration.
+## The entity is registered on the next update(), or right away if immediate is true.
+## Records are loaded and validated at startup by DDAssetsLibrary, for example:
+##   create_item(GameEngine_auto.dd_assets().get_item_record("studded_vest"))
+##
+## The entity id is "item_<record id>", so two copies of one card would collide. Decide how
+## copies are numbered when the Loot deck is built.
+##
+## Not built yet: Model, and the effective Heavy check (the Studded Vest is not Heavy at STR 8+).
+func create_item(record: Dictionary, immediate: bool = false) -> Entity:
+	var record_id: String = str(record.get("id", ""))
+	if record_id.is_empty():
+		push_error("DDEntityManager: item record has no id.")
+		return null
+
+	# An item script is optional. Load it first, so a failure leaves nothing half-built.
+	var script_class: GDScript = null
+	var script_path: String = str(record.get("script", ""))
+	if not script_path.is_empty():
+		script_class = load(script_path) as GDScript
+		if script_class == null:
+			push_error("DDEntityManager: item %s has no loadable script." % record_id)
+			return null
+
+	var e: Entity = Entity.new()
+	# the id must be set before any component is added
+	e.id = "item_%s" % record_id
+	e.tags.add(EntityTags.Tag.ITEM)
+	if bool(record.get("unique", false)):
+		e.tags.add(EntityTags.Tag.UNIQUE)
+
+	# --- identity ---
+	var name_comp: NameComponent = NameComponent.new(str(record.get("name", "")))
+	name_comp.internal_id = StringName(record_id)
+	e.set_component(name_comp)
+
+	# the printed rule is the description and the italic flavor text is the lore
+	var description: DescriptionComponent = DescriptionComponent.new()
+	description.description = str(record.get("text", ""))
+	description.lore = str(record.get("flavor", ""))
+	e.set_component(description)
+
+	# --- item data (stored under the "ItemComponent" slot root) ---
+	var item: DDItemComponent = DDItemComponent.new()
+	item.price = float(int(record.get("price", 0)))
+	item.heavy = bool(record.get("heavy", false))
+	for tag_key in record.get("tags", []):
+		item.item_type.add(ItemTags.from_key(str(tag_key)))
+	for type_key in record.get("attack_types", []):
+		item.weapon_type_flags.add(AttackTypeTags.from_key(str(type_key)))
+	for attribute_key in record.get("attack_attributes", []):
+		item.attack_attributes.append(StringName(str(attribute_key)))
+
+	# the card's slot word expands to equip_slots and two_handed
+	var slot_word: String = str(record.get("slot", ""))
+	if not slot_word.is_empty():
+		var placement: Dictionary = DDEquipmentSlot.card_slot_to_equip(slot_word)
+		item.equip_slots = placement["equip_slots"]
+		item.two_handed = placement["two_handed"]
+
+	# a minimum for each attribute, kept under the inherited requirements' "attributes" key
+	var requirements: Dictionary = record.get("requirements", {})
+	if not requirements.is_empty():
+		var minimums: Dictionary = {}
+		for key in requirements:
+			minimums[StringName(str(key))] = int(requirements[key])
+		item.requirements["attributes"] = minimums
+
+	# the printed numbers, such as +1 ARM
+	var modifiers: Dictionary = record.get("modifiers", {})
+	if not modifiers.is_empty():
+		item.modifiers = ItemModifierBundle.from_simple(modifiers)
+	e.set_component(item)
+
+	# --- scripting: only for items with actions or reactions ---
+	if script_class != null:
+		var script_comp: DDScriptComponent = DDScriptComponent.new()
+		script_comp.main_script = script_class.new() as EntityScript
+		script_comp.role_hint = "item"
+		e.set_component(script_comp)
+		e.set_component(ScriptVariableSet.new())
+
+	# DDItemComponent extends ItemComponent, a slot root, so it is found under that name.
+	assert(e.has_component("ItemComponent"), "DDItemComponent not in ItemComponent slot")
+
+	add_entity(e)
+	if immediate:
+		add_entity_immediately(e.id)
+	return e
+
+#endregion
