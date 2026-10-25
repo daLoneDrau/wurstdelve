@@ -14,7 +14,8 @@
 ## - requirements: only the "attributes" key is used, for example {"attributes": {&"str": 6}}.
 ##   The adventurer's effective attribute must be at least the value.
 ##
-## Inherited fields DD ignores and leaves at their defaults: stackable, max_stack, max_count,
+## Inherited fields DD ignores and leaves at their defaults: item_name, description and icon_path
+## (NameComponent and DescriptionComponent hold the name and text), stackable, max_stack, max_count,
 ## quantity, nested_inventory_id, weight, rarity, durability, durability_max, set_id,
 ## set_bonuses, bound_to_entity, cursed, unique_instance, and the other requirements keys.
 ## Uniqueness is EntityTags.Tag.UNIQUE on the item entity.
