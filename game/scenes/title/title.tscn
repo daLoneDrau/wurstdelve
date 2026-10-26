@@ -159,10 +159,6 @@ metadata/_custom_type_script = "uid://h84m5msr5u8f"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="QuitNoteLabel" type="Label" parent="Control/MenuColumn" unique_id=464097037]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1218632656]
 layout_mode = 1
 anchors_preset = 2
