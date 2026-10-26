@@ -1,0 +1,13 @@
+{
+  "id": "serve_the_scroglin_king",
+  "name": "Serve the Scroglin King",
+  "order": 2,
+  "tag": "Placeholder Tag",
+  "min_adventurers": 1,
+  "max_adventurers": 4,
+  "blurb": [
+    "PLACEHOLDER BLURB."
+  ],
+  "doom": 0,
+  "objective": "PLACEHOLDER OBJECTIVE."
+}

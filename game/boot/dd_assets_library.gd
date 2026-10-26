@@ -12,6 +12,11 @@ extends AssetsLibrary
 const ADVENTURER_DIR: String = "res://game/data/adventurers"
 const ITEM_DIR: String = "res://game/data/items"
 const MAP_FILE: String = "res://game/data/map/map.json"
+const MISSION_DIR: String = "res://game/data/missions"
+
+## Limits for what a mission card can show (the Campaign Select layout is built around them).
+const MISSION_BLURB_MAX_LINES: int = 4
+const MISSION_BLURB_MAX_CHARS: int = 36
 
 ## GP and XP can never exceed 21.
 const MAX_COUNTER: int = 21
@@ -21,6 +26,9 @@ var _adventurer_records: Dictionary[String, Dictionary] = {}
 
 ## item id -> authored record (parsed JSON; numbers are floats, so convert with int())
 var _item_records: Dictionary[String, Dictionary] = {}
+
+## mission id -> authored record (parsed JSON; numbers are floats, so convert with int())
+var _mission_records: Dictionary[String, Dictionary] = {}
 
 ## The validated map document: { territories, locations, connectors, links }. Empty until loaded.
 var _map_document: Dictionary = {}
@@ -567,6 +575,158 @@ func _validate_space_traits(record: Dictionary, label: String) -> Array[String]:
 
 
 ## —————————————————————————————————————————————
+#region Mission records
+## —————————————————————————————————————————————
+
+## Loads and validates every .json mission record in a folder, replacing any records already
+## loaded. Load the map first: a mission's start Location is checked against it. Invalid records
+## are reported with push_error and skipped. Returns how many loaded.
+##
+## Record fields:
+##   required: id, name, order (whole number; the card order on Campaign Select, lowest first),
+##             objective (one line)
+##   optional: tag (small line under the name), min_adventurers and max_adventurers (1 to 4),
+##             blurb (list of 1 to 4 lines, each at most 36 characters), start (a Location id),
+##             bounty (1 to 6), doom (0 to 5, the starting Doom counters), art (res:// texture path)
+func load_mission_records(dir_path: String = MISSION_DIR) -> int:
+	_mission_records.clear()
+
+	var files: PackedStringArray = DirAccess.get_files_at(dir_path)
+	if files.is_empty():
+		push_error("DDAssetsLibrary: no files found in '%s'" % dir_path)
+		return 0
+	files.sort()
+
+	for file_name in files:
+		if not file_name.ends_with(".json"):
+			continue
+		var path: String = "%s/%s" % [dir_path, file_name]
+
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+		if not (parsed is Dictionary):
+			push_error("DDAssetsLibrary: %s is not a valid JSON object." % path)
+			continue
+		var record: Dictionary = parsed
+
+		var problems: Array[String] = _validate_mission_record(record)
+		if not problems.is_empty():
+			for problem in problems:
+				push_error("DDAssetsLibrary: %s: %s" % [path, problem])
+			continue
+
+		var id: String = str(record["id"])
+		if _mission_records.has(id):
+			push_error("DDAssetsLibrary: %s: duplicate mission id '%s'." % [path, id])
+			continue
+		_mission_records[id] = record
+
+	return _mission_records.size()
+
+
+func has_mission_record(id: String) -> bool:
+	return _mission_records.has(id)
+
+
+## Returns the ids of all loaded mission records, in card order (the record's `order`).
+func get_mission_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for id in _mission_records.keys():
+		ids.append(id)
+	ids.sort_custom(
+			func(a: String, b: String) -> bool:
+				return int(_mission_records[a]["order"]) < int(_mission_records[b]["order"])
+	)
+	return ids
+
+
+## Returns a deep copy of a mission record, or an empty Dictionary if there is none.
+func get_mission_record(id: String, warn_if_missing: bool = true) -> Dictionary:
+	if _mission_records.has(id):
+		return _mission_records[id].duplicate(true)
+	if warn_if_missing:
+		push_warning("DDAssetsLibrary: Mission record '%s' not found" % id)
+	return {}
+
+
+## Returns a list of problems with a mission record. An empty list means it is valid.
+func _validate_mission_record(record: Dictionary) -> Array[String]:
+	var problems: Array[String] = []
+
+	if str(record.get("id", "")).is_empty():
+		problems.append("missing id")
+	if str(record.get("name", "")).is_empty():
+		problems.append("missing name")
+	if not _is_whole_number(record.get("order", null)):
+		problems.append("'order' must be a whole number")
+	if str(record.get("objective", "")).is_empty():
+		problems.append("missing objective")
+	if record.has("tag") and not (record["tag"] is String):
+		problems.append("'tag' must be text")
+
+	for key in ["min_adventurers", "max_adventurers"]:
+		if record.has(key):
+			var count: Variant = record[key]
+			if not _is_whole_number(count) or int(count) < 1 or int(count) > 4:
+				problems.append("'%s' must be a whole number from 1 to 4" % key)
+	if (
+			record.has("min_adventurers")
+			and record.has("max_adventurers")
+			and _is_whole_number(record["min_adventurers"])
+			and _is_whole_number(record["max_adventurers"])
+			and int(record["min_adventurers"]) > int(record["max_adventurers"])
+	):
+		problems.append("'min_adventurers' is above 'max_adventurers'")
+
+	if record.has("bounty"):
+		var bounty: Variant = record["bounty"]
+		if not _is_whole_number(bounty) or int(bounty) < 1 or int(bounty) > 6:
+			problems.append("'bounty' must be a whole number from 1 to 6")
+	if record.has("doom"):
+		var doom: Variant = record["doom"]
+		if not _is_whole_number(doom) or int(doom) < 0 or int(doom) > 5:
+			problems.append("'doom' must be a whole number from 0 to 5")
+
+	if record.has("blurb"):
+		var blurb: Variant = record["blurb"]
+		if not (blurb is Array) or (blurb as Array).is_empty():
+			problems.append("'blurb' must be a non-empty list of lines")
+		else:
+			var lines: Array = blurb
+			if lines.size() > MISSION_BLURB_MAX_LINES:
+				problems.append("'blurb' has more than %d lines" % MISSION_BLURB_MAX_LINES)
+			for line in lines:
+				if not (line is String) or (line as String).is_empty():
+					problems.append("'blurb' lines must be non-empty text")
+				elif (line as String).length() > MISSION_BLURB_MAX_CHARS:
+					problems.append(
+							"blurb line '%s' is over %d characters" % [line, MISSION_BLURB_MAX_CHARS]
+					)
+
+	if record.has("start"):
+		var start: Variant = record["start"]
+		if not (start is String) or not _is_map_location(start):
+			problems.append("'start' must be the id of a map Location")
+
+	if record.has("art"):
+		var art: Variant = record["art"]
+		if not (art is String) or not ResourceLoader.exists(art):
+			problems.append("'art' must be the path of an existing texture")
+
+	return problems
+
+
+## True if the id is a Location in the loaded map document. Always false before the map loads.
+func _is_map_location(space_id: String) -> bool:
+	if not has_map_records():
+		return false
+	for location: Dictionary in _map_document["locations"]:
+		if str(location.get("id", "")) == space_id:
+			return true
+	return false
+
+#endregion
+
+## —————————————————————————————————————————————
 #region Overrides
 ## —————————————————————————————————————————————
 
@@ -574,6 +734,7 @@ func clear_all() -> void:
 	super()
 	_adventurer_records.clear()
 	_item_records.clear()
+	_mission_records.clear()
 	_map_document = {}
 
 
@@ -581,6 +742,7 @@ func get_loaded_asset_counts() -> Dictionary:
 	var counts: Dictionary = super()
 	counts["adventurer_records"] = _adventurer_records.size()
 	counts["item_records"] = _item_records.size()
+	counts["mission_records"] = _mission_records.size()
 	counts["map_spaces"] = (
 		(_map_document["locations"] as Array).size() + (_map_document["connectors"] as Array).size()
 		if has_map_records() else 0

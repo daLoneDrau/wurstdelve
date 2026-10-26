@@ -1,0 +1,15 @@
+{
+  "id": "on_the_run",
+  "name": "On The Run",
+  "order": 1,
+  "tag": "Starter Mission",
+  "min_adventurers": 1,
+  "max_adventurers": 4,
+  "blurb": [
+	"PLACEHOLDER BLURB.",
+    "REPLACE FROM THE MISSION BOOK."
+  ],
+  "bounty": 1,
+  "doom": 0,
+  "objective": "PLACEHOLDER OBJECTIVE. REPLACE FROM THE MISSION BOOK."
+}

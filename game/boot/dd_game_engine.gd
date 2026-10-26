@@ -5,6 +5,11 @@ extends GameEngine
 ## if they failed to load. Everything outside the map code reads and changes the map through it.
 var map_service: MapService = null
 
+## The mission the player picked on Campaign Select ("" until one is chosen). Party Setup and the
+## Map read it. Provisional: it moves into the run's state once that has an owner (see the
+## Title Scene Notes, "Starting a fresh game needs an owner").
+var selected_mission_id: String = ""
+
 
 func _initialize_systems() -> void:
 	assets = DDAssetsLibrary.new()
@@ -27,6 +32,9 @@ func load_resources() -> void:
 	print("DDGameEngine: loaded %d map space(s)" % map_space_count)
 	if map_space_count > 0:
 		map_service = MapService.new(dd_assets().get_map_document())
+	# after the map: a mission's start Location is checked against it
+	var mission_count: int = dd_assets().load_mission_records()
+	print("DDGameEngine: loaded %d mission record(s)" % mission_count)
 
 func _setup_window() -> void:
 	# 960x540, viewport stretch and integer scaling come from project settings.
@@ -37,6 +45,7 @@ func _setup_window() -> void:
 func _start_game() -> void:
 	register_scene("title", "res://game/scenes/title/title.tscn")
 	register_scene("options", "res://game/scenes/options/options.tscn")
+	register_scene("campaign_select", "res://game/scenes/campaign_select/campaign_select.tscn")
 	change_scene("title")
 
 

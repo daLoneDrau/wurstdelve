@@ -1,0 +1,13 @@
+{
+  "id": "dagger_and_sword",
+  "name": "Dagger & Sword",
+  "order": 3,
+  "tag": "Placeholder Tag",
+  "min_adventurers": 1,
+  "max_adventurers": 4,
+  "blurb": [
+    "PLACEHOLDER BLURB."
+  ],
+  "doom": 0,
+  "objective": "PLACEHOLDER OBJECTIVE."
+}
