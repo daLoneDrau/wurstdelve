@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://d1ib3dpk3bnyy"]
+
+[ext_resource type="Script" uid="uid://bujjdngr3ua6b" path="res://game/scenes/campaign_select/campaign_select_scene.gd" id="1_pv55n"]
+[ext_resource type="Script" uid="uid://h84m5msr5u8f" path="res://game/ui/arrow_button.gd" id="2_x0rcr"]
+
+[node name="CampaignSelect" type="Node" unique_id=256818529]
+script = ExtResource("1_pv55n")
+
+[node name="Control" type="Control" parent="." unique_id=1667580017]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Control" unique_id=100666581]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="HeaderPanel" type="PanelContainer" parent="Control" unique_id=1280892220]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 954.0
+offset_bottom = 40.0
+theme_type_variation = &"SnesContentFrame"
+
+[node name="HeaderMargin" type="MarginContainer" parent="Control/HeaderPanel" unique_id=153615961]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Header" type="HBoxContainer" parent="Control/HeaderPanel/HeaderMargin" unique_id=1376958212]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=642881452]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+text = "CHOOSE YOUR CAMPAIGN"
+vertical_alignment = 1
+
+[node name="TagLineLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=1370482807]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(470, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_colors/font_color = Color(0.8, 0.7, 0.35, 1)
+text = "TAGLINE"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="HintLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=1597232452]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "◄ ► OR CLICK A CARD"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CardRow" type="HBoxContainer" parent="Control" unique_id=1651678502]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 46.0
+offset_right = 954.0
+offset_bottom = 434.0
+theme_override_constants/separation = 9
+
+[node name="InfoPanel" type="PanelContainer" parent="Control" unique_id=1632703631]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 440.0
+offset_right = 954.0
+offset_bottom = 534.0
+theme_type_variation = &"SnesContentFrame"
+
+[node name="InfoMargin" type="MarginContainer" parent="Control/InfoPanel" unique_id=2076785094]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="InfoRow" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin" unique_id=2009232944]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Details" type="VBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow" unique_id=840240000]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Stats" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details" unique_id=1310428717]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="StartPair" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1141629227]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StartLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/StartPair" unique_id=1626845730]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "START"
+
+[node name="StartValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/StartPair" unique_id=554225841]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "TBD"
+
+[node name="BountyPair" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1314924165]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BountyLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/BountyPair" unique_id=881413491]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "BOUNTY"
+
+[node name="BountyValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/BountyPair" unique_id=1049462348]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "TBD"
+
+[node name="DoomPair" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1767533028]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="DoomLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/DoomPair" unique_id=1410052651]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "DOOM"
+
+[node name="DoomValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/DoomPair" unique_id=422902738]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "0 / 5"
+
+[node name="ObjectiveLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details" unique_id=394033832]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "OBJECTIVE"
+
+[node name="ObjectiveValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details" unique_id=397599108]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(620, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "OBJECTIVE"
+autowrap_mode = 3
+text_overrun_behavior = 3
+max_lines_visible = 2
+
+[node name="Actions" type="VBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow" unique_id=924299841]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonRow" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions" unique_id=1395615632]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions/ButtonRow" unique_id=41272031]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "BACK"
+script = ExtResource("2_x0rcr")
+key_name = "Escape"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="BeginButton" type="Button" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions/ButtonRow" unique_id=1205621847]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.55, 0.55, 1)
+custom_minimum_size = Vector2(146, 30)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "BEGIN MISSION"
+script = ExtResource("2_x0rcr")
+key_name = "Enter"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="NextLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions" unique_id=440229989]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "NEXT: CHOOSE ADVENTURERS"

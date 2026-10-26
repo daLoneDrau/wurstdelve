@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://dba2p72r5g0py"]
+
+[ext_resource type="Script" uid="uid://5ctgki06rdbo" path="res://game/scenes/campaign_select/campaign_card.gd" id="1_kxkys"]
+
+[node name="CampaignCard" type="PanelContainer" unique_id=1387453959]
+custom_minimum_size = Vector2(310, 388)
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesSmallFrame"
+script = ExtResource("1_kxkys")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1126184124]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Column" type="VBoxContainer" parent="Margin" unique_id=1256525929]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ArtFrame" type="Control" parent="Margin/Column" unique_id=647121456]
+custom_minimum_size = Vector2(294, 210)
+layout_mode = 2
+
+[node name="ArtBackdrop" type="ColorRect" parent="Margin/Column/ArtFrame" unique_id=1674452826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09, 0.09, 0.14, 1)
+
+[node name="Art" type="TextureRect" parent="Margin/Column/ArtFrame" unique_id=1792093683]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ArtPlaceholder" type="Label" parent="Margin/Column/ArtFrame" unique_id=710523354]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "MISSION ART"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameRow" type="HBoxContainer" parent="Margin/Column" unique_id=1218513496]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SelectionArrow" type="Label" parent="Margin/Column/NameRow" unique_id=1526388152]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "►"
+
+[node name="NameLabel" type="Label" parent="Margin/Column/NameRow" unique_id=1430745075]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "MISSION NAME"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="TagLabel" type="Label" parent="Margin/Column" unique_id=1719412666]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "TAG · 1-4 ADVENTURERS"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="BlurbPanel" type="PanelContainer" parent="Margin/Column" unique_id=1215215493]
+custom_minimum_size = Vector2(286, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BlurbMargin" type="MarginContainer" parent="Margin/Column/BlurbPanel" unique_id=1424671770]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="BlurbLabel" type="Label" parent="Margin/Column/BlurbPanel/BlurbMargin" unique_id=99641936]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "BLURB"
+clip_text = true
