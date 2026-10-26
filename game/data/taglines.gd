@@ -4,8 +4,6 @@ extends RefCounted
 ## The game's taglines, in no particular order. One line per entry, in quotes, with a
 ## comma after each. Keep this a script constant (not a text file) so it ships in the
 ## web export without any export-filter setup.
-##
-## TODO: replace the placeholders with the 50 real taglines.
 const LIST: Array[String] = [
 	"A FOOL AND HIS GOLD ARE WELCOME",
 	"A LITTLE INFECTION BUILDS CHARACTER",
