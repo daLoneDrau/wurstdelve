@@ -1,6 +1,11 @@
 class_name DDGameEngine
 extends GameEngine
 
+## The map: its authored graph and its changing state. Built when the map records load, and null
+## if they failed to load. Everything outside the map code reads and changes the map through it.
+var map_service: MapService = null
+
+
 func _initialize_systems() -> void:
 	assets = DDAssetsLibrary.new()
 	add_child(assets)
@@ -18,6 +23,10 @@ func load_resources() -> void:
 	print("DDGameEngine: loaded %d item record(s)" % item_count)
 	var adventurer_count: int = dd_assets().load_adventurer_records()
 	print("DDGameEngine: loaded %d adventurer record(s)" % adventurer_count)
+	var map_space_count: int = dd_assets().load_map_records()
+	print("DDGameEngine: loaded %d map space(s)" % map_space_count)
+	if map_space_count > 0:
+		map_service = MapService.new(dd_assets().get_map_document())
 
 func _setup_window() -> void:
 	# 960x540, viewport stretch and integer scaling come from project settings.

@@ -1,0 +1,777 @@
+{
+ "territories": [
+  {
+   "id": "blasted_heath",
+   "name": "The Blasted Heath",
+   "region": "badlands",
+   "theme_color": "dark red",
+   "traits": [
+	"OUTSIDE",
+    "PERILOUS"
+   ]
+  },
+  {
+   "id": "burning_lakes",
+   "name": "Burning Lakes",
+   "region": "badlands",
+   "theme_color": "purple",
+   "traits": [
+	"OUTSIDE",
+    "PERILOUS"
+   ]
+  },
+  {
+   "id": "wasteland",
+   "name": "The Wasteland",
+   "region": "badlands",
+   "theme_color": "red",
+   "traits": [
+    "OUTSIDE"
+   ]
+  },
+  {
+   "id": "foothills",
+   "name": "The Foothills",
+   "region": "highlands",
+   "theme_color": "orange",
+   "traits": [
+    "OUTSIDE"
+   ]
+  },
+  {
+   "id": "slavers_pass",
+   "name": "Slavers' Pass",
+   "region": "highlands",
+   "theme_color": "pink",
+   "traits": [
+    "OUTSIDE"
+   ]
+  },
+  {
+   "id": "fields",
+   "name": "The Fields",
+   "region": "lowlands",
+   "theme_color": "blue",
+   "traits": [
+	"OUTSIDE",
+    "LAW"
+   ]
+  },
+  {
+   "id": "witchwood",
+   "name": "The Witchwood",
+   "region": "lowlands",
+   "theme_color": "dark blue",
+   "traits": [
+	"OUTSIDE",
+    "WOODLAND"
+   ]
+  },
+  {
+   "id": "rotting_swamp",
+   "name": "The Rotting Swamp",
+   "region": "wetlands",
+   "theme_color": "green",
+   "traits": [
+    "OUTSIDE"
+   ]
+  },
+  {
+   "id": "tomb_lake",
+   "name": "Tomb Lake",
+   "region": "wetlands",
+   "theme_color": "dark green",
+   "traits": []
+  }
+ ],
+ "locations": [
+  {
+   "id": "tunnel_of_terror",
+   "name": "The Tunnel of Terror",
+   "kind": "location",
+   "territory": "slavers_pass",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+	"METAPHYSICAL",
+    "PERILOUS"
+   ]
+  },
+  {
+   "id": "temple_of_madness",
+   "name": "The Temple of Madness",
+   "kind": "location",
+   "territory": "slavers_pass",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+	"METAPHYSICAL",
+    "PERILOUS"
+   ]
+  },
+  {
+   "id": "bandit_camp",
+   "name": "Bandit Camp",
+   "kind": "location",
+   "territory": "slavers_pass",
+   "own_level": true,
+   "traits": [
+	"OUTSIDE",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "pigskin_port",
+   "name": "Pigskin Port",
+   "kind": "location",
+   "territory": "foothills",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "watchtower",
+   "name": "The Watchtower",
+   "kind": "location",
+   "territory": "foothills",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "windmill",
+   "name": "The Windmill",
+   "kind": "location",
+   "territory": "foothills",
+   "own_level": false,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "north_bridge",
+   "name": "North Bridge",
+   "kind": "location",
+   "territory": "foothills",
+   "own_level": false,
+   "traits": [
+    "OUTSIDE"
+   ]
+  },
+  {
+   "id": "bruttelburg",
+   "name": "Brüttelburg",
+   "kind": "location",
+   "territory": "fields",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+	"LAW",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "holy_order",
+   "name": "The Holy Order",
+   "kind": "location",
+   "territory": "fields",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+	"LAW",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "hunt_lodge",
+   "name": "Hunt Lodge",
+   "kind": "location",
+   "territory": "witchwood",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+	"WOODLAND",
+	"LAW",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "crossroads",
+   "name": "Crossroads",
+   "kind": "location",
+   "territory": "fields",
+   "own_level": false,
+   "traits": [
+	"OUTSIDE",
+    "LAW"
+   ]
+  },
+  {
+   "id": "east_bridge",
+   "name": "East Bridge",
+   "kind": "location",
+   "territory": "witchwood",
+   "own_level": false,
+   "traits": [
+	"OUTSIDE",
+	"WOODLAND",
+    "LAW"
+   ]
+  },
+  {
+   "id": "graveyard",
+   "name": "The Graveyard",
+   "kind": "location",
+   "territory": "fields",
+   "own_level": true,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "catacombs",
+   "name": "The Catacombs",
+   "kind": "location",
+   "territory": "fields",
+   "own_level": true,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "witch_hill",
+   "name": "Witch Hill",
+   "kind": "location",
+   "territory": "witchwood",
+   "own_level": true,
+   "traits": [
+	"OUTSIDE",
+    "WOODLAND"
+   ]
+  },
+  {
+   "id": "hags_fork",
+   "name": "Hags Fork",
+   "kind": "location",
+   "territory": "witchwood",
+   "own_level": true,
+   "traits": [
+	"OUTSIDE",
+    "WOODLAND"
+   ]
+  },
+  {
+   "id": "fishmonger_camp",
+   "name": "Fishmonger Camp",
+   "kind": "location",
+   "territory": "tomb_lake",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "ghost_gate",
+   "name": "Ghost Gate",
+   "kind": "location",
+   "territory": "tomb_lake",
+   "own_level": false,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "gutfish_ford",
+   "name": "Gutfish Ford",
+   "kind": "location",
+   "territory": "rotting_swamp",
+   "own_level": true,
+   "traits": [
+	"OUTSIDE",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "sunken_village",
+   "name": "Sunken Village",
+   "kind": "location",
+   "territory": "rotting_swamp",
+   "own_level": true,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "stone_circle",
+   "name": "Stone Circle",
+   "kind": "location",
+   "territory": "rotting_swamp",
+   "own_level": true,
+   "traits": [
+	"OUTSIDE",
+    "SETTLEMENT"
+   ]
+  },
+  {
+   "id": "black_tree",
+   "name": "The Black Tree",
+   "kind": "location",
+   "territory": "rotting_swamp",
+   "own_level": false,
+   "traits": [
+	"OUTSIDE",
+    "WOODLAND"
+   ]
+  },
+  {
+   "id": "dusk_falls",
+   "name": "Dusk Falls",
+   "kind": "location",
+   "territory": "tomb_lake",
+   "own_level": false,
+   "traits": [
+    "OUTSIDE"
+   ]
+  },
+  {
+   "id": "tower_island",
+   "name": "Tower Island",
+   "kind": "location",
+   "territory": "tomb_lake",
+   "own_level": true,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "crystal_crater",
+   "name": "Crystal Crater",
+   "kind": "location",
+   "territory": "burning_lakes",
+   "own_level": false,
+   "traits": [
+	"OUTSIDE",
+    "PERILOUS"
+   ]
+  },
+  {
+   "id": "last_chance",
+   "name": "Last Chance",
+   "kind": "location",
+   "territory": "wasteland",
+   "own_level": false,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "skull_bridge",
+   "name": "Skull Bridge",
+   "kind": "location",
+   "territory": "blasted_heath",
+   "own_level": true,
+   "traits": [
+    "INSIDE"
+   ]
+  },
+  {
+   "id": "hell_pit",
+   "name": "The Hell Pit",
+   "kind": "location",
+   "territory": "blasted_heath",
+   "own_level": true,
+   "traits": [
+	"OUTSIDE",
+    "PERILOUS"
+   ]
+  },
+  {
+   "id": "goblin_fortress",
+   "name": "Goblin Fortress",
+   "kind": "location",
+   "territory": "wasteland",
+   "own_level": true,
+   "traits": [
+	"INSIDE",
+    "SETTLEMENT"
+   ]
+  }
+ ],
+ "connectors": [
+  {
+   "id": "road_windmill_west",
+   "kind": "road",
+   "territory": "foothills",
+   "ends": [
+    "windmill"
+   ]
+  },
+  {
+   "id": "road_windmill_pigskin",
+   "kind": "road",
+   "territory": "foothills",
+   "ends": [
+	"windmill",
+    "pigskin_port"
+   ]
+  },
+  {
+   "id": "road_windmill_northbridge",
+   "kind": "road",
+   "territory": "foothills",
+   "ends": [
+	"windmill",
+    "north_bridge"
+   ]
+  },
+  {
+   "id": "road_pigskin_watchtower",
+   "kind": "road",
+   "territory": "foothills",
+   "ends": [
+	"pigskin_port",
+    "watchtower"
+   ]
+  },
+  {
+   "id": "path_tunnel_windmill",
+   "kind": "path",
+   "territory": "foothills",
+   "ends": [
+	"tunnel_of_terror",
+    "windmill"
+   ]
+  },
+  {
+   "id": "path_bandit_pigskin",
+   "kind": "path",
+   "territory": "foothills",
+   "ends": [
+	"bandit_camp",
+    "pigskin_port"
+   ]
+  },
+  {
+   "id": "path_temple_bandit",
+   "kind": "path",
+   "territory": "slavers_pass",
+   "ends": [
+	"temple_of_madness",
+    "bandit_camp"
+   ]
+  },
+  {
+   "id": "road_northbridge_bruttelburg",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"north_bridge",
+    "bruttelburg"
+   ]
+  },
+  {
+   "id": "road_bruttelburg_eastbridge",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"bruttelburg",
+    "east_bridge"
+   ]
+  },
+  {
+   "id": "road_bruttelburg_crossroads",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"bruttelburg",
+    "crossroads"
+   ]
+  },
+  {
+   "id": "road_eastbridge_crossroads",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"east_bridge",
+    "crossroads"
+   ]
+  },
+  {
+   "id": "road_holyorder_crossroads",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"holy_order",
+    "crossroads"
+   ]
+  },
+  {
+   "id": "road_crossroads_graveyard",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"crossroads",
+    "graveyard"
+   ]
+  },
+  {
+   "id": "road_holyorder_graveyard",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"holy_order",
+    "graveyard"
+   ]
+  },
+  {
+   "id": "road_graveyard_fishmonger",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+	"graveyard",
+    "fishmonger_camp"
+   ]
+  },
+  {
+   "id": "road_holyorder_west",
+   "kind": "road",
+   "territory": "fields",
+   "ends": [
+    "holy_order"
+   ]
+  },
+  {
+   "id": "road_watchtower_witchhill",
+   "kind": "road",
+   "territory": "witchwood",
+   "ends": [
+	"watchtower",
+    "witch_hill"
+   ]
+  },
+  {
+   "id": "road_eastbridge_witchhill",
+   "kind": "road",
+   "territory": "witchwood",
+   "ends": [
+	"east_bridge",
+    "witch_hill"
+   ]
+  },
+  {
+   "id": "path_eastbridge_huntlodge",
+   "kind": "path",
+   "territory": "witchwood",
+   "ends": [
+	"east_bridge",
+    "hunt_lodge"
+   ]
+  },
+  {
+   "id": "path_witchhill_hagsfork",
+   "kind": "path",
+   "territory": "witchwood",
+   "ends": [
+	"witch_hill",
+    "hags_fork"
+   ]
+  },
+  {
+   "id": "path_hagsfork_huntlodge",
+   "kind": "path",
+   "territory": "witchwood",
+   "ends": [
+	"hags_fork",
+    "hunt_lodge"
+   ]
+  },
+  {
+   "id": "path_witchhill_gutfishford",
+   "kind": "path",
+   "territory": "witchwood",
+   "ends": [
+	"witch_hill",
+    "gutfish_ford"
+   ]
+  },
+  {
+   "id": "path_gutfishford_sunkenvillage",
+   "kind": "path",
+   "territory": "burning_lakes",
+   "ends": [
+	"gutfish_ford",
+    "sunken_village"
+   ]
+  },
+  {
+   "id": "path_crystalcrater_sunkenvillage",
+   "kind": "path",
+   "territory": "burning_lakes",
+   "ends": [
+	"crystal_crater",
+    "sunken_village"
+   ]
+  },
+  {
+   "id": "path_hagsfork_sunkenvillage",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+	"hags_fork",
+    "sunken_village"
+   ]
+  },
+  {
+   "id": "path_sunkenvillage_stonecircle",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+	"sunken_village",
+    "stone_circle"
+   ]
+  },
+  {
+   "id": "path_hagsfork_stonecircle",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+	"hags_fork",
+    "stone_circle"
+   ]
+  },
+  {
+   "id": "path_stonecircle_east",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+    "stone_circle"
+   ]
+  },
+  {
+   "id": "path_stonecircle_blacktree",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+	"stone_circle",
+    "black_tree"
+   ]
+  },
+  {
+   "id": "path_huntlodge_blacktree",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+	"hunt_lodge",
+    "black_tree"
+   ]
+  },
+  {
+   "id": "path_blacktree_duskfalls",
+   "kind": "path",
+   "territory": "rotting_swamp",
+   "ends": [
+	"black_tree",
+    "dusk_falls"
+   ]
+  },
+  {
+   "id": "path_bandit_lastchance",
+   "kind": "path",
+   "territory": "wasteland",
+   "ends": [
+	"bandit_camp",
+    "last_chance"
+   ]
+  },
+  {
+   "id": "road_lastchance_skullbridge",
+   "kind": "road",
+   "territory": "wasteland",
+   "ends": [
+	"last_chance",
+    "skull_bridge"
+   ]
+  },
+  {
+   "id": "road_lastchance_watchtower",
+   "kind": "road",
+   "territory": "wasteland",
+   "ends": [
+	"last_chance",
+    "watchtower"
+   ]
+  },
+  {
+   "id": "path_lastchance_goblinfortress",
+   "kind": "path",
+   "territory": "wasteland",
+   "ends": [
+	"last_chance",
+    "goblin_fortress"
+   ]
+  },
+  {
+   "id": "path_skullbridge_goblinfortress",
+   "kind": "path",
+   "territory": "wasteland",
+   "ends": [
+	"skull_bridge",
+    "goblin_fortress"
+   ]
+  },
+  {
+   "id": "path_goblinfortress_gutfishford",
+   "kind": "path",
+   "territory": "wasteland",
+   "ends": [
+	"goblin_fortress",
+    "gutfish_ford"
+   ]
+  },
+  {
+   "id": "path_goblinfortress_east",
+   "kind": "path",
+   "territory": "wasteland",
+   "ends": [
+    "goblin_fortress"
+   ]
+  },
+  {
+   "id": "path_skullbridge_hellpit",
+   "kind": "path",
+   "territory": "blasted_heath",
+   "ends": [
+	"skull_bridge",
+    "hell_pit"
+   ]
+  },
+  {
+   "id": "path_goblinfortress_crystalcrater",
+   "kind": "path",
+   "territory": "burning_lakes",
+   "ends": [
+	"goblin_fortress",
+    "crystal_crater"
+   ]
+  }
+ ],
+ "links": [
+  [
+   "tunnel_of_terror",
+   "temple_of_madness"
+  ],
+  [
+   "graveyard",
+   "catacombs"
+  ],
+  [
+   "catacombs",
+   "ghost_gate"
+  ]
+ ]
+}
