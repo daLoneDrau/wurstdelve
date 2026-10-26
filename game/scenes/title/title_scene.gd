@@ -3,15 +3,14 @@ extends Scene
 
 ## Title screen: a 3D background (a .glb shown in a full-screen SubViewport), the game
 ## logo, and a three-button menu. New Game leads to campaign selection. Load Game stays
-## disabled until a saved campaign exists. Options opens as an overlay. Quit is Q-key
-## only (no button).
+## disabled until a saved campaign exists. Options opens as an overlay. There is no
+## Quit: the game targets the web build, where quitting does nothing.
 
 const CAMPAIGN_SELECT_KEY: String = "campaign_select"
 const CAMPAIGN_SELECT_PATH: String = "res://game/scenes/campaign_select/campaign_select.tscn"
 
 const LOAD_DISABLED_TEXT: String = "LOAD GAME DISABLED: NO SAVED CAMPAIGN"
 const LOAD_ENABLED_TEXT: String = "LOAD GAME: CONTINUE A SAVED CAMPAIGN"
-const QUIT_NOTE_TEXT: String = "QUIT: HIDDEN ON WEB BUILD (Q KEY ONLY)"
 
 ## The background model (drop a .glb here in the inspector). Instanced under ModelAnchor.
 @export var background_model: PackedScene
@@ -32,7 +31,6 @@ const QUIT_NOTE_TEXT: String = "QUIT: HIDDEN ON WEB BUILD (Q KEY ONLY)"
 @onready var _load_game_button: ArrowButton = %LoadGameButton
 @onready var _options_button: ArrowButton = %OptionsButton
 @onready var _load_status_label: Label = %LoadStatusLabel
-@onready var _quit_note_label: Label = %QuitNoteLabel
 @onready var _tag_line_label: Label = %TagLineLabel
 
 var _model: Node3D
@@ -51,7 +49,6 @@ func _ready() -> void:
 			_model_anchor.add_child(_model)
 	_logo.texture = logo
 	_logo_fallback.visible = logo == null
-	_quit_note_label.text = QUIT_NOTE_TEXT
 	_tag_line_label.text = TaglineService_auto.next()
 	_menu.append(_new_game_button)
 	_menu.append(_load_game_button)
@@ -73,7 +70,6 @@ func on_enter() -> void:
 	register_action("Enter", "confirm")
 	register_action("N", "new_game")
 	register_action("O", "options")
-	register_action("Q", "quit")
 	_refresh_load_state()
 	_select(0)
 
@@ -95,7 +91,6 @@ func _perform(action_name: String) -> void:
 		"new_game": _start_new_game()
 		"load_game": _load_game()
 		"options": _game_engine.push_scene("options")
-		"quit": _game_engine.quit()
 
 
 ## Moves the arrow to the next enabled row in `step` direction, wrapping around.
