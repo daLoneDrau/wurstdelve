@@ -11,6 +11,7 @@ extends AssetsLibrary
 
 const ADVENTURER_DIR: String = "res://game/data/adventurers"
 const ITEM_DIR: String = "res://game/data/items"
+const MAP_FILE: String = "res://game/data/map/map.json"
 
 ## GP and XP can never exceed 21.
 const MAX_COUNTER: int = 21
@@ -20,6 +21,9 @@ var _adventurer_records: Dictionary[String, Dictionary] = {}
 
 ## item id -> authored record (parsed JSON; numbers are floats, so convert with int())
 var _item_records: Dictionary[String, Dictionary] = {}
+
+## The validated map document: { territories, locations, connectors, links }. Empty until loaded.
+var _map_document: Dictionary = {}
 
 
 ## —————————————————————————————————————————————
@@ -390,6 +394,179 @@ func _is_non_empty_list(value: Variant) -> bool:
 
 
 ## —————————————————————————————————————————————
+#region Map records
+## —————————————————————————————————————————————
+
+## Loads and validates the map document, replacing any already loaded. The map is a graph, so it
+## loads whole: if any problem is found every problem is reported with push_error and nothing is
+## loaded. Returns the number of spaces (Locations plus Paths and Roads) loaded, or 0.
+##
+## The document is one JSON object with four lists:
+##   territories: id, name, region (MapRegions key), theme_color, traits (SpaceTags keys)
+##   locations:   id, name, kind ("location"), territory, own_level (true or false), traits
+##   connectors:  id, kind ("path" or "road"), territory, ends (one or two Location ids)
+##   links:       pairs of Location ids joined directly, with no Path or Road between them
+## A space's Region is its Territory's, so a record has no region of its own. Levels and
+## Explored counters are state, not authored data, so they are not in the document.
+func load_map_records(path: String = MAP_FILE) -> int:
+	_map_document = {}
+
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if not (parsed is Dictionary):
+		push_error("DDAssetsLibrary: %s is not a valid JSON object." % path)
+		return 0
+	var document: Dictionary = parsed
+
+	var problems: Array[String] = validate_map_document(document)
+	if not problems.is_empty():
+		for problem in problems:
+			push_error("DDAssetsLibrary: %s: %s" % [path, problem])
+		return 0
+
+	_map_document = document
+	return (document["locations"] as Array).size() + (document["connectors"] as Array).size()
+
+
+func has_map_records() -> bool:
+	return not _map_document.is_empty()
+
+
+## Returns a deep copy of the validated map document, or an empty Dictionary if none is loaded.
+## MapService is built from it.
+func get_map_document() -> Dictionary:
+	return _map_document.duplicate(true)
+
+
+## Returns a list of problems with a map document. An empty list means it is valid.
+func validate_map_document(document: Dictionary) -> Array[String]:
+	var problems: Array[String] = []
+	for list_key in ["territories", "locations", "connectors", "links"]:
+		if not (document.get(list_key, null) is Array):
+			problems.append("'%s' must be a list" % list_key)
+	if not problems.is_empty():
+		return problems
+
+	# --- Territories ---
+	var territory_ids: Dictionary = {}
+	for territory in document["territories"]:
+		if not (territory is Dictionary):
+			problems.append("territories: every entry must be an object")
+			continue
+		var tid: String = str((territory as Dictionary).get("id", ""))
+		if tid.is_empty():
+			problems.append("territories: an entry has no id")
+			continue
+		if territory_ids.has(tid):
+			problems.append("territories: duplicate id '%s'" % tid)
+		territory_ids[tid] = true
+		if str(territory.get("name", "")).is_empty():
+			problems.append("territory '%s': missing name" % tid)
+		if MapRegions.from_key(str(territory.get("region", ""))) == -1:
+			problems.append("territory '%s': unknown region '%s'" % [tid, territory.get("region", "")])
+		if str(territory.get("theme_color", "")).is_empty():
+			problems.append("territory '%s': missing theme_color" % tid)
+		problems.append_array(_validate_space_traits(territory, "territory '%s'" % tid))
+
+	# --- Locations ---
+	var location_ids: Dictionary = {}
+	var space_ids: Dictionary = {}
+	for location in document["locations"]:
+		if not (location is Dictionary):
+			problems.append("locations: every entry must be an object")
+			continue
+		var lid: String = str((location as Dictionary).get("id", ""))
+		if lid.is_empty():
+			problems.append("locations: an entry has no id")
+			continue
+		if space_ids.has(lid):
+			problems.append("duplicate space id '%s'" % lid)
+		space_ids[lid] = true
+		location_ids[lid] = true
+		var label: String = "location '%s'" % lid
+		if str(location.get("name", "")).is_empty():
+			problems.append("%s: missing name" % label)
+		if str(location.get("kind", "")) != "location":
+			problems.append("%s: kind must be \"location\"" % label)
+		if not territory_ids.has(str(location.get("territory", ""))):
+			problems.append("%s: unknown territory '%s'" % [label, location.get("territory", "")])
+		if not (location.get("own_level", null) is bool):
+			problems.append("%s: own_level must be true or false" % label)
+		problems.append_array(_validate_space_traits(location, label))
+
+	# --- Paths and Roads ---
+	for connector in document["connectors"]:
+		if not (connector is Dictionary):
+			problems.append("connectors: every entry must be an object")
+			continue
+		var cid: String = str((connector as Dictionary).get("id", ""))
+		if cid.is_empty():
+			problems.append("connectors: an entry has no id")
+			continue
+		if space_ids.has(cid):
+			problems.append("duplicate space id '%s'" % cid)
+		space_ids[cid] = true
+		var label: String = "connector '%s'" % cid
+		var kind: String = str(connector.get("kind", ""))
+		if kind != "path" and kind != "road":
+			problems.append("%s: kind must be \"path\" or \"road\"" % label)
+		if not territory_ids.has(str(connector.get("territory", ""))):
+			problems.append("%s: unknown territory '%s'" % [label, connector.get("territory", "")])
+		if connector.has("traits"):
+			problems.append("%s: a Path or Road has no traits of its own; it shares its Territory's" % label)
+		var ends: Variant = connector.get("ends", null)
+		if not (ends is Array) or (ends as Array).size() < 1 or (ends as Array).size() > 2:
+			problems.append("%s: ends must list one or two Locations" % label)
+			continue
+		var seen_ends: Dictionary = {}
+		for end_id in ends:
+			if not location_ids.has(str(end_id)):
+				problems.append("%s: end '%s' is not a Location" % [label, end_id])
+			if seen_ends.has(str(end_id)):
+				problems.append("%s: both ends are '%s'" % [label, end_id])
+			seen_ends[str(end_id)] = true
+
+	# --- direct links between Locations ---
+	var seen_links: Dictionary = {}
+	for link in document["links"]:
+		if not (link is Array) or (link as Array).size() != 2:
+			problems.append("links: every link must be a pair of Location ids")
+			continue
+		var a: String = str(link[0])
+		var b: String = str(link[1])
+		if not location_ids.has(a) or not location_ids.has(b):
+			problems.append("links: '%s' and '%s' must both be Locations" % [a, b])
+			continue
+		if a == b:
+			problems.append("links: '%s' is linked to itself" % a)
+		var pair: Array = [a, b]
+		pair.sort()
+		var pair_key: String = "|".join(pair)
+		if seen_links.has(pair_key):
+			problems.append("links: '%s' and '%s' are linked twice" % [a, b])
+		seen_links[pair_key] = true
+
+	return problems
+
+
+## Returns problems for the "traits" list of a Location or Territory record.
+func _validate_space_traits(record: Dictionary, label: String) -> Array[String]:
+	var problems: Array[String] = []
+	var keys: Variant = record.get("traits", [])
+	if not (keys is Array):
+		problems.append("%s: traits must be a list" % label)
+		return problems
+	for key in keys:
+		var tag: int = SpaceTags.from_key(str(key))
+		if tag == 0:
+			problems.append("%s: unknown trait '%s'" % [label, key])
+		elif (tag & SpaceTags.DERIVED_ONLY) != 0:
+			problems.append("%s: '%s' is derived, so it cannot be authored" % [label, key])
+	return problems
+
+#endregion
+
+
+## —————————————————————————————————————————————
 #region Overrides
 ## —————————————————————————————————————————————
 
@@ -397,12 +574,17 @@ func clear_all() -> void:
 	super()
 	_adventurer_records.clear()
 	_item_records.clear()
+	_map_document = {}
 
 
 func get_loaded_asset_counts() -> Dictionary:
 	var counts: Dictionary = super()
 	counts["adventurer_records"] = _adventurer_records.size()
 	counts["item_records"] = _item_records.size()
+	counts["map_spaces"] = (
+		(_map_document["locations"] as Array).size() + (_map_document["connectors"] as Array).size()
+		if has_map_records() else 0
+	)
 	return counts
 
 #endregion
