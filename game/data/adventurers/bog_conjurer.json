@@ -16,7 +16,7 @@
   "skills": ["sixth_sense"],
   "weaknesses": [],
   "starting_items": ["spirit_guide", "totem_stick"],
-  "script": "res://game/scripts/bog_conjurer_script.gd",
+  "script": "res://game/scripts/adventurers/bog_conjurer_script.gd",
   "suggested_skills": ["mend_wounds", "rebuke"],
   "suggested_weaknesses": ["wanderlust"]
 }

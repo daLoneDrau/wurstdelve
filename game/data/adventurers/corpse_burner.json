@@ -16,7 +16,7 @@
   "skills": ["burly"],
   "weaknesses": [],
   "starting_items": ["death_mask", "grave_shovel"],
-  "script": "res://game/scripts/corpse_burner_script.gd",
+  "script": "res://game/scripts/adventurers/corpse_burner_script.gd",
   "suggested_skills": ["black_market", "shrug_off_pain"],
   "suggested_weaknesses": ["haunted"]
 }

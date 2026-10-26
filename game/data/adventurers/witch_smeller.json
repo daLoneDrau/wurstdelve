@@ -15,7 +15,7 @@
   "skills": ["intimidate"],
   "weaknesses": [],
   "starting_items": ["weighted_pistol", "witch_smellers_nose"],
-  "script": "res://game/scripts/witch_smeller_script.gd",
+  "script": "res://game/scripts/adventurers/witch_smeller_script.gd",
   "suggested_skills": ["inquisitor", "warding"],
   "suggested_weaknesses": ["mistrust"]
 }

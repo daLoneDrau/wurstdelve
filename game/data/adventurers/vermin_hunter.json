@@ -16,7 +16,7 @@
   "skills": ["combat_reflexes"],
   "weaknesses": [],
   "starting_items": ["gas_bomb", "ratspike"],
-  "script": "res://game/scripts/vermin_hunter_script.gd",
+  "script": "res://game/scripts/adventurers/vermin_hunter_script.gd",
   "suggested_skills": ["backstab", "exterminator"],
   "suggested_weaknesses": ["money_hungry"]
 }

@@ -17,7 +17,7 @@
   "skills": ["voidwalker"],
   "weaknesses": [],
   "starting_items": ["sacrificial_dagger", "scroll_of_ancient_gibberish"],
-  "script": "res://game/scripts/void_witch_script.gd",
+  "script": "res://game/scripts/adventurers/void_witch_script.gd",
   "suggested_skills": ["decay", "mystic_shield"],
   "suggested_weaknesses": ["void_stalker"]
 }

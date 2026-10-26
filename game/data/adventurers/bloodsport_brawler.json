@@ -15,7 +15,7 @@
   "skills": ["foe_killer"],
   "weaknesses": [],
   "starting_items": ["spiked_gauntlet", "warpaint"],
-  "script": "res://game/scripts/bloodsport_brawler_script.gd",
+  "script": "res://game/scripts/adventurers/bloodsport_brawler_script.gd",
   "suggested_skills": ["ferocious_charge", "rage"],
   "suggested_weaknesses": ["old_battle_wound"]
 }

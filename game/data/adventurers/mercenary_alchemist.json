@@ -15,7 +15,7 @@
   "skills": ["alchemy"],
   "weaknesses": [],
   "starting_items": ["flash_bomb", "light_pistol"],
-  "script": "res://game/scripts/mercenary_alchemist_script.gd",
+  "script": "res://game/scripts/adventurers/mercenary_alchemist_script.gd",
   "suggested_skills": ["find_weakness", "transmute"],
   "suggested_weaknesses": ["half_blind"]
 }
