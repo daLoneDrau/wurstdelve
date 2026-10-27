@@ -1,15 +1,15 @@
 class_name CampaignCard
 extends PanelContainer
 
-## One mission card on Campaign Select: art, name, tag line and blurb. It only shows what it is
-## given. The scene owns which card is selected and tells the card through `selected`.
+## One mission card on Campaign Select: 3D diorama, name, tag line and blurb. It only shows
+## what it is given. The scene owns which card is selected and tells the card through `selected`.
 
 ## Emitted when the player clicks the card.
 signal clicked(card: CampaignCard)
 
 const FRAME_NORMAL: StringName = &"SnesSmallFrame"
 const FRAME_SELECTED: StringName = &"SnesSmallFrameSelected"
-const ART_PLACEHOLDER_TEXT: String = "MISSION ART · 294×210"
+const ART_PLACEHOLDER_TEXT: String = "MISSION DIORAMA · 294×210"
 
 ## The mission shown on this card (its record id).
 var mission_id: String = ""
@@ -20,9 +20,11 @@ var selected: bool = false:
 		selected = value
 		_sync_selected()
 
-@onready var _art: TextureRect = %Art
+@onready var _model_stage: SubViewportContainer = %ModelStage
+@onready var _viewport: SubViewport = %SubViewport
+@onready var _model_anchor: Node3D = %ModelAnchor
 @onready var _art_placeholder: Label = %ArtPlaceholder
-@onready var _arrow: Label = %SelectionArrow
+@onready var _arrow: TextureRect = %SelectionArrow
 @onready var _name_label: Label = %NameLabel
 @onready var _tag_label: Label = %TagLabel
 @onready var _blurb_label: Label = %BlurbLabel
@@ -40,11 +42,24 @@ func show_mission(record: Dictionary) -> void:
 	_name_label.text = str(record.get("name", "")).to_upper()
 	_tag_label.text = _tag_text(record)
 	_blurb_label.text = "\n".join(PackedStringArray(record.get("blurb", [])))
-	var art_path: String = str(record.get("art", ""))
-	var art: Texture2D = load(art_path) as Texture2D if not art_path.is_empty() else null
-	_art.texture = art
-	_art_placeholder.visible = art == null
 	_art_placeholder.text = ART_PLACEHOLDER_TEXT
+	_show_diorama(str(record.get("diorama", "")))
+
+
+## Shows the mission's 3D diorama in the art frame, or the placeholder text if it has none.
+## The diorama renders in its own SubViewport, and only while there is one to render.
+func _show_diorama(path: String) -> void:
+	for child in _model_anchor.get_children():
+		child.queue_free()
+	var packed: PackedScene = load(path) as PackedScene if not path.is_empty() else null
+	var model: Node3D = packed.instantiate() as Node3D if packed != null else null
+	if model != null:
+		_model_anchor.add_child(model)
+	_model_stage.visible = model != null
+	_viewport.render_target_update_mode = (
+		SubViewport.UPDATE_ALWAYS if model != null else SubViewport.UPDATE_DISABLED
+	)
+	_art_placeholder.visible = model == null
 
 
 ## "TAG · 1-4 ADVENTURERS", or just the adventurer range when there is no tag.
@@ -67,7 +82,8 @@ func _sync_selected() -> void:
 	if _arrow == null:
 		return   # not ready yet; _ready syncs again
 	theme_type_variation = FRAME_SELECTED if selected else FRAME_NORMAL
-	_arrow.visible = selected
+	# the arrow keeps its space when hidden, so the name doesn't shift when selected
+	_arrow.self_modulate.a = 1.0 if selected else 0.0
 
 
 func _on_gui_input(event: InputEvent) -> void:

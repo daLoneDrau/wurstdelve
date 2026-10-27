@@ -4,7 +4,10 @@ extends ActionButton
 ## NES/SNES-style menu row: text only, no box, with a selection arrow on the left.
 ##
 ## The arrow shows while this row is the selected one (chosen by keyboard, or by
-## mouse hover, which asks the menu to select it) and the row is enabled.
+## mouse hover, which asks the menu to select it), or while the mouse is over it, and the row
+## is enabled. A lone button that no menu manages therefore still shows its arrow on hover.
+## Keys go through the engine, so "focused" means `selected`: a scene that wants an arrow on a
+## button without the mouse sets `selected` on it.
 ## Disabled rows never show an arrow, so the arrow always means "Enter will do this".
 ##
 ## Selection is owned by the menu (see TitleScene). This node only draws the arrow
@@ -14,7 +17,10 @@ extends ActionButton
 ## Emitted when the mouse enters an enabled row. The menu responds by selecting it.
 signal hovered(button: ArrowButton)
 
-## Pixel-art arrow. Leave empty to use a generated placeholder triangle.
+## The SNES arrow art, used when no `arrow_texture` is assigned.
+const DEFAULT_ARROW: Texture2D = preload("res://assets/ui/icons/snes_arrow.png")
+
+## Pixel-art arrow. Leave empty to use the default SNES arrow.
 @export var arrow_texture: Texture2D:
 	set(value):
 		arrow_texture = value
@@ -28,6 +34,7 @@ var selected: bool = false:
 		_sync_arrow()
 
 var _arrow: TextureRect
+var _hovering: bool = false
 
 
 func _ready() -> void:
@@ -42,32 +49,30 @@ func _ready() -> void:
 	add_child(_arrow)
 	_apply_arrow_texture()
 	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	draw.connect(_sync_arrow)   # a Button redraws when `disabled` changes, so the arrow follows it
 	_sync_arrow()
 
 
 func _on_mouse_entered() -> void:
+	_hovering = true
+	_sync_arrow()
 	if not disabled:
 		hovered.emit(self)
 
 
+func _on_mouse_exited() -> void:
+	_hovering = false
+	_sync_arrow()
+
+
 func _sync_arrow() -> void:
 	if _arrow != null:
-		_arrow.visible = selected and not disabled
+		_arrow.visible = (selected or _hovering) and not disabled
 
 
 func _apply_arrow_texture() -> void:
-	var tex: Texture2D = arrow_texture if arrow_texture != null else _make_placeholder_arrow()
+	var tex: Texture2D = arrow_texture if arrow_texture != null else DEFAULT_ARROW
 	_arrow.texture = tex
 	_arrow.size = tex.get_size()
 	_arrow.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_SIZE)
-
-
-## A small right-pointing triangle, used until the real arrow art is assigned.
-static func _make_placeholder_arrow() -> Texture2D:
-	var img: Image = Image.create(8, 10, false, Image.FORMAT_RGBA8)
-	for y in 10:
-		for x in 8:
-			if float(x) <= (1.0 - absf(y - 4.5) / 5.0) * 7.0:
-				img.set_pixel(x, y, Color.WHITE)
-	return ImageTexture.create_from_image(img)

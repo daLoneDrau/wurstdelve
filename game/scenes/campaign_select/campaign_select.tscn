@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d1ib3dpk3bnyy"]
 
 [ext_resource type="Script" uid="uid://bujjdngr3ua6b" path="res://game/scenes/campaign_select/campaign_select_scene.gd" id="1_pv55n"]
+[ext_resource type="Texture2D" uid="uid://bw1tox3jwomsb" path="res://assets/ui/icons/snes_arrow.png" id="2_ffcwt"]
 [ext_resource type="Script" uid="uid://h84m5msr5u8f" path="res://game/ui/arrow_button.gd" id="2_x0rcr"]
 
 [node name="CampaignSelect" type="Node" unique_id=256818529]
@@ -53,19 +54,38 @@ custom_minimum_size = Vector2(470, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
-theme_override_colors/font_color = Color(0.8, 0.7, 0.35, 1)
+theme_override_colors/font_color = Color(0.5, 0.47, 0.36, 1)
 text = "TAGLINE"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="HintLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=1597232452]
+[node name="HintBox" type="HBoxContainer" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=1050178837]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="HintLeftArrow" type="TextureRect" parent="Control/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=1037873920]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_ffcwt")
+stretch_mode = 2
+flip_h = true
+
+[node name="HintRightArrow" type="TextureRect" parent="Control/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=339778476]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_ffcwt")
+stretch_mode = 2
+
+[node name="HintLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=1636184895]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
-text = "◄ ► OR CLICK A CARD"
-horizontal_alignment = 2
+text = "OR CLICK A CARD"
 vertical_alignment = 1
 
 [node name="CardRow" type="HBoxContainer" parent="Control" unique_id=1651678502]

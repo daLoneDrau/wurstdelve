@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://dba2p72r5g0py"]
 
 [ext_resource type="Script" uid="uid://5ctgki06rdbo" path="res://game/scenes/campaign_select/campaign_card.gd" id="1_kxkys"]
+[ext_resource type="Texture2D" uid="uid://bw1tox3jwomsb" path="res://assets/ui/icons/snes_arrow.png" id="2_4g3oh"]
+
+[sub_resource type="Environment" id="Environment_x0rcr"]
+background_mode = 1
+background_color = Color(0.09, 0.09, 0.14, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.7, 0.7, 1)
 
 [node name="CampaignCard" type="PanelContainer" unique_id=1387453959]
 custom_minimum_size = Vector2(310, 388)
@@ -32,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09, 0.09, 0.14, 1)
 
-[node name="Art" type="TextureRect" parent="Margin/Column/ArtFrame" unique_id=1792093683]
+[node name="ModelStage" type="SubViewportContainer" parent="Margin/Column/ArtFrame" unique_id=1751337001]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -41,8 +48,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 1
-stretch_mode = 6
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Margin/Column/ArtFrame/ModelStage" unique_id=75334194]
+unique_name_in_owner = true
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(294, 210)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=997514922]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 2, 7)
+environment = SubResource("Environment_x0rcr")
+current = true
+fov = 40.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=1879895459]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+
+[node name="ModelAnchor" type="Node3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=1755328804]
+unique_name_in_owner = true
 
 [node name="ArtPlaceholder" type="Label" parent="Margin/Column/ArtFrame" unique_id=710523354]
 unique_name_in_owner = true
@@ -61,12 +87,14 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="SelectionArrow" type="Label" parent="Margin/Column/NameRow" unique_id=1526388152]
+[node name="SelectionArrow" type="TextureRect" parent="Margin/Column/NameRow" unique_id=529719338]
 unique_name_in_owner = true
-visible = false
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
 layout_mode = 2
-theme_type_variation = &"TitleLabel"
-text = "►"
+size_flags_vertical = 4
+texture = ExtResource("2_4g3oh")
+stretch_mode = 2
 
 [node name="NameLabel" type="Label" parent="Margin/Column/NameRow" unique_id=1430745075]
 unique_name_in_owner = true

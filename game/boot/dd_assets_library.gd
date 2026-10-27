@@ -587,7 +587,8 @@ func _validate_space_traits(record: Dictionary, label: String) -> Array[String]:
 ##             objective (one line)
 ##   optional: tag (small line under the name), min_adventurers and max_adventurers (1 to 4),
 ##             blurb (list of 1 to 4 lines, each at most 36 characters), start (a Location id),
-##             bounty (1 to 6), doom (0 to 5, the starting Doom counters), art (res:// texture path)
+##             bounty (1 to 6), doom (0 to 5, the starting Doom counters),
+##             diorama (res:// path of the 3D scene shown as the card art)
 func load_mission_records(dir_path: String = MISSION_DIR) -> int:
 	_mission_records.clear()
 
@@ -707,10 +708,10 @@ func _validate_mission_record(record: Dictionary) -> Array[String]:
 		if not (start is String) or not _is_map_location(start):
 			problems.append("'start' must be the id of a map Location")
 
-	if record.has("art"):
-		var art: Variant = record["art"]
-		if not (art is String) or not ResourceLoader.exists(art):
-			problems.append("'art' must be the path of an existing texture")
+	if record.has("diorama"):
+		var diorama: Variant = record["diorama"]
+		if not (diorama is String) or not ResourceLoader.exists(diorama):
+			problems.append("'diorama' must be the path of an existing 3D scene (.glb or .tscn)")
 
 	return problems
 
