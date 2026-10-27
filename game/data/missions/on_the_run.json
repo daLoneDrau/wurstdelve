@@ -6,10 +6,12 @@
   "min_adventurers": 1,
   "max_adventurers": 4,
   "blurb": [
-	"PLACEHOLDER BLURB.",
-    "REPLACE FROM THE MISSION BOOK."
+	"A shady jailor offers you freedom",
+	"for a secret delivery to Pigskin",
+	"Port. Accept his crooked deal or",
+	"plot your own escape?"
   ],
   "bounty": 1,
   "doom": 0,
-  "objective": "PLACEHOLDER OBJECTIVE. REPLACE FROM THE MISSION BOOK."
+  "objective": "Retrieve the Soothsayer’s Head from the Crossroads, then reach Pigskin Port, Gutfish Ford, or Stone Circle with your entire party and Rest. Delivering the Head is optional."
 }

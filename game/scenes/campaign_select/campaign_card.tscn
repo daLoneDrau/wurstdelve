@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5ctgki06rdbo" path="res://game/scenes/campaign_select/campaign_card.gd" id="1_kxkys"]
 [ext_resource type="Texture2D" uid="uid://bw1tox3jwomsb" path="res://assets/ui/icons/snes_arrow.png" id="2_4g3oh"]
+[ext_resource type="PackedScene" uid="uid://bdm3pl5cg4awm" path="res://assets/models/test_obelisk.glb" id="2_4mqw7"]
 
 [sub_resource type="Environment" id="Environment_x0rcr"]
 background_mode = 1
@@ -10,17 +11,19 @@ ambient_light_source = 2
 ambient_light_color = Color(0.7, 0.7, 0.7, 1)
 
 [node name="CampaignCard" type="PanelContainer" unique_id=1387453959]
-custom_minimum_size = Vector2(310, 388)
+custom_minimum_size = Vector2(310, 0)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 theme_type_variation = &"SnesSmallFrame"
 script = ExtResource("1_kxkys")
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=1126184124]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
 
 [node name="Column" type="VBoxContainer" parent="Margin" unique_id=1256525929]
 layout_mode = 2
@@ -53,7 +56,6 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Margin/Column/ArtFrame/ModelStage" unique_id=75334194]
 unique_name_in_owner = true
-own_world_3d = true
 handle_input_locally = false
 size = Vector2i(294, 210)
 render_target_update_mode = 4
@@ -69,6 +71,8 @@ transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.7071
 
 [node name="ModelAnchor" type="Node3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=1755328804]
 unique_name_in_owner = true
+
+[node name="test_obelisk" parent="Margin/Column/ArtFrame/ModelStage/SubViewport/ModelAnchor" unique_id=1765905258 instance=ExtResource("2_4mqw7")]
 
 [node name="ArtPlaceholder" type="Label" parent="Margin/Column/ArtFrame" unique_id=710523354]
 unique_name_in_owner = true

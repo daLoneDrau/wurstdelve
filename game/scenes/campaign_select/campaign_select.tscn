@@ -25,30 +25,40 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.05, 0.05, 0.08, 1)
 
-[node name="HeaderPanel" type="PanelContainer" parent="Control" unique_id=1280892220]
-layout_mode = 0
+[node name="Layout" type="VBoxContainer" parent="Control" unique_id=869691091]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 6.0
 offset_top = 6.0
-offset_right = 954.0
-offset_bottom = 40.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="HeaderPanel" type="PanelContainer" parent="Control/Layout" unique_id=1280892220]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
 theme_type_variation = &"SnesContentFrame"
 
-[node name="HeaderMargin" type="MarginContainer" parent="Control/HeaderPanel" unique_id=153615961]
+[node name="HeaderMargin" type="MarginContainer" parent="Control/Layout/HeaderPanel" unique_id=153615961]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 
-[node name="Header" type="HBoxContainer" parent="Control/HeaderPanel/HeaderMargin" unique_id=1376958212]
+[node name="Header" type="HBoxContainer" parent="Control/Layout/HeaderPanel/HeaderMargin" unique_id=1376958212]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=642881452]
+[node name="TitleLabel" type="Label" parent="Control/Layout/HeaderPanel/HeaderMargin/Header" unique_id=642881452]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"TitleLabel"
 text = "CHOOSE YOUR CAMPAIGN"
 vertical_alignment = 1
 
-[node name="TagLineLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=1370482807]
+[node name="TagLineLabel" type="Label" parent="Control/Layout/HeaderPanel/HeaderMargin/Header" unique_id=1370482807]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(470, 0)
 layout_mode = 2
@@ -61,13 +71,13 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="HintBox" type="HBoxContainer" parent="Control/HeaderPanel/HeaderMargin/Header" unique_id=1050178837]
+[node name="HintBox" type="HBoxContainer" parent="Control/Layout/HeaderPanel/HeaderMargin/Header" unique_id=1050178837]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 alignment = 2
 
-[node name="HintLeftArrow" type="TextureRect" parent="Control/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=1037873920]
+[node name="HintLeftArrow" type="TextureRect" parent="Control/Layout/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=1037873920]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
@@ -75,109 +85,103 @@ texture = ExtResource("2_ffcwt")
 stretch_mode = 2
 flip_h = true
 
-[node name="HintRightArrow" type="TextureRect" parent="Control/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=339778476]
+[node name="HintRightArrow" type="TextureRect" parent="Control/Layout/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=339778476]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("2_ffcwt")
 stretch_mode = 2
 
-[node name="HintLabel" type="Label" parent="Control/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=1636184895]
+[node name="HintLabel" type="Label" parent="Control/Layout/HeaderPanel/HeaderMargin/Header/HintBox" unique_id=1636184895]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "OR CLICK A CARD"
 vertical_alignment = 1
 
-[node name="CardRow" type="HBoxContainer" parent="Control" unique_id=1651678502]
+[node name="CardRow" type="HBoxContainer" parent="Control/Layout" unique_id=1651678502]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 6.0
-offset_top = 46.0
-offset_right = 954.0
-offset_bottom = 434.0
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 9
 
-[node name="InfoPanel" type="PanelContainer" parent="Control" unique_id=1632703631]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 440.0
-offset_right = 954.0
-offset_bottom = 534.0
+[node name="InfoPanel" type="PanelContainer" parent="Control/Layout" unique_id=1632703631]
+custom_minimum_size = Vector2(0, 94)
+layout_mode = 2
 theme_type_variation = &"SnesContentFrame"
 
-[node name="InfoMargin" type="MarginContainer" parent="Control/InfoPanel" unique_id=2076785094]
+[node name="InfoMargin" type="MarginContainer" parent="Control/Layout/InfoPanel" unique_id=2076785094]
 layout_mode = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 4
 
-[node name="InfoRow" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin" unique_id=2009232944]
+[node name="InfoRow" type="HBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin" unique_id=2009232944]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Details" type="VBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow" unique_id=840240000]
+[node name="Details" type="VBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow" unique_id=840240000]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
-[node name="Stats" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details" unique_id=1310428717]
+[node name="Stats" type="HBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details" unique_id=1310428717]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="StartPair" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1141629227]
+[node name="StartPair" type="HBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1141629227]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="StartLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/StartPair" unique_id=1626845730]
+[node name="StartLabel" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats/StartPair" unique_id=1626845730]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "START"
 
-[node name="StartValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/StartPair" unique_id=554225841]
+[node name="StartValue" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats/StartPair" unique_id=554225841]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
 text = "TBD"
 
-[node name="BountyPair" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1314924165]
+[node name="BountyPair" type="HBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1314924165]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="BountyLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/BountyPair" unique_id=881413491]
+[node name="BountyLabel" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats/BountyPair" unique_id=881413491]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "BOUNTY"
 
-[node name="BountyValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/BountyPair" unique_id=1049462348]
+[node name="BountyValue" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats/BountyPair" unique_id=1049462348]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
 text = "TBD"
 
-[node name="DoomPair" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1767533028]
+[node name="DoomPair" type="HBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats" unique_id=1767533028]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="DoomLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/DoomPair" unique_id=1410052651]
+[node name="DoomLabel" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats/DoomPair" unique_id=1410052651]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "DOOM"
 
-[node name="DoomValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details/Stats/DoomPair" unique_id=422902738]
+[node name="DoomValue" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details/Stats/DoomPair" unique_id=422902738]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
 text = "0 / 5"
 
-[node name="ObjectiveLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details" unique_id=394033832]
+[node name="ObjectiveLabel" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details" unique_id=394033832]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "OBJECTIVE"
 
-[node name="ObjectiveValue" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Details" unique_id=397599108]
+[node name="ObjectiveValue" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Details" unique_id=397599108]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(620, 32)
+custom_minimum_size = Vector2(300, 32)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
 text = "OBJECTIVE"
@@ -185,15 +189,15 @@ autowrap_mode = 3
 text_overrun_behavior = 3
 max_lines_visible = 2
 
-[node name="Actions" type="VBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow" unique_id=924299841]
+[node name="Actions" type="VBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow" unique_id=924299841]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ButtonRow" type="HBoxContainer" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions" unique_id=1395615632]
+[node name="ButtonRow" type="HBoxContainer" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Actions" unique_id=1395615632]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="BackButton" type="Button" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions/ButtonRow" unique_id=41272031]
+[node name="BackButton" type="Button" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Actions/ButtonRow" unique_id=41272031]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
@@ -204,9 +208,8 @@ script = ExtResource("2_x0rcr")
 key_name = "Escape"
 metadata/_custom_type_script = "uid://h84m5msr5u8f"
 
-[node name="BeginButton" type="Button" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions/ButtonRow" unique_id=1205621847]
+[node name="BeginButton" type="Button" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Actions/ButtonRow" unique_id=1205621847]
 unique_name_in_owner = true
-self_modulate = Color(1, 0.55, 0.55, 1)
 custom_minimum_size = Vector2(146, 30)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -216,7 +219,7 @@ script = ExtResource("2_x0rcr")
 key_name = "Enter"
 metadata/_custom_type_script = "uid://h84m5msr5u8f"
 
-[node name="NextLabel" type="Label" parent="Control/InfoPanel/InfoMargin/InfoRow/Actions" unique_id=440229989]
+[node name="NextLabel" type="Label" parent="Control/Layout/InfoPanel/InfoMargin/InfoRow/Actions" unique_id=440229989]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "NEXT: CHOOSE ADVENTURERS"

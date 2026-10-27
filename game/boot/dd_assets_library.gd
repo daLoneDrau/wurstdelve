@@ -16,7 +16,7 @@ const MISSION_DIR: String = "res://game/data/missions"
 
 ## Limits for what a mission card can show (the Campaign Select layout is built around them).
 const MISSION_BLURB_MAX_LINES: int = 4
-const MISSION_BLURB_MAX_CHARS: int = 36
+const MISSION_BLURB_MAX_CHARS: int = 400
 
 ## GP and XP can never exceed 21.
 const MAX_COUNTER: int = 21
@@ -699,9 +699,7 @@ func _validate_mission_record(record: Dictionary) -> Array[String]:
 				if not (line is String) or (line as String).is_empty():
 					problems.append("'blurb' lines must be non-empty text")
 				elif (line as String).length() > MISSION_BLURB_MAX_CHARS:
-					problems.append(
-							"blurb line '%s' is over %d characters" % [line, MISSION_BLURB_MAX_CHARS]
-					)
+					problems.append("blurb line '%s' is over %d characters" % [line, MISSION_BLURB_MAX_CHARS])
 
 	if record.has("start"):
 		var start: Variant = record["start"]
