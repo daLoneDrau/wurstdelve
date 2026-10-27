@@ -11,7 +11,8 @@
 	"Port. Accept his crooked deal or",
 	"plot your own escape?"
   ],
-  "bounty": 1,
+  "start": "bruttelburg",
+  "bounty": 3,
   "doom": 0,
   "objective": "Retrieve the Soothsayer’s Head from the Crossroads, then reach Pigskin Port, Gutfish Ford, or Stone Circle with your entire party and Rest. Delivering the Head is optional."
 }
