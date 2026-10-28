@@ -588,7 +588,8 @@ func _validate_space_traits(record: Dictionary, label: String) -> Array[String]:
 ##   optional: tag (small line under the name), min_adventurers and max_adventurers (1 to 4),
 ##             blurb (list of 1 to 4 lines, each at most 36 characters), start (a Location id),
 ##             bounty (1 to 6), doom (0 to 5, the starting Doom counters),
-##             diorama (res:// path of the 3D scene shown as the card art)
+##             diorama (res:// path of the 3D scene shown as the card art),
+##             available (true or false, default true; false shows the card but it cannot be chosen)
 func load_mission_records(dir_path: String = MISSION_DIR) -> int:
 	_mission_records.clear()
 
@@ -700,6 +701,9 @@ func _validate_mission_record(record: Dictionary) -> Array[String]:
 					problems.append("'blurb' lines must be non-empty text")
 				elif (line as String).length() > MISSION_BLURB_MAX_CHARS:
 					problems.append("blurb line '%s' is over %d characters" % [line, MISSION_BLURB_MAX_CHARS])
+
+	if record.has("available") and not (record["available"] is bool):
+		problems.append("'available' must be true or false")
 
 	if record.has("start"):
 		var start: Variant = record["start"]

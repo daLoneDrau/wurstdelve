@@ -2,6 +2,7 @@
   "id": "serve_the_scroglin_king",
   "name": "Serve the Scroglin King",
   "order": 2,
+  "available": false,
   "tag": "Placeholder Tag",
   "min_adventurers": 1,
   "max_adventurers": 4,

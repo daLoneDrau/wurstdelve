@@ -6,8 +6,9 @@ extends Scene
 ## Back returns to Title. Begin Mission remembers the choice on the engine and goes on to Party
 ## Setup. The cards are built from the mission records, in their `order`.
 ##
-## Keys: Left and Right move the selection, Enter begins the mission, Escape goes back.
-## Clicking a card selects it.
+## A mission whose record says `available: false` is shown dimmed and can't be selected or begun.
+## Keys: Left and Right move the selection between available missions, Enter begins the mission,
+## Escape goes back. Clicking an available card selects it.
 
 const TITLE_KEY: String = "title"
 const PARTY_SETUP_KEY: String = "party_setup"
@@ -22,7 +23,8 @@ const CARD_SCENE: PackedScene = preload("res://game/scenes/campaign_select/campa
 
 var _cards: Array[CampaignCard] = []
 var _records: Array[Dictionary] = []
-var _selected_index: int = 0
+## The selected card, or -1 when no mission is available.
+var _selected_index: int = -1
 
 @onready var _tag_line_label: Label = %TagLineLabel
 @onready var _card_row: HBoxContainer = %CardRow
@@ -43,7 +45,7 @@ func on_enter() -> void:
 	register_action("Enter", "begin")
 	register_action("Escape", "back")
 	_load_cards()
-	_select(0)
+	_select(_next_available(-1, 1))
 
 
 func do_action(action: GameAction) -> void:
@@ -82,22 +84,38 @@ func _load_cards() -> void:
 		_records.append(record)
 
 
+## Moves the selection to the next available card in `step` direction, wrapping around.
+## Does nothing when there is no other available card.
 func _move_selection(step: int) -> void:
-	if _cards.is_empty():
-		return
-	_select(posmod(_selected_index + step, _cards.size()))
+	var next: int = _next_available(_selected_index, step)
+	if next >= 0:
+		_select(next)
 
 
+## The next available card after `from_index` in `step` direction, wrapping around, or -1 if
+## none is available. Passing -1 and 1 finds the first available card.
+func _next_available(from_index: int, step: int) -> int:
+	for i in _cards.size():
+		var candidate: int = posmod(from_index + step * (i + 1), _cards.size())
+		if _cards[candidate].available:
+			return candidate
+	return -1
+
+
+## Selects a card by index, or clears the selection with -1.
 func _select(index: int) -> void:
 	_selected_index = index
 	for i in _cards.size():
 		_cards[i].selected = (i == _selected_index)
-	_begin_button.disabled = _records.is_empty()
-	_show_details(_records[_selected_index] if not _records.is_empty() else {})
+	var has_selection: bool = _selected_index >= 0
+	_begin_button.disabled = not has_selection
+	_show_details(_records[_selected_index] if has_selection else {})
 
 
 func _on_card_clicked(card: CampaignCard) -> void:
-	_select(_cards.find(card))
+	var index: int = _cards.find(card)
+	if index >= 0 and _cards[index].available:
+		_select(index)
 
 
 ## Fills the bottom panel from the selected mission record.
@@ -106,7 +124,7 @@ func _show_details(record: Dictionary) -> void:
 		_start_value.text = UNKNOWN_TEXT
 		_bounty_value.text = UNKNOWN_TEXT
 		_doom_value.text = UNKNOWN_TEXT
-		_objective_value.text = "NO MISSIONS FOUND"
+		_objective_value.text = "NO MISSION AVAILABLE"
 		return
 	_start_value.text = _start_text(str(record.get("start", "")))
 	_bounty_value.text = "LEVEL %d" % int(record["bounty"]) if record.has("bounty") else UNKNOWN_TEXT
@@ -122,7 +140,7 @@ func _start_text(location_id: String) -> String:
 
 
 func _begin_mission() -> void:
-	if _records.is_empty():
+	if _selected_index < 0:
 		return
 	(_game_engine as DDGameEngine).selected_mission_id = str(_records[_selected_index]["id"])
 	if not ResourceLoader.exists(PARTY_SETUP_PATH):

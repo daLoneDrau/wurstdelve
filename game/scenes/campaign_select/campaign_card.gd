@@ -10,9 +10,14 @@ signal clicked(card: CampaignCard)
 const FRAME_NORMAL: StringName = &"SnesSmallFrame"
 const FRAME_SELECTED: StringName = &"SnesSmallFrameSelected"
 const ART_PLACEHOLDER_TEXT: String = "MISSION DIORAMA · 294×210"
+const LOCKED_TINT: Color = Color(0.5, 0.5, 0.55, 1.0)
 
 ## The mission shown on this card (its record id).
 var mission_id: String = ""
+
+## False for a mission that cannot be chosen yet (the record's `available` field). The card is
+## dimmed, shows no hand cursor, and never reports a click.
+var available: bool = true
 
 ## True while this is the selected card. Set by the scene, not by the card.
 var selected: bool = false:
@@ -40,6 +45,8 @@ func _ready() -> void:
 ## Fills the card from a mission record (see DDAssetsLibrary.load_mission_records).
 func show_mission(record: Dictionary) -> void:
 	mission_id = str(record.get("id", ""))
+	available = bool(record.get("available", true))
+	_sync_available()
 	_name_label.text = str(record.get("name", "")).to_upper()
 	_tag_label.text = _tag_text(record)
 	_blurb_label.text = "\n".join(PackedStringArray(record.get("blurb", [])))
@@ -95,6 +102,13 @@ func _tag_text(record: Dictionary) -> String:
 	return " · ".join(parts)
 
 
+func _sync_available() -> void:
+	modulate = Color.WHITE if available else LOCKED_TINT
+	mouse_default_cursor_shape = (
+		Control.CURSOR_POINTING_HAND if available else Control.CURSOR_ARROW
+	)
+
+
 func _sync_selected() -> void:
 	if _arrow == null:
 		return   # not ready yet; _ready syncs again
@@ -105,7 +119,12 @@ func _sync_selected() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	var mouse_event := event as InputEventMouseButton
-	if mouse_event != null and mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
+	if (
+			available
+			and mouse_event != null
+			and mouse_event.pressed
+			and mouse_event.button_index == MOUSE_BUTTON_LEFT
+	):
 		clicked.emit(self)
 
 

@@ -2,6 +2,7 @@
   "id": "dagger_and_sword",
   "name": "Dagger & Sword",
   "order": 3,
+  "available": false,
   "tag": "Placeholder Tag",
   "min_adventurers": 1,
   "max_adventurers": 4,
