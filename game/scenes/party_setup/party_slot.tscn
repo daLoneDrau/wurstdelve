@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bb1gphrpkdyhi"]
+
+[ext_resource type="Script" uid="uid://cs683vbhj5rmd" path="res://game/scenes/party_setup/party_slot.gd" id="1_ux1l2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2x8mj"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+
+[node name="PartySlot" type="PanelContainer" unique_id=446960882]
+custom_minimum_size = Vector2(0, 56)
+size_flags_horizontal = 3
+theme_type_variation = &"SnesSmallFrame"
+script = ExtResource("1_ux1l2")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1938788722]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Row" type="HBoxContainer" parent="Margin" unique_id=755885041]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Face" type="PanelContainer" parent="Margin/Row" unique_id=1054189561]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 44)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="FaceLabel" type="Label" parent="Margin/Row/Face" unique_id=858157575]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.47, 0.58, 1)
+text = "FACE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="Margin/Row" unique_id=882201976]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1 NAME"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="RemoveButton" type="Button" parent="Margin/Row" unique_id=1416460070]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.9, 0.35, 0.35, 1)
+theme_override_colors/font_hover_color = Color(1, 0.6, 0.6, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2x8mj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2x8mj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2x8mj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2x8mj")
+text = "X"

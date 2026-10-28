@@ -10,10 +10,18 @@ var map_service: MapService = null
 ## Title Scene Notes, "Starting a fresh game needs an owner").
 var selected_mission_id: String = ""
 
+## The record ids of the adventurers picked on Party Setup, in party order (empty until then).
+## Party Setup keeps them so Back and return restores the picks. Provisional, like
+## `selected_mission_id`: it moves into run state once that has an owner.
+var party_ids: Array[String] = []
+
 
 func _initialize_systems() -> void:
 	assets = DDAssetsLibrary.new()
 	add_child(assets)
+	# the engine calls entity_manager.update() each frame once this is set, which is what
+	# registers queued entities
+	entity_manager = EntityManager_auto
 
 
 ## The asset library as its Dungeon Degenerates subclass. `assets` is typed as the framework's
@@ -46,6 +54,7 @@ func _start_game() -> void:
 	register_scene("title", "res://game/scenes/title/title.tscn")
 	register_scene("options", "res://game/scenes/options/options.tscn")
 	register_scene("campaign_select", "res://game/scenes/campaign_select/campaign_select.tscn")
+	register_scene("party_setup", "res://game/scenes/party_setup/party_setup.tscn")
 	change_scene("title")
 
 

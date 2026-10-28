@@ -1,0 +1,444 @@
+[gd_scene format=3 uid="uid://b8dq4gf8onca"]
+
+[ext_resource type="Script" uid="uid://jrurjoyxr0yq" path="res://game/scenes/party_setup/party_setup_scene.gd" id="1_bnof4"]
+[ext_resource type="Script" uid="uid://h84m5msr5u8f" path="res://game/ui/arrow_button.gd" id="2_2x8mj"]
+
+[node name="PartySetup" type="Node" unique_id=1001320351]
+script = ExtResource("1_bnof4")
+
+[node name="Control" type="Control" parent="." unique_id=255591453]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="Control" unique_id=468400430]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="Layout" type="VBoxContainer" parent="Control" unique_id=339619426]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="PartyPanel" type="PanelContainer" parent="Control/Layout" unique_id=1648178651]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="PartyMargin" type="MarginContainer" parent="Control/Layout/PartyPanel" unique_id=1169553634]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="PartyBox" type="VBoxContainer" parent="Control/Layout/PartyPanel/PartyMargin" unique_id=695201833]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PartyHeader" type="HBoxContainer" parent="Control/Layout/PartyPanel/PartyMargin/PartyBox" unique_id=1933652613]
+layout_mode = 2
+
+[node name="PartyTitleLabel" type="Label" parent="Control/Layout/PartyPanel/PartyMargin/PartyBox/PartyHeader" unique_id=1020779215]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "PARTY · 0 OF 4 · MIN 1"
+vertical_alignment = 1
+
+[node name="TagLineLabel" type="Label" parent="Control/Layout/PartyPanel/PartyMargin/PartyBox/PartyHeader" unique_id=1751531316]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.47, 0.36, 1)
+text = "TAGLINE"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="HeaderSpacer" type="Control" parent="Control/Layout/PartyPanel/PartyMargin/PartyBox/PartyHeader" unique_id=1592583193]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+
+[node name="SlotRow" type="HBoxContainer" parent="Control/Layout/PartyPanel/PartyMargin/PartyBox" unique_id=815596960]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="MainRow" type="HBoxContainer" parent="Control/Layout" unique_id=1943908882]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="ListPanel" type="PanelContainer" parent="Control/Layout/MainRow" unique_id=1898913355]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="ListMargin" type="MarginContainer" parent="Control/Layout/MainRow/ListPanel" unique_id=1809006865]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="ListBox" type="VBoxContainer" parent="Control/Layout/MainRow/ListPanel/ListMargin" unique_id=249051117]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ListTitleLabel" type="Label" parent="Control/Layout/MainRow/ListPanel/ListMargin/ListBox" unique_id=1146700268]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "ADVENTURERS 1-12 OF 52"
+clip_text = true
+
+[node name="RowList" type="VBoxContainer" parent="Control/Layout/MainRow/ListPanel/ListMargin/ListBox" unique_id=548440805]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="Pager" type="HBoxContainer" parent="Control/Layout/MainRow/ListPanel/ListMargin/ListBox" unique_id=1395618076]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="Control/Layout/MainRow/ListPanel/ListMargin/ListBox/Pager" unique_id=1814656342]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "PREV"
+script = ExtResource("2_2x8mj")
+key_name = "Left"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="PageLabel" type="Label" parent="Control/Layout/MainRow/ListPanel/ListMargin/ListBox/Pager" unique_id=1575782786]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "1/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="Control/Layout/MainRow/ListPanel/ListMargin/ListBox/Pager" unique_id=415785392]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "NEXT"
+script = ExtResource("2_2x8mj")
+key_name = "Right"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="StagePanel" type="PanelContainer" parent="Control/Layout/MainRow" unique_id=669934547]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="StageMargin" type="MarginContainer" parent="Control/Layout/MainRow/StagePanel" unique_id=1355778929]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="StageBox" type="VBoxContainer" parent="Control/Layout/MainRow/StagePanel/StageMargin" unique_id=1943209146]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="StageTitleLabel" type="Label" parent="Control/Layout/MainRow/StagePanel/StageMargin/StageBox" unique_id=797609949]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "ADVENTURER"
+clip_text = true
+
+[node name="Stage" type="PanelContainer" parent="Control/Layout/MainRow/StagePanel/StageMargin/StageBox" unique_id=1094747566]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="StageLabel" type="Label" parent="Control/Layout/MainRow/StagePanel/StageMargin/StageBox/Stage" unique_id=165650933]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.47, 0.58, 1)
+text = "ADVENTURER STAGE · 280×340"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClassesLabel" type="Label" parent="Control/Layout/MainRow/StagePanel/StageMargin/StageBox" unique_id=313514778]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+text = "HUMAN · HUNTER"
+
+[node name="VitalsLabel" type="Label" parent="Control/Layout/MainRow/StagePanel/StageMargin/StageBox" unique_id=1595573455]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+text = "HP 0 · LUCK 0"
+
+[node name="RightColumn" type="VBoxContainer" parent="Control/Layout/MainRow" unique_id=1702287507]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="DetailsPanel" type="PanelContainer" parent="Control/Layout/MainRow/RightColumn" unique_id=535800898]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"SnesContentFrame"
+
+[node name="DetailsMargin" type="MarginContainer" parent="Control/Layout/MainRow/RightColumn/DetailsPanel" unique_id=1926394353]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="DetailsBox" type="VBoxContainer" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin" unique_id=941177091]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DetailsTitleLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox" unique_id=790993248]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "DETAILS"
+
+[node name="AttributesLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox" unique_id=257801261]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "AGI 7    CON 7    MAG 7    MRL 7    PER 7    STR 7"
+
+[node name="LuckRuleCaption" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox" unique_id=490448832]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "LUCK RULE"
+
+[node name="LuckRulePanel" type="PanelContainer" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox" unique_id=458049982]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="LuckRuleLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/LuckRulePanel" unique_id=408316085]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "LUCK RULE TEXT"
+autowrap_mode = 3
+max_lines_visible = 3
+
+[node name="Columns" type="HBoxContainer" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox" unique_id=1466103570]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LeftColumn" type="VBoxContainer" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns" unique_id=1510762261]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="SkillsHeader" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/LeftColumn" unique_id=905794737]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+text = "STARTING SKILLS"
+
+[node name="SkillsLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/LeftColumn" unique_id=1609527553]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "NONE"
+
+[node name="SuggestedSkillsHeader" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/LeftColumn" unique_id=1773699420]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+text = "SUGGESTED SKILLS"
+
+[node name="SuggestedSkillsLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/LeftColumn" unique_id=736039805]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "NONE"
+
+[node name="RightColumn" type="VBoxContainer" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns" unique_id=551176664]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="ItemsHeader" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/RightColumn" unique_id=2131122406]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+text = "STARTING ITEMS"
+
+[node name="ItemsLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/RightColumn" unique_id=1368960219]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "NONE"
+
+[node name="SuggestedWeaknessHeader" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/RightColumn" unique_id=295129400]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+text = "SUGGESTED WEAKNESS"
+
+[node name="SuggestedWeaknessLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/DetailsPanel/DetailsMargin/DetailsBox/Columns/RightColumn" unique_id=1537993857]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.93, 0.98, 1)
+text = "NONE"
+
+[node name="WeaknessPanel" type="PanelContainer" parent="Control/Layout/MainRow/RightColumn" unique_id=2138717990]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="WeaknessMargin" type="MarginContainer" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel" unique_id=1295026935]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="WeaknessBox" type="VBoxContainer" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin" unique_id=1914308621]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="WeaknessTitleLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox" unique_id=1030470274]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "WEAKNESSES · OPTIONAL"
+
+[node name="WeaknessSlots" type="HBoxContainer" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox" unique_id=1031374614]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="WeaknessOneLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox/WeaknessSlots" unique_id=1653428586]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.47, 0.58, 1)
+text = "1 EMPTY"
+
+[node name="WeaknessTwoLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox/WeaknessSlots" unique_id=1740081321]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.47, 0.58, 1)
+text = "2 EMPTY"
+
+[node name="WeaknessNoteLabel" type="Label" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox/WeaknessSlots" unique_id=1654383756]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.45, 0.47, 0.58, 1)
+text = "WEAKNESS CARDS ARE NOT IN YET"
+horizontal_alignment = 2
+
+[node name="WeaknessButtons" type="HBoxContainer" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox" unique_id=1490810494]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="DrawButton" type="Button" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox/WeaknessButtons" unique_id=2062007782]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SnesButton"
+disabled = true
+text = "DRAW"
+script = ExtResource("2_2x8mj")
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="AcceptButton" type="Button" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox/WeaknessButtons" unique_id=366974497]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SnesButton"
+disabled = true
+text = "ACCEPT"
+script = ExtResource("2_2x8mj")
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="DiscardButton" type="Button" parent="Control/Layout/MainRow/RightColumn/WeaknessPanel/WeaknessMargin/WeaknessBox/WeaknessButtons" unique_id=1732034671]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SnesButton"
+disabled = true
+text = "DISCARD"
+script = ExtResource("2_2x8mj")
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="ActionPanel" type="PanelContainer" parent="Control/Layout/MainRow/RightColumn" unique_id=2061764238]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="ActionMargin" type="MarginContainer" parent="Control/Layout/MainRow/RightColumn/ActionPanel" unique_id=1252238105]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="ActionRow" type="HBoxContainer" parent="Control/Layout/MainRow/RightColumn/ActionPanel/ActionMargin" unique_id=1977065498]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BackButton" type="Button" parent="Control/Layout/MainRow/RightColumn/ActionPanel/ActionMargin/ActionRow" unique_id=913446757]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "BACK"
+script = ExtResource("2_2x8mj")
+key_name = "Escape"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="AddButton" type="Button" parent="Control/Layout/MainRow/RightColumn/ActionPanel/ActionMargin/ActionRow" unique_id=422912148]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "ADD TO PARTY"
+script = ExtResource("2_2x8mj")
+key_name = "Enter"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
+
+[node name="ConfirmButton" type="Button" parent="Control/Layout/MainRow/RightColumn/ActionPanel/ActionMargin/ActionRow" unique_id=1688276848]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"SnesButton"
+text = "CONFIRM PARTY"
+script = ExtResource("2_2x8mj")
+key_name = "C"
+metadata/_custom_type_script = "uid://h84m5msr5u8f"
