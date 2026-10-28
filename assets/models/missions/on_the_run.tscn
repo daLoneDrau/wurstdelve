@@ -10,3 +10,8 @@ albedo_texture = ExtResource("2_yr3wt")
 
 [node name="jailor" parent="." index="0" unique_id=735090244]
 surface_material_override/0 = SubResource("StandardMaterial3D_7kr2o")
+
+[node name="Camera3D" type="Camera3D" parent="." index="2" unique_id=2030746970]
+transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 1.0690789, 3.075921)
+current = true
+fov = 40.0

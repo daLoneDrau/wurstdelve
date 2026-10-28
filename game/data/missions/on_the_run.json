@@ -13,6 +13,7 @@
   ],
   "start": "bruttelburg",
   "bounty": 3,
+  "diorama": "res://assets/models/missions/on_the_run.tscn",
   "doom": 0,
   "objective": "Retrieve the Soothsayer’s Head from the Crossroads, then reach Pigskin Port, Gutfish Ford, or Stone Circle with your entire party and Rest. Delivering the Head is optional."
 }

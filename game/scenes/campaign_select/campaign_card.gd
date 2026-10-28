@@ -22,6 +22,7 @@ var selected: bool = false:
 
 @onready var _model_stage: SubViewportContainer = %ModelStage
 @onready var _viewport: SubViewport = %SubViewport
+@onready var _default_camera: Camera3D = %Camera3D
 @onready var _model_anchor: Node3D = %ModelAnchor
 @onready var _art_placeholder: Label = %ArtPlaceholder
 @onready var _arrow: TextureRect = %SelectionArrow
@@ -48,18 +49,34 @@ func show_mission(record: Dictionary) -> void:
 
 ## Shows the mission's 3D diorama in the art frame, or the placeholder text if it has none.
 ## The diorama renders in its own SubViewport, and only while there is one to render.
+## A diorama frames itself: put a Camera3D in the diorama scene and it is used instead of the
+## card's default view. Without one, the default view is used.
 func _show_diorama(path: String) -> void:
 	for child in _model_anchor.get_children():
 		child.queue_free()
 	var packed: PackedScene = load(path) as PackedScene if not path.is_empty() else null
 	var model: Node3D = packed.instantiate() as Node3D if packed != null else null
+	_default_camera.make_current()
 	if model != null:
 		_model_anchor.add_child(model)
+		_use_diorama_camera(model)
 	_model_stage.visible = model != null
 	_viewport.render_target_update_mode = (
 		SubViewport.UPDATE_ALWAYS if model != null else SubViewport.UPDATE_DISABLED
 	)
 	_art_placeholder.visible = model == null
+
+
+## Makes the diorama's own Camera3D (the first one found) the view, if it has one. The camera
+## takes the card's environment when it has none, so the background and light match the card.
+func _use_diorama_camera(model: Node) -> void:
+	var cameras: Array[Node] = model.find_children("*", "Camera3D", true, false)
+	if cameras.is_empty():
+		return
+	var camera: Camera3D = cameras[0] as Camera3D
+	if camera.environment == null:
+		camera.environment = _default_camera.environment
+	camera.make_current()
 
 
 ## "TAG · 1-4 ADVENTURERS", or just the adventurer range when there is no tag.
