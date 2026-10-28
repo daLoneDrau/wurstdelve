@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dn1ct8kjnoe1w"]
+
+[ext_resource type="PackedScene" uid="uid://07nxw6lpw4nx" path="res://assets/models/missions/on_the_run.glb" id="1_jlog8"]
+[ext_resource type="Texture2D" uid="uid://dxtu7smrnoehh" path="res://assets/models/missions/on_the_run_jailor.png" id="2_yr3wt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kr2o"]
+albedo_texture = ExtResource("2_yr3wt")
+
+[node name="on_the_run" unique_id=934191447 instance=ExtResource("1_jlog8")]
+
+[node name="jailor" parent="." index="0" unique_id=735090244]
+surface_material_override/0 = SubResource("StandardMaterial3D_7kr2o")
