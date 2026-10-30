@@ -1,0 +1,13 @@
+{
+	"frames": {
+		"bloodsport_brawler": {
+			"size": 0.2,
+			"x": 0.0,
+			"y": 0.01
+		}
+	},
+	"output": {
+		"height": 40,
+		"width": 46
+	}
+}

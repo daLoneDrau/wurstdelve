@@ -1,0 +1,325 @@
+[gd_scene format=3 uid="uid://btbngl4c0wxpv"]
+
+[ext_resource type="Script" uid="uid://de5usoty8n1lh" path="res://game/tools/face_baker/face_baker.gd" id="1_cew26"]
+[ext_resource type="PackedScene" uid="uid://c842itennynpk" path="res://assets/models/adventurers/bloodsport_brawler.glb" id="2_35xvr"]
+
+[sub_resource type="Environment" id="Environment_cew26"]
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="FaceBaker" type="Control" unique_id=511503238]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cew26")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=833683491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="BakeRig" type="Node" parent="." unique_id=1191570767]
+
+[node name="BakeViewport" type="SubViewport" parent="BakeRig" unique_id=1773680319]
+unique_name_in_owner = true
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(46, 40)
+render_target_update_mode = 4
+
+[node name="BakeCamera" type="Camera3D" parent="BakeRig/BakeViewport" unique_id=1568128976]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9999863, 0.005235964, 0, -0.005235964, 0.9999863, 0, 1.8, 10)
+environment = SubResource("Environment_cew26")
+projection = 1
+current = true
+size = 0.4
+far = 100.0
+
+[node name="BakeLight" type="DirectionalLight3D" parent="BakeRig/BakeViewport" unique_id=1209426194]
+transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
+light_energy = 0.6
+
+[node name="ModelAnchor" type="Node3D" parent="BakeRig/BakeViewport" unique_id=2099658677]
+unique_name_in_owner = true
+
+[node name="bloodsport_brawler2" parent="BakeRig/BakeViewport/ModelAnchor" unique_id=1976127763 instance=ExtResource("2_35xvr")]
+
+[node name="Layout" type="HBoxContainer" parent="." unique_id=946830651]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="ListPanel" type="PanelContainer" parent="Layout" unique_id=770541075]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="ListMargin" type="MarginContainer" parent="Layout/ListPanel" unique_id=308208719]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="ListBox" type="VBoxContainer" parent="Layout/ListPanel/ListMargin" unique_id=1188479883]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ListTitleLabel" type="Label" parent="Layout/ListPanel/ListMargin/ListBox" unique_id=1913191995]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "ADVENTURERS"
+
+[node name="AdventurerList" type="ItemList" parent="Layout/ListPanel/ListMargin/ListBox" unique_id=419558413]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PreviewPanel" type="PanelContainer" parent="Layout" unique_id=152444602]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SnesContentFrame"
+
+[node name="PreviewMargin" type="MarginContainer" parent="Layout/PreviewPanel" unique_id=409434205]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="PreviewBox" type="VBoxContainer" parent="Layout/PreviewPanel/PreviewMargin" unique_id=642973114]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PreviewTitleLabel" type="Label" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox" unique_id=772039794]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "NO ADVENTURER"
+clip_text = true
+
+[node name="PreviewFrame" type="PanelContainer" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox" unique_id=933323410]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="PreviewBackdrop" type="ColorRect" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox/PreviewFrame" unique_id=917640329]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.09, 0.09, 0.14, 1)
+
+[node name="PreviewRect" type="TextureRect" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox/PreviewFrame" unique_id=44574171]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ActualRow" type="HBoxContainer" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox" unique_id=1518411428]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ActualLabel" type="Label" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox/ActualRow" unique_id=2077984615]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "ACTUAL SIZE IN A PARTY SLOT"
+
+[node name="ActualFrame" type="PanelContainer" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox/ActualRow" unique_id=902507]
+layout_mode = 2
+theme_type_variation = &"SnesSmallFrame"
+
+[node name="ActualRect" type="TextureRect" parent="Layout/PreviewPanel/PreviewMargin/PreviewBox/ActualRow/ActualFrame" unique_id=1110952120]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(46, 40)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ControlPanel" type="PanelContainer" parent="Layout" unique_id=221929163]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_type_variation = &"SnesContentFrame"
+
+[node name="ControlMargin" type="MarginContainer" parent="Layout/ControlPanel" unique_id=844217937]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="ControlBox" type="VBoxContainer" parent="Layout/ControlPanel/ControlMargin" unique_id=1098379732]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ControlTitleLabel" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=137528042]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "BAKE A FACE"
+
+[node name="OutputCaption" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=1158599493]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "OUTPUT SIZE IN PIXELS"
+
+[node name="OutputRow" type="HBoxContainer" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=476009599]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="WidthSpin" type="SpinBox" parent="Layout/ControlPanel/ControlMargin/ControlBox/OutputRow" unique_id=246819093]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 8.0
+max_value = 512.0
+value = 46.0
+
+[node name="TimesLabel" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/OutputRow" unique_id=856569128]
+layout_mode = 2
+text = "×"
+
+[node name="HeightSpin" type="SpinBox" parent="Layout/ControlPanel/ControlMargin/ControlBox/OutputRow" unique_id=159073818]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 8.0
+max_value = 512.0
+value = 40.0
+
+[node name="FrameCaption" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=114433443]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
+text = "HEAD FRAME, IN MODEL HEIGHTS"
+
+[node name="SizeRow" type="HBoxContainer" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=249446019]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SizeCaption" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/SizeRow" unique_id=1509948535]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "SIZE"
+
+[node name="SizeSlider" type="HSlider" parent="Layout/ControlPanel/ControlMargin/ControlBox/SizeRow" unique_id=1167445084]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.05
+max_value = 0.5
+step = 0.005
+value = 0.2
+
+[node name="SizeValue" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/SizeRow" unique_id=1947040932]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+text = "0.000"
+horizontal_alignment = 2
+
+[node name="XRow" type="HBoxContainer" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=257347653]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="XCaption" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/XRow" unique_id=619549567]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "SHIFT X"
+
+[node name="XSlider" type="HSlider" parent="Layout/ControlPanel/ControlMargin/ControlBox/XRow" unique_id=306689137]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -0.25
+max_value = 0.25
+step = 0.005
+value = -0.25
+
+[node name="XValue" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/XRow" unique_id=1540506037]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+text = "0.000"
+horizontal_alignment = 2
+
+[node name="YRow" type="HBoxContainer" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=1838215492]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="YCaption" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/YRow" unique_id=1264346479]
+custom_minimum_size = Vector2(62, 0)
+layout_mode = 2
+text = "SHIFT Y"
+
+[node name="YSlider" type="HSlider" parent="Layout/ControlPanel/ControlMargin/ControlBox/YRow" unique_id=1149056465]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -0.3
+max_value = 0.3
+step = 0.005
+value = 0.010000000000000009
+
+[node name="YValue" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox/YRow" unique_id=132210770]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+text = "0.000"
+horizontal_alignment = 2
+
+[node name="ResetButton" type="Button" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=1442280411]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+text = "RESET FRAME"
+
+[node name="Separator" type="HSeparator" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=1367658166]
+layout_mode = 2
+
+[node name="BakeButton" type="Button" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=394864543]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "BAKE THIS FACE"
+
+[node name="BakeAllButton" type="Button" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=2128139252]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "BAKE ALL FACES"
+
+[node name="CopyButton" type="Button" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=1690606531]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+text = "COPY JSON LINE"
+
+[node name="StatusLabel" type="Label" parent="Layout/ControlPanel/ControlMargin/ControlBox" unique_id=672870801]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.97, 0.83, 0.42, 1)
+autowrap_mode = 3
+clip_text = true
