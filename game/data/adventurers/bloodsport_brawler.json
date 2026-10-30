@@ -12,6 +12,7 @@
   "luck": 1,
   "luck_rule": "When you win a fight, gain 1 Luck for each trophy you have with XP value 3 or more.",
   "model": "res://assets/models/adventurers/bloodsport_brawler.glb",
+  "face": "res://assets/faces/bloodsport_brawler.png",
   "gp": 2,
   "xp": 4,
   "skills": ["foe_killer"],

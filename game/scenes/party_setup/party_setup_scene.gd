@@ -3,8 +3,9 @@ extends Scene
 
 ## Party Setup: the player builds the party from the adventurer list, with a strip of party slots
 ## on top, the selected adventurer's stage and details in the middle and on the right, and the
-## Weaknesses panel (layout only for now). Back returns to Campaign Select. Confirm Party creates
-## the adventurer entities and goes on to the Map.
+## Weaknesses panel (layout only for now). Back returns to Campaign Select and clears the party,
+## since a party is picked for one mission. Confirm Party creates the adventurer entities and
+## goes on to the Map.
 ##
 ## While browsing, the scene holds only the chosen adventurer ids. Entities are created once, on
 ## Confirm. The party size limits come from the selected mission (`min_adventurers` and
@@ -158,7 +159,8 @@ func _build_slots() -> void:
 		_slots.append(slot)
 
 
-## Keeps the party picked on an earlier visit (Back from Map or Campaign Select and return).
+## Brings back the party confirmed on an earlier visit (such as returning from the Map). Back
+## clears it, so a visit that came from Campaign Select starts with an empty party.
 func _restore_party() -> void:
 	_party.clear()
 	for id in _dd_engine().party_ids:
@@ -266,8 +268,21 @@ func _confirm_party() -> void:
 	engine.change_scene(MAP_KEY, MAP_PATH)
 
 
+## Forgets the party: the picks here, the ids kept on the engine, and any adventurer entities
+## that an earlier Confirm created.
+func _clear_party() -> void:
+	_party.clear()
+	var engine: DDGameEngine = _dd_engine()
+	engine.party_ids.clear()
+	var manager: DDEntityManager = engine.entity_manager as DDEntityManager
+	if manager == null:
+		return
+	for entity in manager.get_entities_by_tag(EntityTags.Tag.PC):
+		manager.remove_entity(entity.id)
+
+
 func _go_back() -> void:
-	_dd_engine().party_ids = _party.duplicate()
+	_clear_party()
 	_game_engine.change_scene(CAMPAIGN_SELECT_KEY, CAMPAIGN_SELECT_PATH)
 
 
