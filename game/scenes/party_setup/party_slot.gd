@@ -26,6 +26,8 @@ var highlighted: bool = false:
 		_sync()
 
 @onready var _face: Control = %Face
+@onready var _face_texture: TextureRect = %FaceTexture
+@onready var _face_label: Label = %FaceLabel
 @onready var _name_label: Label = %NameLabel
 @onready var _remove_button: Button = %RemoveButton
 
@@ -42,6 +44,11 @@ func show_adventurer(number: int, record: Dictionary) -> void:
 	_name_label.text = "%d %s" % [number, str(record.get("name", "")).to_upper()]
 	_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_face.visible = true
+	# the face is a baked 2D image (the record's `face`); without one the frame says FACE
+	var face_path: String = str(record.get("face", ""))
+	var face: Texture2D = load(face_path) as Texture2D if not face_path.is_empty() else null
+	_face_texture.texture = face
+	_face_label.visible = face == null
 	_remove_button.visible = true
 	_sync()
 

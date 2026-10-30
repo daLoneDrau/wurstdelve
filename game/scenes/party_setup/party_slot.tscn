@@ -32,7 +32,16 @@ layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"SnesSmallFrame"
 
+[node name="FaceTexture" type="TextureRect" parent="Margin/Row/Face"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
 [node name="FaceLabel" type="Label" parent="Margin/Row/Face" unique_id=858157575]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45, 0.47, 0.58, 1)
 text = "FACE"

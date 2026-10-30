@@ -139,6 +139,22 @@ func _validate_adventurer_record(record: Dictionary) -> Array[String]:
 		if record.has(list_key) and not (record[list_key] is Array):
 			problems.append("'%s' must be a list" % list_key)
 
+	# the printed Luck rule shown on Party Setup
+	if record.has("luck_rule"):
+		var luck_rule: Variant = record["luck_rule"]
+		if not (luck_rule is String) or (luck_rule as String).strip_edges().is_empty():
+			problems.append("'luck_rule' must be non-empty text")
+
+	# the 3D stage model and the baked 2D face image are optional while art is being made
+	if record.has("model"):
+		var model_path: Variant = record["model"]
+		if not (model_path is String) or not ResourceLoader.exists(model_path):
+			problems.append("'model' must be the path of an existing 3D scene (.glb or .tscn)")
+	if record.has("face"):
+		var face_path: Variant = record["face"]
+		if not (face_path is String) or not ResourceLoader.exists(face_path):
+			problems.append("'face' must be the path of an existing image")
+
 	# the biography is a list of paragraphs (it may be empty while a record is being authored)
 	if record.has("biography"):
 		var biography: Variant = record["biography"]

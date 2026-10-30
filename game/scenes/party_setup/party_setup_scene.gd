@@ -42,6 +42,9 @@ var _page: int = 0
 var _selected_index: int = -1
 var _min_party: int = DEFAULT_MIN_PARTY
 var _max_party: int = SLOT_COUNT
+## The model path now on the stage ("" for none, "<unset>" before the first), so the same model
+## is not reloaded.
+var _shown_model_path: String = "<unset>"
 
 @onready var _party_title_label: Label = %PartyTitleLabel
 @onready var _tag_line_label: Label = %TagLineLabel
@@ -52,6 +55,11 @@ var _max_party: int = SLOT_COUNT
 @onready var _next_button: ArrowButton = %NextButton
 @onready var _page_label: Label = %PageLabel
 @onready var _stage_title_label: Label = %StageTitleLabel
+@onready var _stage_view: SubViewportContainer = %StageView
+@onready var _stage_viewport: SubViewport = %StageViewport
+@onready var _stage_camera: Camera3D = %StageCamera
+@onready var _model_anchor: Node3D = %ModelAnchor
+@onready var _stage_placeholder: Label = %StagePlaceholder
 @onready var _classes_label: Label = %ClassesLabel
 @onready var _vitals_label: Label = %VitalsLabel
 @onready var _attributes_label: Label = %AttributesLabel
@@ -306,6 +314,7 @@ func _refresh() -> void:
 
 ## Fills the stage and details panels from an adventurer record (an empty one clears them).
 func _show_details(record: Dictionary) -> void:
+	_show_model(str(record.get("model", "")))
 	if record.is_empty():
 		_stage_title_label.text = "NO ADVENTURER"
 		_classes_label.text = ""
@@ -337,6 +346,34 @@ func _show_details(record: Dictionary) -> void:
 	_suggested_skills_label.text = _names_text(record.get("suggested_skills", []), false)
 	_items_label.text = _names_text(record.get("starting_items", []), true)
 	_suggested_weakness_label.text = _names_text(record.get("suggested_weaknesses", []), false)
+
+
+## Shows the adventurer's 3D model on the stage, or the placeholder text if it has none. The
+## stage renders only while there is a model. A model may carry its own Camera3D (the first one
+## found is used, with the stage's environment) to frame itself. Otherwise the default view is
+## used, which suits a model about 2 units tall standing at the origin.
+func _show_model(path: String) -> void:
+	if path == _shown_model_path:
+		return
+	_shown_model_path = path
+	for child in _model_anchor.get_children():
+		child.queue_free()
+	var packed: PackedScene = load(path) as PackedScene if not path.is_empty() else null
+	var model: Node3D = packed.instantiate() as Node3D if packed != null else null
+	_stage_camera.make_current()
+	if model != null:
+		_model_anchor.add_child(model)
+		var cameras: Array[Node] = model.find_children("*", "Camera3D", true, false)
+		if not cameras.is_empty():
+			var camera: Camera3D = cameras[0] as Camera3D
+			if camera.environment == null:
+				camera.environment = _stage_camera.environment
+			camera.make_current()
+	_stage_viewport.render_target_update_mode = (
+		SubViewport.UPDATE_ALWAYS if model != null else SubViewport.UPDATE_DISABLED
+	)
+	_stage_view.visible = model != null
+	_stage_placeholder.visible = model == null
 
 
 ## One name per line, or NONE. Items use their record's name when there is one. Skills and
