@@ -171,3 +171,4 @@ grow_vertical = 0
 [node name="TagLineLabel" type="Label" parent="Control/PanelContainer" unique_id=291103836]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"TagLineLabel"
