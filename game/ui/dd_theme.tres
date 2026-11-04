@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://dknxinvkeq87x" path="res://assets/ui/frames/snes_content_frame.png" id="8_mkuti"]
 [ext_resource type="Texture2D" uid="uid://7mjkyky3qfpg" path="res://assets/ui/frames/snes_small_frame.png" id="8_yb5lh"]
 [ext_resource type="Texture2D" uid="uid://dqsllq7pxluc1" path="res://assets/ui/frames/snes_small_frame_selected.png" id="9_2wsht"]
-[ext_resource type="FontFile" uid="uid://dw1ahlqsqnwo1" path="res://assets/ui/fonts/Jersey15-Regular.ttf" id="10_s1ww4"]
 [ext_resource type="FontFile" uid="uid://d10y68h0hcdc1" path="res://assets/ui/fonts/Silkscreen-Regular.ttf" id="14_mkuti"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0oqd"]
@@ -175,8 +174,7 @@ TagLineLabel/base_type = &"Label"
 TagLineLabel/colors/font_color = Color(0.72156864, 0.6784314, 0.5411765, 1)
 TitleLabel/base_type = &"Label"
 TitleLabel/colors/font_color = Color(0.96862745, 0.83137256, 0.41568628, 1)
-TitleLabel/font_sizes/font_size = 17
-TitleLabel/fonts/font = ExtResource("10_s1ww4")
+TitleLabel/font_sizes/font_size = 9
 VSeparator/styles/separator = SubResource("StyleBoxLine_wy0tn")
 WindowFrame/base_type = &"PanelContainer"
 WindowFrame/styles/panel = SubResource("StyleBoxTexture_lruxt")
