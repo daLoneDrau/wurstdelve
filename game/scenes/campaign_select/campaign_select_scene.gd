@@ -2,13 +2,14 @@ class_name CampaignSelectScene
 extends Scene
 
 ## Campaign Select: the player picks a mission from a row of cards (the missions together form
-## the campaign) and sees its start, Bounty Level, Doom and objective before committing.
+## the campaign). The panel below shows the selected mission's briefing, objective and setup
+## (start, Bounty Level, Doom, mission deck, clues, special rules) before committing.
 ## Back returns to Title. Begin Mission remembers the choice on the engine and goes on to Party
 ## Setup. The cards are built from the mission records, in their `order`.
 ##
 ## A mission whose record says `available: false` is shown dimmed and can't be selected or begun.
-## Keys: Left and Right move the selection between available missions, Enter begins the mission,
-## Escape goes back. Clicking an available card selects it.
+## Keys: Left and Right (or the two arrow buttons) move the selection between available missions,
+## Enter begins the mission, Escape goes back. Clicking an available card selects it.
 
 const TITLE_KEY: String = "title"
 const PARTY_SETUP_KEY: String = "party_setup"
@@ -18,6 +19,8 @@ const PARTY_SETUP_PATH: String = "res://game/scenes/party_setup/party_setup.tscn
 const CARDS_PER_PAGE: int = 3
 const DOOM_TRACK_MAX: int = 5
 const UNKNOWN_TEXT: String = "TBD"
+## Mission records have no mission deck, clue or special rule fields yet.
+const SPECIAL_RULES_TEXT: String = "SEE MISSION BOOK"
 
 const CARD_SCENE: PackedScene = preload("res://game/scenes/campaign_select/campaign_card.tscn")
 
@@ -28,10 +31,16 @@ var _selected_index: int = -1
 
 @onready var _tag_line_label: Label = %TagLineLabel
 @onready var _card_row: HBoxContainer = %CardRow
+@onready var _count_label: Label = %CountLabel
+@onready var _selected_name_label: Label = %SelectedNameLabel
+@onready var _briefing_value: Label = %BriefingValue
+@onready var _objective_value: Label = %ObjectiveValue
 @onready var _start_value: Label = %StartValue
 @onready var _bounty_value: Label = %BountyValue
 @onready var _doom_value: Label = %DoomValue
-@onready var _objective_value: Label = %ObjectiveValue
+@onready var _deck_value: Label = %DeckValue
+@onready var _clues_value: Label = %CluesValue
+@onready var _rules_value: Label = %RulesValue
 @onready var _begin_button: ActionButton = %BeginButton
 
 
@@ -82,6 +91,14 @@ func _load_cards() -> void:
 		card.clicked.connect(_on_card_clicked)
 		_cards.append(card)
 		_records.append(record)
+	_count_label.text = _count_text(_cards.size(), ids.size())
+
+
+## "MISSIONS 1-3 OF 3", or "NO MISSIONS" when there are none.
+func _count_text(shown: int, total: int) -> String:
+	if shown == 0:
+		return "NO MISSIONS"
+	return "MISSIONS 1-%d OF %d" % [shown, total]
 
 
 ## Moves the selection to the next available card in `step` direction, wrapping around.
@@ -121,15 +138,26 @@ func _on_card_clicked(card: CampaignCard) -> void:
 ## Fills the bottom panel from the selected mission record.
 func _show_details(record: Dictionary) -> void:
 	if record.is_empty():
+		_selected_name_label.text = "NO MISSION AVAILABLE"
+		_briefing_value.text = ""
+		_objective_value.text = ""
 		_start_value.text = UNKNOWN_TEXT
 		_bounty_value.text = UNKNOWN_TEXT
 		_doom_value.text = UNKNOWN_TEXT
-		_objective_value.text = "NO MISSION AVAILABLE"
+		_deck_value.text = UNKNOWN_TEXT
+		_clues_value.text = UNKNOWN_TEXT
+		_rules_value.text = UNKNOWN_TEXT
 		return
+	_selected_name_label.text = str(record.get("name", "")).to_upper()
+	# the blurb is stored as short lines; the wider briefing box wraps them itself
+	_briefing_value.text = " ".join(PackedStringArray(record.get("blurb", []))).to_upper()
+	_objective_value.text = str(record.get("objective", "")).to_upper()
 	_start_value.text = _start_text(str(record.get("start", "")))
 	_bounty_value.text = "LEVEL %d" % int(record["bounty"]) if record.has("bounty") else UNKNOWN_TEXT
-	_doom_value.text = "%d / %d" % [int(record.get("doom", 0)), DOOM_TRACK_MAX]
-	_objective_value.text = str(record.get("objective", "")).to_upper()
+	_doom_value.text = "%d / %d COUNTERS" % [int(record.get("doom", 0)), DOOM_TRACK_MAX]
+	_deck_value.text = UNKNOWN_TEXT
+	_clues_value.text = UNKNOWN_TEXT
+	_rules_value.text = SPECIAL_RULES_TEXT
 
 
 func _start_text(location_id: String) -> String:

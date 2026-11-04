@@ -9,30 +9,24 @@ background_color = Color(0.09, 0.09, 0.14, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.5, 0.5, 0.5, 1)
 
-[node name="CampaignCard" type="PanelContainer" unique_id=1387453959]
-custom_minimum_size = Vector2(310, 0)
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="CampaignCard" type="VBoxContainer" unique_id=1149395597]
+custom_minimum_size = Vector2(210, 0)
 mouse_default_cursor_shape = 2
-theme_type_variation = &"SnesSmallFrame"
+theme_override_constants/separation = 4
 script = ExtResource("1_kxkys")
 
-[node name="Margin" type="MarginContainer" parent="." unique_id=1126184124]
+[node name="ArtFrame" type="PanelContainer" parent="." unique_id=2017958821]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(146, 104)
 layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
+size_flags_horizontal = 0
+theme_type_variation = &"SnesSmallFrame"
 
-[node name="Column" type="VBoxContainer" parent="Margin" unique_id=1256525929]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="ArtFrame" type="Control" parent="Margin/Column" unique_id=647121456]
-custom_minimum_size = Vector2(294, 210)
+[node name="ArtArea" type="Control" parent="ArtFrame" unique_id=1524317192]
+custom_minimum_size = Vector2(142, 100)
 layout_mode = 2
 
-[node name="ArtBackdrop" type="ColorRect" parent="Margin/Column/ArtFrame" unique_id=1674452826]
+[node name="ArtBackdrop" type="ColorRect" parent="ArtFrame/ArtArea" unique_id=830945471]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09, 0.09, 0.14, 1)
 
-[node name="ModelStage" type="SubViewportContainer" parent="Margin/Column/ArtFrame" unique_id=1751337001]
+[node name="ModelStage" type="SubViewportContainer" parent="ArtFrame/ArtArea" unique_id=405557329]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -53,27 +47,27 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Margin/Column/ArtFrame/ModelStage" unique_id=75334194]
+[node name="SubViewport" type="SubViewport" parent="ArtFrame/ArtArea/ModelStage" unique_id=638379755]
 unique_name_in_owner = true
 handle_input_locally = false
-size = Vector2i(294, 210)
+size = Vector2i(142, 100)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=997514922]
+[node name="Camera3D" type="Camera3D" parent="ArtFrame/ArtArea/ModelStage/SubViewport" unique_id=1261548624]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 2, 7)
 environment = SubResource("Environment_x0rcr")
 current = true
 fov = 40.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=1879895459]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ArtFrame/ArtArea/ModelStage/SubViewport" unique_id=355407180]
 transform = Transform3D(0.81915206, 0.4055798, -0.4055798, 0, 0.70710677, 0.70710677, 0.57357645, -0.579228, 0.579228, 0, 0, 0)
 light_energy = 0.6
 
-[node name="ModelAnchor" type="Node3D" parent="Margin/Column/ArtFrame/ModelStage/SubViewport" unique_id=1755328804]
+[node name="ModelAnchor" type="Node3D" parent="ArtFrame/ArtArea/ModelStage/SubViewport" unique_id=358965799]
 unique_name_in_owner = true
 
-[node name="ArtPlaceholder" type="Label" parent="Margin/Column/ArtFrame" unique_id=710523354]
+[node name="ArtPlaceholder" type="Label" parent="ArtFrame/ArtArea" unique_id=1664670716]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -85,12 +79,13 @@ theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "MISSION ART"
 horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
-[node name="NameRow" type="HBoxContainer" parent="Margin/Column" unique_id=1218513496]
+[node name="NameRow" type="HBoxContainer" parent="." unique_id=893710404]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="SelectionArrow" type="TextureRect" parent="Margin/Column/NameRow" unique_id=529719338]
+[node name="SelectionArrow" type="TextureRect" parent="NameRow" unique_id=1650950892]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
@@ -99,7 +94,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_4g3oh")
 stretch_mode = 2
 
-[node name="NameLabel" type="Label" parent="Margin/Column/NameRow" unique_id=1430745075]
+[node name="NameLabel" type="Label" parent="NameRow" unique_id=1725832960]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -109,29 +104,10 @@ text = "MISSION NAME"
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="TagLabel" type="Label" parent="Margin/Column" unique_id=1719412666]
+[node name="TagLabel" type="Label" parent="." unique_id=1630318468]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.55, 0.57, 0.68, 1)
 text = "TAG · 1-4 ADVENTURERS"
 clip_text = true
 text_overrun_behavior = 3
-
-[node name="BlurbPanel" type="PanelContainer" parent="Margin/Column" unique_id=1215215493]
-custom_minimum_size = Vector2(286, 100)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BlurbMargin" type="MarginContainer" parent="Margin/Column/BlurbPanel" unique_id=1424671770]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 4
-
-[node name="BlurbLabel" type="Label" parent="Margin/Column/BlurbPanel/BlurbMargin" unique_id=99641936]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 0
-text = "BLURB"
-clip_text = true

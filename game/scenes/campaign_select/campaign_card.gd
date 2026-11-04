@@ -1,15 +1,16 @@
 class_name CampaignCard
-extends PanelContainer
+extends VBoxContainer
 
-## One mission card on Campaign Select: 3D diorama, name, tag line and blurb. It only shows
-## what it is given. The scene owns which card is selected and tells the card through `selected`.
+## One mission card on Campaign Select: a framed 3D diorama with the mission name and tag line
+## below it. It only shows what it is given. The scene owns which card is selected and tells the
+## card through `selected`, which swaps the art frame to its selected look.
 
 ## Emitted when the player clicks the card.
 signal clicked(card: CampaignCard)
 
 const FRAME_NORMAL: StringName = &"SnesSmallFrame"
 const FRAME_SELECTED: StringName = &"SnesSmallFrameSelected"
-const ART_PLACEHOLDER_TEXT: String = "MISSION DIORAMA · 294×210"
+const ART_PLACEHOLDER_TEXT: String = "MISSION ART"
 const LOCKED_TINT: Color = Color(0.5, 0.5, 0.55, 1.0)
 
 ## The mission shown on this card (its record id).
@@ -25,6 +26,7 @@ var selected: bool = false:
 		selected = value
 		_sync_selected()
 
+@onready var _art_frame: PanelContainer = %ArtFrame
 @onready var _model_stage: SubViewportContainer = %ModelStage
 @onready var _viewport: SubViewport = %SubViewport
 @onready var _default_camera: Camera3D = %Camera3D
@@ -33,10 +35,10 @@ var selected: bool = false:
 @onready var _arrow: TextureRect = %SelectionArrow
 @onready var _name_label: Label = %NameLabel
 @onready var _tag_label: Label = %TagLabel
-@onready var _blurb_label: Label = %BlurbLabel
 
 
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_STOP
 	_ignore_mouse_on_children(self)
 	gui_input.connect(_on_gui_input)
 	_sync_selected()
@@ -49,7 +51,6 @@ func show_mission(record: Dictionary) -> void:
 	_sync_available()
 	_name_label.text = str(record.get("name", "")).to_upper()
 	_tag_label.text = _tag_text(record)
-	_blurb_label.text = "\n".join(PackedStringArray(record.get("blurb", [])))
 	_art_placeholder.text = ART_PLACEHOLDER_TEXT
 	_show_diorama(str(record.get("diorama", "")))
 
@@ -112,7 +113,7 @@ func _sync_available() -> void:
 func _sync_selected() -> void:
 	if _arrow == null:
 		return   # not ready yet; _ready syncs again
-	theme_type_variation = FRAME_SELECTED if selected else FRAME_NORMAL
+	_art_frame.theme_type_variation = FRAME_SELECTED if selected else FRAME_NORMAL
 	# the arrow keeps its space when hidden, so the name doesn't shift when selected
 	_arrow.self_modulate.a = 1.0 if selected else 0.0
 
