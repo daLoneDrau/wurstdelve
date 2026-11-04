@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://clbhqjfsj5vam"]
+
+[ext_resource type="PackedScene" uid="uid://dafp1mx1vpn6e" path="res://assets/models/adventurers/bloodsport_brawler.glb" id="1_n1fb1"]
+[ext_resource type="Texture2D" uid="uid://cseq1wc8w1ti0" path="res://assets/models/adventurers/bloodsport_brawler_body.png" id="2_145bm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ptew"]
+shading_mode = 0
+albedo_texture = ExtResource("2_145bm")
+
+[node name="bloodsport_brawler2" unique_id=873204177 instance=ExtResource("1_n1fb1")]
+
+[node name="bloodsport_brawler" parent="." index="0" unique_id=199842767]
+surface_material_override/0 = SubResource("StandardMaterial3D_8ptew")

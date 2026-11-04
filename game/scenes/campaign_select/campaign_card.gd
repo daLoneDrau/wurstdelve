@@ -9,7 +9,7 @@ signal clicked(card: CampaignCard)
 
 const FRAME_NORMAL: StringName = &"SnesSmallFrame"
 const FRAME_SELECTED: StringName = &"SnesSmallFrameSelected"
-const ART_PLACEHOLDER_TEXT: String = "MISSION ART · 146×80"
+const ART_PLACEHOLDER_TEXT: String = "MISSION DIORAMA · 294×210"
 const LOCKED_TINT: Color = Color(0.5, 0.5, 0.55, 1.0)
 
 ## The mission shown on this card (its record id).
@@ -33,7 +33,6 @@ var selected: bool = false:
 @onready var _arrow: TextureRect = %SelectionArrow
 @onready var _name_label: Label = %NameLabel
 @onready var _tag_label: Label = %TagLabel
-@onready var _count_label: Label = %CountLabel
 @onready var _blurb_label: Label = %BlurbLabel
 
 
@@ -49,10 +48,8 @@ func show_mission(record: Dictionary) -> void:
 	available = bool(record.get("available", true))
 	_sync_available()
 	_name_label.text = str(record.get("name", "")).to_upper()
-	_tag_label.text = str(record.get("tag", "")).to_upper()
-	_count_label.text = _count_text(record)
-	# the record's lines are for a wider card; the label wraps the text itself
-	_blurb_label.text = " ".join(PackedStringArray(record.get("blurb", []))).to_upper()
+	_tag_label.text = _tag_text(record)
+	_blurb_label.text = "\n".join(PackedStringArray(record.get("blurb", [])))
 	_art_placeholder.text = ART_PLACEHOLDER_TEXT
 	_show_diorama(str(record.get("diorama", "")))
 
@@ -89,14 +86,20 @@ func _use_diorama_camera(model: Node) -> void:
 	camera.make_current()
 
 
-## The adventurer range, such as "1-4 ADV." or "1 ADV.".
-func _count_text(record: Dictionary) -> String:
+## "TAG · 1-4 ADVENTURERS", or just the adventurer range when there is no tag.
+func _tag_text(record: Dictionary) -> String:
 	var min_count: int = int(record.get("min_adventurers", 1))
 	var max_count: int = int(record.get("max_adventurers", 4))
 	var range_text: String = str(min_count)
 	if min_count != max_count:
 		range_text = "%d-%d" % [min_count, max_count]
-	return "%s ADV." % range_text
+	var noun: String = "ADVENTURER" if max_count == 1 else "ADVENTURERS"
+	var parts: Array[String] = []
+	var tag: String = str(record.get("tag", ""))
+	if not tag.is_empty():
+		parts.append(tag.to_upper())
+	parts.append("%s %s" % [range_text, noun])
+	return " · ".join(parts)
 
 
 func _sync_available() -> void:
