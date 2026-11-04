@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://7mjkyky3qfpg" path="res://assets/ui/frames/snes_small_frame.png" id="8_yb5lh"]
 [ext_resource type="Texture2D" uid="uid://dqsllq7pxluc1" path="res://assets/ui/frames/snes_small_frame_selected.png" id="9_2wsht"]
 [ext_resource type="FontFile" uid="uid://dw1ahlqsqnwo1" path="res://assets/ui/fonts/Jersey15-Regular.ttf" id="10_s1ww4"]
-[ext_resource type="FontFile" uid="uid://c51kdj4o718ys" path="res://assets/ui/fonts/Jersey10-Regular.ttf" id="11_3yh41"]
+[ext_resource type="FontFile" uid="uid://d10y68h0hcdc1" path="res://assets/ui/fonts/Silkscreen-Regular.ttf" id="14_mkuti"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0oqd"]
 texture = ExtResource("1_6e5s3")
@@ -139,8 +139,8 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [resource]
-default_font = ExtResource("11_3yh41")
-default_font_size = 16
+default_font = ExtResource("14_mkuti")
+default_font_size = 8
 Button/styles/disabled = SubResource("StyleBoxTexture_g0oqd")
 Button/styles/hover = SubResource("StyleBoxTexture_t86ht")
 Button/styles/normal = SubResource("StyleBoxTexture_g0oqd")

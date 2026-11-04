@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ctq0l1bvjyqw4"]
+
+[ext_resource type="Texture2D" uid="uid://ci47a2dluufys" path="res://assets/models/adventurers/bog_conjurer_Skin_Details_128.png" id="1_t15ho"]
+
+[resource]
+resource_name = "Skin_Cel_4Band"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("1_t15ho")

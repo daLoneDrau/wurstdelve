@@ -3,7 +3,12 @@
 		"bloodsport_brawler": {
 			"size": 0.2,
 			"x": 0.0,
-			"y": 0.01
+			"y": 0.1
+		},
+		"bog_conjurer": {
+			"size": 0.2,
+			"x": 0.0,
+			"y": 0.095
 		}
 	},
 	"output": {

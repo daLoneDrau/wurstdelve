@@ -11,6 +11,8 @@
   ],
   "attributes": { "agi": 7, "con": 8, "mag": 9, "mrl": 6, "per": 7, "str": 8 },
   "luck": 4,
+  "model": "res://assets/models/adventurers/bog_conjurer.glb",
+  "face": "res://assets/faces/bog_conjurer.png",
   "gp": 2,
   "xp": 10,
   "skills": ["sixth_sense"],

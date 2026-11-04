@@ -36,7 +36,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="Control/ModelStage" unique_id=1332186374]
 own_world_3d = true
 handle_input_locally = false
-size = Vector2i(960, 540)
+size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Control/ModelStage/SubViewport" unique_id=1467849047]
