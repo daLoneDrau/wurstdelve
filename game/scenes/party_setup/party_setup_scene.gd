@@ -1,9 +1,11 @@
 class_name PartySetupScene
 extends Scene
 
-## Party Setup: the player builds the party from the adventurer list, with a strip of party slots
-## on top, the selected adventurer's stage and details in the middle and on the right, and the
-## Weaknesses panel (layout only for now). Back returns to Campaign Select and clears the party,
+## Party Setup: the player builds the party from the adventurer list. A strip of party slots sits
+## on top and the list runs down the left. On the right are the selected adventurer's details
+## (stage, classes, HP, attributes, Luck), the starting kit and suggested skills, and a bottom row
+## with the Weaknesses panel (layout only for now) and the party buttons. Back returns to Campaign
+## Select and clears the party,
 ## since a party is picked for one mission. Confirm Party creates the adventurer entities and
 ## goes on to the Map.
 ##
@@ -31,6 +33,18 @@ const DEFAULT_MIN_PARTY: int = 1
 const NONE_TEXT: String = "NONE"
 const ADD_TEXT: String = "ADD TO PARTY"
 const REMOVE_TEXT: String = "REMOVE"
+const ATTRIBUTE_KEYS: Array[String] = ["agi", "con", "mag", "mrl", "per", "str"]
+## The most rows a kit column shows (starting skills, starting items, suggested skills).
+const MAX_KIT_ROWS: int = 3
+const TEXT_COLOR: Color = Color(0.94, 0.93, 0.98, 1.0)
+const DIM_COLOR: Color = Color(0.45, 0.47, 0.58, 1.0)
+const GOLD_COLOR: Color = Color(0.97, 0.83, 0.42, 1.0)
+const PIP_SIZE: Vector2 = Vector2(10, 10)
+## The card's slot word, as shown beside an Item in the starting kit.
+const SLOT_TEXT: Dictionary = {
+	"body": "BODY", "gauntlet": "GAUNTLET", "head": "HEAD", "jewelry": "JEWELRY",
+	"1h": "1H", "lh": "LH", "2h": "2H",
+	}
 
 ## The authored adventurer records, sorted by name.
 var _records: Array[Dictionary] = []
@@ -55,19 +69,24 @@ var _shown_model_path: String = "<unset>"
 @onready var _prev_button: ArrowButton = %PrevButton
 @onready var _next_button: ArrowButton = %NextButton
 @onready var _page_label: Label = %PageLabel
-@onready var _stage_title_label: Label = %StageTitleLabel
+@onready var _details_title_label: Label = %DetailsTitleLabel
 @onready var _stage_view: SubViewportContainer = %StageView
 @onready var _stage_viewport: SubViewport = %StageViewport
 @onready var _stage_camera: Camera3D = %StageCamera
 @onready var _model_anchor: Node3D = %ModelAnchor
 @onready var _stage_placeholder: Label = %StagePlaceholder
 @onready var _classes_label: Label = %ClassesLabel
-@onready var _vitals_label: Label = %VitalsLabel
-@onready var _attributes_label: Label = %AttributesLabel
+@onready var _hp_label: Label = %HpLabel
+@onready var _attribute_values: Dictionary = {
+	"agi": %AgiValue, "con": %ConValue, "mag": %MagValue,
+	"mrl": %MrlValue, "per": %PerValue, "str": %StrValue,
+	}
+@onready var _luck_pips: HBoxContainer = %LuckPips
+@onready var _luck_count_label: Label = %LuckCountLabel
 @onready var _luck_rule_label: Label = %LuckRuleLabel
-@onready var _skills_label: Label = %SkillsLabel
-@onready var _suggested_skills_label: Label = %SuggestedSkillsLabel
-@onready var _items_label: Label = %ItemsLabel
+@onready var _skills_grid: GridContainer = %SkillsGrid
+@onready var _items_grid: GridContainer = %ItemsGrid
+@onready var _suggested_skills_grid: GridContainer = %SuggestedSkillsGrid
 @onready var _suggested_weakness_label: Label = %SuggestedWeaknessLabel
 @onready var _add_button: ArrowButton = %AddButton
 @onready var _confirm_button: ArrowButton = %ConfirmButton
@@ -327,40 +346,51 @@ func _refresh() -> void:
 	_confirm_button.disabled = _party.size() < _min_party
 
 
-## Fills the stage and details panels from an adventurer record (an empty one clears them).
+## Fills the details and kit panels from an adventurer record (an empty one clears them).
 func _show_details(record: Dictionary) -> void:
 	_show_model(str(record.get("model", "")))
 	if record.is_empty():
-		_stage_title_label.text = "NO ADVENTURER"
+		_details_title_label.text = "NO ADVENTURER"
 		_classes_label.text = ""
-		_vitals_label.text = ""
-		_attributes_label.text = ""
+		_hp_label.text = ""
+		for key in ATTRIBUTE_KEYS:
+			(_attribute_values[key] as Label).text = ""
+		_show_luck(0, 0)
 		_luck_rule_label.text = ""
-		_skills_label.text = NONE_TEXT
-		_suggested_skills_label.text = NONE_TEXT
-		_items_label.text = NONE_TEXT
+		_fill_grid(_skills_grid, [])
+		_fill_grid(_items_grid, [])
+		_fill_grid(_suggested_skills_grid, [])
 		_suggested_weakness_label.text = NONE_TEXT
 		return
 	var attributes: Dictionary = record["attributes"]
-	_stage_title_label.text = str(record["name"]).to_upper()
+	_details_title_label.text = str(record["name"]).to_upper()
 	_classes_label.text = " · ".join(PackedStringArray(record["classes"]))
 	# HP is double CON; a new adventurer has no Wounds
-	_vitals_label.text = "HP %d · LUCK %d" % [
-		2 * int(attributes["con"]), int(record.get("luck", 0))
-	]
-	_attributes_label.text = "    ".join(PackedStringArray([
-		"AGI %d" % int(attributes["agi"]),
-		"CON %d" % int(attributes["con"]),
-		"MAG %d" % int(attributes["mag"]),
-		"MRL %d" % int(attributes["mrl"]),
-		"PER %d" % int(attributes["per"]),
-		"STR %d" % int(attributes["str"]),
-		]))
+	var hp: int = 2 * int(attributes["con"])
+	_hp_label.text = "HP %d / %d" % [hp, hp]
+	for key in ATTRIBUTE_KEYS:
+		(_attribute_values[key] as Label).text = str(int(attributes[key]))
+	# Luck can never exceed MAG, so MAG is the number of places
+	_show_luck(int(record.get("luck", 0)), int(attributes["mag"]))
 	_luck_rule_label.text = str(record.get("luck_rule", "")).to_upper()
-	_skills_label.text = _names_text(record.get("skills", []), false)
-	_suggested_skills_label.text = _names_text(record.get("suggested_skills", []), false)
-	_items_label.text = _names_text(record.get("starting_items", []), true)
-	_suggested_weakness_label.text = _names_text(record.get("suggested_weaknesses", []), false)
+	_fill_grid(_skills_grid, _kit_entries(record.get("skills", []), false))
+	_fill_grid(_items_grid, _kit_entries(record.get("starting_items", []), true))
+	_fill_grid(_suggested_skills_grid, _kit_entries(record.get("suggested_skills", []), false))
+	_suggested_weakness_label.text = _names_text(record.get("suggested_weaknesses", []))
+
+
+## Draws one pip per place of Luck (up to MAG), the filled ones first, and the "n / max" count.
+func _show_luck(luck: int, max_luck: int) -> void:
+	for pip in _luck_pips.get_children():
+		_luck_pips.remove_child(pip)
+		pip.queue_free()
+	for i in max_luck:
+		var pip := ColorRect.new()
+		pip.custom_minimum_size = PIP_SIZE
+		pip.color = GOLD_COLOR if i < luck else DIM_COLOR
+		pip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_luck_pips.add_child(pip)
+	_luck_count_label.text = "%d / %d" % [luck, max_luck] if max_luck > 0 else ""
 
 
 ## Shows the adventurer's 3D model on the stage, or the placeholder text if it has none. The
@@ -391,16 +421,58 @@ func _show_model(path: String) -> void:
 	_stage_placeholder.visible = model == null
 
 
-## One name per line, or NONE. Items use their record's name when there is one. Skills and
+## The display name for an id. Items use their record's name when there is one. Skills and
 ## Weaknesses have no definitions yet, so their names are made from the ids.
-func _names_text(ids: Array, are_items: bool) -> String:
+func _display_name(id: String, are_item: bool) -> String:
+	var display: String = id.replace("_", " ")
+	var assets: DDAssetsLibrary = _dd_engine().dd_assets()
+	if are_item and assets.has_item_record(id):
+		display = str(assets.get_item_record(id).get("name", display))
+	return display.to_upper()
+
+
+## One name per line, or NONE. Used for Weaknesses.
+func _names_text(ids: Array) -> String:
 	if ids.is_empty():
 		return NONE_TEXT
-	var assets: DDAssetsLibrary = _dd_engine().dd_assets()
 	var names: PackedStringArray = PackedStringArray()
 	for id in ids:
-		var display: String = str(id).replace("_", " ")
-		if are_items and assets.has_item_record(str(id)):
-			display = str(assets.get_item_record(str(id)).get("name", display))
-		names.append(display.to_upper())
+		names.append(_display_name(str(id), false))
 	return "\n".join(names)
+
+
+## The rows for one kit column: [name, detail] pairs. Skills have no definitions yet, so their
+## detail is empty. An Item's detail comes from its record (its slot, and WEAPON if it attacks).
+func _kit_entries(ids: Array, are_items: bool) -> Array:
+	var entries: Array = []
+	var assets: DDAssetsLibrary = _dd_engine().dd_assets()
+	for id in ids:
+		var detail: String = ""
+		if are_items and assets.has_item_record(str(id)):
+			var record: Dictionary = assets.get_item_record(str(id))
+			var slot_text: String = str(SLOT_TEXT.get(str(record.get("slot", "")), ""))
+			var weapon_text: String = "WEAPON" if record.has("attack_types") else ""
+			detail = " ".join(PackedStringArray([slot_text, weapon_text])).strip_edges()
+		entries.append([_display_name(str(id), are_items), detail])
+	return entries
+
+
+## Rebuilds a kit column's rows: a name that clips if it is long, and a dim detail beside it.
+func _fill_grid(grid: GridContainer, entries: Array) -> void:
+	for child in grid.get_children():
+		grid.remove_child(child)
+		child.queue_free()
+	if entries.is_empty():
+		entries = [[NONE_TEXT, ""]]
+	for i in mini(entries.size(), MAX_KIT_ROWS):
+		var name_label := Label.new()
+		name_label.text = str(entries[i][0])
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		name_label.clip_text = true
+		name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		name_label.add_theme_color_override("font_color", TEXT_COLOR)
+		grid.add_child(name_label)
+		var detail_label := Label.new()
+		detail_label.text = str(entries[i][1])
+		detail_label.add_theme_color_override("font_color", DIM_COLOR)
+		grid.add_child(detail_label)
